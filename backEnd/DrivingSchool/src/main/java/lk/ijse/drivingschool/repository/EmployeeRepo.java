@@ -1,0 +1,17 @@
+    package lk.ijse.drivingschool.repository;
+
+    import lk.ijse.drivingschool.entity.Employee;
+    import lk.ijse.drivingschool.entity.Instructor;
+    import org.springframework.data.jpa.repository.JpaRepository;
+    import org.springframework.data.jpa.repository.Query;
+
+    import java.util.List;
+    import java.util.Optional;
+
+    public interface EmployeeRepo extends JpaRepository<Employee, String> {
+        Optional<Employee> findByNicAndGmail(String nic, String email);
+        Optional<Employee> findByNic(String nic);
+
+        @Query("SELECT e FROM Employee e WHERE e.jobRole='Instructor'")
+        List<Employee> findAllInstructorEmployees();
+    }

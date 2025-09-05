@@ -1,0 +1,16 @@
+2025-09-06T00:02:01.523+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.cors.DefaultCorsProcessor        : Reject: 'https://run-html-chat.deepseeksvc.com' origin is not allowed
+2025-09-06T00:02:51.900+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourses", parameters={}
+2025-09-06T00:02:51.901+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-09-06T00:02:51.906+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-09-06T00:02:51.917+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource admin/getCourses.]
+2025-09-06T00:02:51.918+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-09-06T00:03:07.482+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourses", parameters={}
+2025-09-06T00:03:07.483+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-09-06T00:03:07.492+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-09-06T00:03:07.495+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource admin/getCourses.]
+2025-09-06T00:03:07.495+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-09-06T00:03:16.466+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourses", parameters={}
+2025-09-06T00:03:16.468+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-09-06T00:03:16.472+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-09-06T00:03:16.473+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource admin/getCourses.]
+2025-09-06T00:03:16.473+05:30 DEBUG 11248 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND

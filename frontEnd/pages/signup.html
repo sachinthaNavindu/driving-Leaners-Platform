@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - DriveMaster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1545438102-5cb1d0e8a4de?ixlib=rb-4.0.3') center/cover;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .left-panel h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .left-panel p {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            list-style: none;
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features i {
+            margin-right: 10px;
+            color: #4e85fd;
+            font-size: 20px;
+        }
+        
+        .right-panel {
+            flex: 1;
+            padding: 40px;
+            background: white;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo h1 i {
+            margin-right: 10px;
+            color: #f39c12;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            color: #7f8c8d;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+        
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            background: #eee;
+            overflow: hidden;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background 0.3s;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .links a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert-error {
+            background: #ffecec;
+            color: #e43131;
+            border: 1px solid #f5aca6;
+        }
+        
+        .alert-success {
+            background: #e9f7ef;
+            color: #28a745;
+            border: 1px solid #a3d4b9;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .terms input {
+            margin-right: 10px;
+        }
+        
+        .terms label {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .terms a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+            
+            .left-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Join DriveMaster Academy</h2>
+            <p>Create your student account to access driving lessons, track your progress, and schedule your road tests.</p>
+            <ul class="features">
+                <li><i class="fas fa-check-circle"></i> Expert driving instructors</li>
+                <li><i class="fas fa-check-circle"></i> Flexible scheduling</li>
+                <li><i class="fas fa-check-circle"></i> Progress tracking</li>
+                <li><i class="fas fa-check-circle"></i> Road test preparation</li>
+            </ul>
+        </div>
+        
+        <div class="right-panel">
+            <div class="logo">
+                <h1><i class="fas fa-car-side"></i> DriveMaster</h1>
+                <p>Student Registration</p>
+            </div>
+            
+            <div id="alertBox" class="alert"></div>
+            
+            <form id="studentForm">
+                <div class="form-group">
+                    <label for="nic">NIC Number</label>
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" id="nic" autocomplete="off" placeholder="Enter your NIC number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" autocomplete="username" placeholder="Choose a username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gmail">Email Address</label>
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="gmail" autocomplete="email" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" autocomplete="new-password" placeholder="Create a password" required>
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="confirmPassword" autocomplete="new-password" placeholder="Confirm your password" required>
+                </div>
+                
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <button type="submit" id="registerBtn"><i class="fas fa-user-plus"></i> Register</button>
+            </form>
+            
+            <div class="links">
+                <a href="#"><i class="fas fa-info-circle"></i> Why we need this information?</a>
+                <a href="/pages/signin.html"><i class="fas fa-sign-in-alt"></i> Already have an account?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("studentForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('registerBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+            submitBtn.disabled = true;
+            
+            const nic = document.getElementById("nic").value;
+            const username = document.getElementById("username").value;
+            const gmail = document.getElementById("gmail").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (password !== confirmPassword) {
+                showAlert('Passwords do not match!', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            if (password.length < 8) {
+                showAlert('Password must be at least 8 characters long', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            if (!document.getElementById('terms').checked) {
+                showAlert('Please accept the terms and conditions', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            const data = {
+                nic: nic,
+                username: username,
+                gmail: gmail,
+                password: password
+            };
+
+            try {
+                const response = await fetch("http://localhost:8080/auth/student/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showAlert('Registration successful! Redirecting to login...', 'success');
+                    
+                    document.getElementById('studentForm').reset();
+                    document.getElementById('passwordStrengthBar').style.width = '0%';
+                    
+                    setTimeout(() => {
+                        window.location.href = 'signin.html';
+                    }, 2000);
+                } else {
+                    const error = await response.text();
+                    showAlert('Error: ' + error, 'error');
+                }
+            } catch (err) {
+                console.error("Request failed:", err);
+                showAlert('Failed to connect to server. Please try again later.', 'error');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            let strength = 0;
+            
+            if (password.length >= 8) strength += 25;
+            if (password.match(/[a-z]+/)) strength += 25;
+            if (password.match(/[A-Z]+/)) strength += 25;
+            if (password.match(/[0-9]+/) || password.match(/[^a-zA-Z0-9]+/)) strength += 25;
+            
+            strengthBar.style.width = strength + '%';
+            
+            if (strength < 50) {
+                strengthBar.style.background = '#e74c3c';
+            } else if (strength < 75) {
+                strengthBar.style.background = '#f39c12';
+            } else {
+                strengthBar.style.background = '#2ecc71';
+            }
+        });
+        
+        function showAlert(message, type) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.textContent = message;
+            alertBox.className = `alert alert-${type}`;
+            alertBox.style.display = 'block';
+            
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Management - DriveMaster Admin</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7f9;
+        margin: 0;
+      }
+
+      nav {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-bar {
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        font-size: 24px;
+      }
+
+      .menu-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item {
+        position: relative;
+        margin-left: 15px;
+      }
+
+      .menu-item > a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item > a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .menu-item > a i {
+        margin-right: 8px;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        min-width: 200px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+
+      .menu-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s;
+      }
+
+      .dropdown a:hover {
+        background-color: #f8f9fa;
+        color: #1a2a6c;
+      }
+
+      .dropdown a i {
+        margin-right: 10px;
+        color: #6c757d;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-left: 20px;
+      }
+
+      .user-profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 2px solid rgba(255, 255, 255, 极速0.3);
+      }
+
+      .course-management-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .page-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        color: #1a2a6c;
+      }
+
+      .page-title i {
+        margin-right: 15px;
+        font-size: 28px;
+        color: #b21f1f;
+      }
+
+      .page-title h1 {
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .form-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .form-header {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .form-header h2 {
+        color: #1a2a6c;
+        font-size: 22px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+
+      .form-header h2 i {
+        margin-right: 10px;
+        color: #b21f1f;
+      }
+
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px 20px;
+      }
+
+      .form-group {
+        flex: 1 0 calc(50% - 30px);
+        margin: 0 15px 20px;
+        min-width: 250px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #1a2a6c;
+        box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1);
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+        gap: 15px;
+      }
+
+      .btn-save {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .btn-save:hover {
+        background: linear-gradient(135deg, #23358b, #c42c2c);
+        box-shadow: 0 5px 15px rgba(178, 31, 31, 0.2);
+      }
+
+      .btn-cancel {
+        background: #6c757d;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .btn-cancel:hover {
+        background: #5a6268;
+        box-shadow: 0 5px 15px rgba(108, 117, 125, 0.2);
+      }
+
+      .btn-save i,
+      .btn-cancel i {
+        margin-right: 8px;
+      }
+
+      .course-table-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        margin-top: 30px;
+      }
+
+      .course-table-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .course-table-header h2 {
+        color: #1a2a6c;
+        font-size: 22px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+
+      .course-table-header h2 i {
+        margin-right: 10px;
+        color: #b21f1f;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 16px 20px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      th {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        color: #1a2a6c;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tbody tr {
+        transition: all 0.2s ease;
+      }
+
+      tbody tr:hover {
+        background-color: #f0f7ff;
+      }
+
+      .empty-table-message {
+        text-align: center;
+        padding: 40px;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        .nav-bar {
+          padding: 0 15px;
+        }
+
+        .logo span {
+          display: none;
+        }
+
+        .menu-item > a span {
+          display: none;
+        }
+
+        .menu-item > a i {
+          margin-right: 0;
+          font-size: 20px;
+        }
+
+        .user-profile span {
+          display: none;
+        }
+
+        .form-group {
+          flex: 1 0 100%;
+        }
+
+        .btn-container {
+          flex-direction: column;
+        }
+
+        .btn-save,
+        .btn-cancel {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .course-table-container {
+          overflow-x: auto;
+        }
+
+        table {
+          min-width: 600px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-bar">
+        <div class="logo">
+          <i class="fas fa-car-side"></i>
+          <span>DriveMaster Admin</span>
+        </div>
+
+        <div class="menu-container">
+          <div class="menu-item">
+            <a href="home.html"
+              ><i class="fas fa-home"></i> <span>Home</span></a
+            >
+          </div>
+
+          <div class="menu-item">
+            <a href="#"><i class="fas fa-book"></i> <span>Courses</span></a>
+            <div class="dropdown">
+              <a href="#"><i class="fas fa-list"></i> View Courses</a>
+              <a href="#"><i class="fas fa-plus-circle"></i> Add Course</a>
+              <a href="#"
+                ><i class="fas fa-money-bill-wave"></i> Fee Management</a
+              >
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
+          </div>
+
+          <div class="user-profile">
+            <img
+              src="https://ui-avatars.com/api/?name=Admin+User&background=random"
+              alt="Admin User"
+            />
+            <span>Admin</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <div class="course-management-container">
+        <div class="page-title">
+          <i class="fas fa-book"></i>
+          <h1>Course Management</h1>
+        </div>
+
+        <div class="form-container">
+          <div class="form-header">
+            <h2><i class="fas fa-info-circle"></i> Add New Course</h2>
+          </div>
+
+          <form id="course-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="course_id"
+                  >Course ID <span style="color: #b21f1f">*</span></label
+                >
+                <input
+                  type="text"
+                  id="course_id"
+                  name="course_id"
+                  required
+                  placeholder="Enter course ID (e.g., C001)"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="course_name"
+                  >Course Name <span style="color: #b21f1f">*</span></label
+                >
+                <input
+                  type="text"
+                  id="course_name"
+                  name="course_name"
+                  required
+                  placeholder="Enter course name"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="course_fee"
+                  >Course Fee (Rs.) <span style="color: #b21f1f">*</span></label
+                >
+                <input
+                  type="number"
+                  极速
+                  id="course_fee"
+                  name="course_fee"
+                  required
+                  placeholder="Enter course fee"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+            </div>
+
+            <div class="btn-container">
+              <button type="reset" class="btn-cancel">
+                <i class="fas fa-times"></i> Clear Form
+              </button>
+              <button type="submit" class="btn-save">
+                <i class="fas fa-save"></i> Save Course
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="course-table-container">
+          <div class="course-table-header">
+            <h2><i class="fas fa-list"></i> Available Courses</h2>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Course Fee (Rs.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3" class="empty-table-message">
+                  <i
+                    class="fas fa-info-circle"
+                    style="font-size: 48px; margin-bottom: 15px"
+                  ></i>
+                  <p>
+                    No courses available yet. Add a course to see it listed
+                    here.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
