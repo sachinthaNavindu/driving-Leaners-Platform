@@ -20,6 +20,7 @@ public class Instructor {
     private String nic;
 
     private String password;
+    @Enumerated(EnumType.STRING)
     private InstructorStatus status;
 
     @OneToOne

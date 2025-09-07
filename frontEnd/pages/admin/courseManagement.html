@@ -125,26 +125,28 @@
         height: 40px;
         border-radius: 50%;
         margin-right: 10px;
-        border: 2px solid rgba(255, 255, 255, 极速0.3);
+        border: 2px solid rgba(255, 255, 255, 0.3);
       }
 
-      .course-management-container {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 0 20px;
+      .page-header {
+        max-width: 1200px;
+        margin: 30px auto 20px;
+        padding: 0 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       .page-title {
         display: flex;
         align-items: center;
-        margin-bottom: 30px;
         color: #1a2a6c;
+        flex: 1;
       }
 
       .page-title i {
         margin-right: 15px;
         font-size: 28px;
-        color: #b21f1f;
       }
 
       .page-title h1 {
@@ -152,12 +154,255 @@
         font-weight: 600;
       }
 
+      .header-actions {
+        display: flex;
+        gap: 15px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+        text-decoration: none;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #23358b, #c42c2c);
+        box-shadow: 0 5px 15px rgba(178, 31, 31, 0.2);
+      }
+
+      .btn-primary i {
+        margin-right: 8px;
+      }
+
+      .search-filter-container {
+        max-width: 1200px;
+        margin: 0 auto 20px;
+        padding: 0 30px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .search-box {
+        flex: 1;
+        min-width: 300px;
+        position: relative;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: #1a2a6c;
+        box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1);
+      }
+
+      .search-box i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+      }
+
+      .filter-dropdown {
+        min-width: 200px;
+      }
+
+      .filter-dropdown select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      .table-container {
+        max-width: 1200px;
+        margin: 0 auto 40px;
+        padding: 0 30px;
+      }
+
+      .courses-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      th,
+      td {
+        padding: 16px 20px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      th {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        color: #1a2a6c;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tbody tr {
+        transition: all 0.2s ease;
+        background-color: white;
+      }
+
+      tbody tr:hover {
+        background-color: #f0f7ff;
+        box-shadow: 0 4px 12px rgba(26, 42, 108, 0.1);
+        transform: translateY(-1px);
+      }
+
+      td {
+        color: #444;
+        font-weight: 500;
+        position: relative;
+      }
+
+      td:not(:last-child):after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        height: 60%;
+        width: 1px;
+        background-color: #f0f0f0;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fafafa;
+      }
+
+      tbody tr:nth-child(even):hover {
+        background-color: #f0f7ff;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn-icon {
+        width: 35px;
+        height: 35px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-view {
+        background-color: #e7f0ff;
+        color: #3f83f8;
+      }
+
+      .btn-view:hover {
+        background-color: #3f83f8;
+        color: white;
+      }
+
+      .btn-edit {
+        background-color: #fef6e6;
+        color: #ff8a4c;
+      }
+
+      .btn-edit:hover {
+        background-color: #ff8a4c;
+        color: white;
+      }
+
+      .btn-delete {
+        background-color: #fee6e6;
+        color: #f05252;
+      }
+
+      .btn-delete:hover {
+        background-color: #f05252;
+        color: white;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .pagination-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: #2c3e50;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid #ddd;
+      }
+
+      .pagination-button:hover,
+      .pagination-button.active {
+        background: #1a2a6c;
+        color: white;
+        border-color: #1a2a6c;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+      }
+
+      .empty-state i {
+        font-size: 64px;
+        margin-bottom: 20px;
+        color: #ced4da;
+      }
+
+      .empty-state p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
       .form-container {
         background: white;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         padding: 30px;
-        margin-bottom: 40px;
+        margin: 0 auto 40px;
+        max-width: 1200px;
       }
 
       .form-header {
@@ -198,7 +443,8 @@
         color: #333;
       }
 
-      .form-group input {
+      .form-group input,
+      .form-group select {
         width: 100%;
         padding: 12px 15px;
         border: 1px solid #ddd;
@@ -207,20 +453,26 @@
         transition: border-color 0.3s;
       }
 
-      .form-group input:focus {
+      .form-group input:focus,
+      .form-group select:focus {
         outline: none;
         border-color: #1a2a6c;
         box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1);
+      }
+
+      .form-group input:read-only {
+        background-color: #f5f5f5;
+        color: #666;
+        cursor: not-allowed;
       }
 
       .btn-container {
         display: flex;
         justify-content: flex-end;
         margin-top: 10px;
-        gap: 15px;
       }
 
-      .btn-save {
+      .btn-register {
         background: linear-gradient(135deg, #1a2a6c, #b21f1f);
         color: white;
         border: none;
@@ -234,101 +486,142 @@
         align-items: center;
       }
 
-      .btn-save:hover {
+      .btn-register:hover {
         background: linear-gradient(135deg, #23358b, #c42c2c);
         box-shadow: 0 5px 15px rgba(178, 31, 31, 0.2);
       }
 
-      .btn-cancel {
-        background: #6c757d;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-      }
-
-      .btn-cancel:hover {
-        background: #5a6268;
-        box-shadow: 0 5px 15px rgba(108, 117, 125, 0.2);
-      }
-
-      .btn-save i,
-      .btn-cancel i {
+      .btn-register i {
         margin-right: 8px;
       }
 
-      .course-table-container {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-        margin-top: 30px;
-      }
-
-      .course-table-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px;
-        border-bottom: 1px solid #eee;
-      }
-
-      .course-table-header h2 {
-        color: #1a2a6c;
-        font-size: 22px;
+      .message-box {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 5px;
+        color: white;
         font-weight: 600;
-        display: flex;
-        align-items: center;
+        font-size: 16px;
+        display: none;
+        z-index: 10000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        animation: fadeInOut 3s forwards;
       }
 
-      .course-table-header h2 i {
-        margin-right: 10px;
-        color: #b21f1f;
+      .message-success {
+        background-color: #28a745;
       }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
+      .message-error {
+        background-color: #dc3545;
       }
 
-      th,
-      td {
-        padding: 16px 20px;
-        text-align: left;
-        border-bottom: 1px solid #eee;
+      @keyframes fadeInOut {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        10%,
+        90% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
       }
 
-      th {
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        color: #1a2a6c;
-        font-weight: 600;
-        position: sticky;
-        top: 0;
+      .course-id-display {
+        margin-bottom: 20px;
+        font-weight: 500;
+        color: #333;
       }
 
-      tr:last-child td {
-        border-bottom: none;
-      }
-
-      tbody tr {
-        transition: all 0.2s ease;
-      }
-
-      tbody tr:hover {
-        background-color: #f0f7ff;
-      }
-
-      .empty-table-message {
-        text-align: center;
-        padding: 40px;
+      .course-id-display span {
         color: #6c757d;
         font-style: italic;
+        margin-left: 5px;
+      }
+
+      #deleteModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+      }
+
+      .modal-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        min-width: 400px;
+        max-width: 500px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal-header {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .modal-header i {
+        font-size: 24px;
+        color: #f05252;
+        margin-right: 10px;
+      }
+
+      .modal-header h3 {
+        color: #1a2a6c;
+        font-size: 20px;
+      }
+
+      .modal-body {
+        margin-bottom: 25px;
+        color: #555;
+        line-height: 1.5;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+      }
+
+      .modal-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+      }
+
+      .modal-btn-cancel {
+        background: #e5e7eb;
+        color: #374151;
+      }
+
+      .modal-btn-cancel:hover {
+        background: #d1d5db;
+      }
+
+      .modal-btn-confirm {
+        background: #f05252;
+        color: white;
+      }
+
+      .modal-btn-confirm:hover {
+        background: #e02424;
       }
 
       @media (max-width: 768px) {
@@ -353,26 +646,50 @@
           display: none;
         }
 
+        .page-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+        }
+
+        .header-actions {
+          width: 100%;
+          justify-content: flex-end;
+        }
+
+        .search-filter-container {
+          flex-direction: column;
+        }
+
+        .search-box,
+        .filter-dropdown {
+          min-width: 100%;
+        }
+
+        .table-container {
+          overflow-x: auto;
+        }
+
+        .courses-table {
+          min-width: 800px;
+        }
+
+        th,
+        td {
+          padding: 12px 15px;
+        }
+
         .form-group {
           flex: 1 0 100%;
         }
 
-        .btn-container {
-          flex-direction: column;
+        td:after {
+          display: none;
         }
 
-        .btn-save,
-        .btn-cancel {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .course-table-container {
-          overflow-x: auto;
-        }
-
-        table {
-          min-width: 600px;
+        .modal-content {
+          min-width: 300px;
+          margin: 0 20px;
         }
       }
     </style>
@@ -422,104 +739,567 @@
       </div>
     </nav>
 
+    <div class="page-header">
+      <div class="page-title">
+        <i class="fas fa-book"></i>
+        <h1>Course Management</h1>
+      </div>
+      <div class="header-actions">
+        <a href="#add-course" class="btn-primary">
+          <i class="fas fa-plus-circle"></i> Add Course
+        </a>
+      </div>
+    </div>
+
     <section>
-      <div class="course-management-container">
-        <div class="page-title">
-          <i class="fas fa-book"></i>
-          <h1>Course Management</h1>
+      <div class="search-filter-container">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search courses by name..."
+          />
         </div>
 
-        <div class="form-container">
-          <div class="form-header">
-            <h2><i class="fas fa-info-circle"></i> Add New Course</h2>
-          </div>
-
-          <form id="course-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="course_id"
-                  >Course ID <span style="color: #b21f1f">*</span></label
-                >
-                <input
-                  type="text"
-                  id="course_id"
-                  name="course_id"
-                  required
-                  placeholder="Enter course ID (e.g., C001)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="course_name"
-                  >Course Name <span style="color: #b21f1f">*</span></label
-                >
-                <input
-                  type="text"
-                  id="course_name"
-                  name="course_name"
-                  required
-                  placeholder="Enter course name"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="course_fee"
-                  >Course Fee (Rs.) <span style="color: #b21f1f">*</span></label
-                >
-                <input
-                  type="number"
-                  极速
-                  id="course_fee"
-                  name="course_fee"
-                  required
-                  placeholder="Enter course fee"
-                  min="0"
-                  step="0.01"
-                />
-              </div>
-            </div>
-
-            <div class="btn-container">
-              <button type="reset" class="btn-cancel">
-                <i class="fas fa-times"></i> Clear Form
-              </button>
-              <button type="submit" class="btn-save">
-                <i class="fas fa-save"></i> Save Course
-              </button>
-            </div>
-          </form>
+        <div class="filter-dropdown">
+          <select id="sortFilter">
+            <option value="newest">Sort by: Newest</option>
+            <option value="name">Sort by: Name</option>
+            <option value="fee">Sort by: Fee (Low to High)</option>
+            <option value="sessions">Sort by: Sessions (High to Low)</option>
+          </select>
         </div>
+      </div>
 
-        <div class="course-table-container">
-          <div class="course-table-header">
-            <h2><i class="fas fa-list"></i> Available Courses</h2>
+      <div class="table-container">
+        <table class="courses-table">
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Course Fee (Rs.)</th>
+              <th>Sessions</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="coursesTableBody">
+            <tr>
+              <td colspan="4">
+                <div class="empty-state">
+                  <i class="fas fa-book"></i>
+                  <p>No courses found</p>
+                  <p>Add a new course to get started</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination" style="display: none" id="paginationContainer">
+          <div class="pagination-button">
+            <i class="fas fa-chevron-left"></i>
           </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Course ID</th>
-                <th>Course Name</th>
-                <th>Course Fee (Rs.)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="3" class="empty-table-message">
-                  <i
-                    class="fas fa-info-circle"
-                    style="font-size: 48px; margin-bottom: 15px"
-                  ></i>
-                  <p>
-                    No courses available yet. Add a course to see it listed
-                    here.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="pagination-button active">1</div>
+          <div class="pagination-button">2</div>
+          <div class="pagination-button">3</div>
+          <div class="pagination-button"><i class="fas fa-ellipsis-h"></i></div>
+          <div class="pagination-button">10</div>
+          <div class="pagination-button">
+            <i class="fas fa-chevron-right"></i>
+          </div>
         </div>
       </div>
     </section>
+
+    <section id="add-course">
+      <div class="form-container">
+        <div class="form-header">
+          <h2><i class="fas fa-plus-circle"></i> Add New Course</h2>
+        </div>
+
+        <form id="course-form">
+          <div class="course-id-display">
+            Course ID:
+            <span id="courseIdDisplay">Will be automatically generated</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="course_name"
+                >Course Name <span style="color: #b21f1f">*</span></label
+              >
+              <input
+                type="text"
+                id="course_name"
+                name="course_name"
+                required
+                placeholder="Enter course name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="course_fee"
+                >Course Fee (Rs.) <span style="color: #b21f1f">*</span></label
+              >
+              <input
+                type="number"
+                id="course_fee"
+                name="course_fee"
+                required
+                placeholder="Enter course fee"
+                min="0"
+                step="0.01"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="sessions"
+                >Number of Sessions <span style="color: #b21f1f">*</span></label
+              >
+              <input
+                type="number"
+                id="sessions"
+                name="sessions"
+                required
+                placeholder="Enter number of sessions"
+                min="1"
+              />
+            </div>
+          </div>
+
+          <div class="btn-container">
+            <button type="submit" class="btn-register">
+              <i class="fas fa-save"></i> Save Course
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div id="deleteModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h3>Confirm Deletion</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+            Are you sure you want to delete this course? This action cannot be
+            undone.
+          </p>
+          <p
+            id="courseToDeleteName"
+            style="font-weight: bold; margin-top: 10px"
+          ></p>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn modal-btn-cancel" id="cancelDelete">
+            Cancel
+          </button>
+          <button
+            class="modal-btn modal-btn-confirm"
+            onclick="deleteCourse()"
+            id="confirmDelete"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+<script>
+  const token = localStorage.getItem("token");
+if (!token || token === "undefined" || token === "null") {
+  window.location.href = "/pages/employeelogin.html";
+}
+
+const courseForm = document.getElementById("course-form");
+const tableBody = document.getElementById("coursesTableBody");
+const searchInput = document.getElementById("searchInput");
+const sortFilter = document.getElementById("sortFilter");
+const deleteModal = document.getElementById("deleteModal");
+const courseToDeleteNameEl = document.getElementById("courseToDeleteName");
+const cancelDeleteBtn = document.getElementById("cancelDelete");
+const courseIdDisplay = document.getElementById("courseIdDisplay");
+
+let coursesData = [];
+let courseToDeleteName = null;
+let isViewMode = false;
+let isEditMode = false;
+let currentViewCourseName = null;
+let currentEditCourseName = null;
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadCourses();
+
+  searchInput.addEventListener("input", filterCourses);
+  sortFilter.addEventListener("change", filterCourses);
+
+  cancelDeleteBtn.addEventListener("click", closeDeleteModal);
+});
+
+courseForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  // If in view mode, don't submit the form
+  if (isViewMode) {
+    exitViewMode();
+    return;
+  }
+
+  // If in edit mode, update the course
+  if (isEditMode) {
+    updateCourse();
+    return;
+  }
+
+  // Otherwise, create new course
+  const courseData = {
+    courseName: document.getElementById("course_name").value.trim(),
+    courseFee: parseFloat(document.getElementById("course_fee").value),
+    sessions: parseInt(document.getElementById("sessions").value),
+  };
+
+  try {
+    const response = await fetch(
+      "http://localhost:8080/admin/saveCourse",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(courseData),
+      }
+    );
+
+    if (response.ok) {
+      const result = await response.json();
+      showMessage("Course saved successfully!", "success");
+      courseForm.reset();
+      loadCourses();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      showMessage("Failed to save course", "error");
+    }
+  } catch (error) {
+    showMessage("Error saving course", "error");
+    console.error("Error:", error);
+  }
+});
+
+async function loadCourses() {
+  try {
+    const response = await fetch(
+      "http://localhost:8080/admin/getCourseDetails",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.ok) {
+      const result = await response.json();
+      coursesData = result.data || [];
+      filterCourses();
+    } else {
+      console.error("Failed to load courses");
+      showMessage("Failed to load courses", "error");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    showMessage("Error loading courses", "error");
+  }
+}
+
+function filterCourses() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const sortValue = sortFilter.value;
+
+  let filteredCourses = coursesData;
+
+  if (searchTerm) {
+    filteredCourses = filteredCourses.filter((course) =>
+      course.courseName.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  switch (sortValue) {
+    case "name":
+      filteredCourses.sort((a, b) =>
+        a.courseName.localeCompare(b.courseName)
+      );
+      break;
+    case "fee":
+      filteredCourses.sort((a, b) => a.courseFee - b.courseFee);
+      break;
+    case "sessions":
+      filteredCourses.sort((a, b) => b.sessions - a.sessions);
+      break;
+    case "newest":
+    default:
+      // Sort by name as fallback since we don't have course IDs
+      filteredCourses.sort((a, b) =>
+        a.courseName.localeCompare(b.courseName)
+      );
+      break;
+  }
+
+  updateCourseTable(filteredCourses);
+}
+
+function updateCourseTable(courses) {
+  tableBody.innerHTML = "";
+
+  if (courses.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="4">
+          <div class="empty-state">
+            <i class="fas fa-book"></i>
+            <p>No courses found</p>
+            <p>Add a new course to get started</p>
+          </div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  courses.forEach((course) => {
+    const row = document.createElement("tr");
+    row.setAttribute("data-course-name", course.courseName);
+    row.innerHTML = `
+      <td>${course.courseName}</td>
+      <td>${
+        course.courseFee !== undefined && course.courseFee !== null
+          ? Number(course.courseFee).toFixed(2)
+          : "0.00"
+      }</td>
+      <td>${course.sessions}</td>
+      <td>
+        <div class="action-buttons">
+          <div class="btn-icon btn-view" title="View Course" onclick="viewCourse('${course.courseName.replace(/'/g, "\\'")}')">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="btn-icon btn-edit" title="Edit Course" onclick="editCourse('${course.courseName.replace(/'/g, "\\'")}')">
+            <i class="fas fa-edit"></i>
+          </div>
+          <div class="btn-icon btn-delete" title="Delete Course" onclick="showDeleteModal('${course.courseName.replace(/'/g, "\\'")}')">
+            <i class="fas fa-trash"></i>
+          </div>
+        </div>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+function showDeleteModal(courseName) {
+  courseToDeleteName = courseName;
+  courseToDeleteNameEl.textContent = `Course: ${courseName}`;
+  deleteModal.style.display = "flex";
+}
+
+function closeDeleteModal() {
+  deleteModal.style.display = "none";
+  courseToDeleteName = null;
+}
+
+async function deleteCourse() {
+  if (!courseToDeleteName) return;
+
+  try {
+    const response = await fetch(
+      `http://localhost:8080/admin/courseDelete/${encodeURIComponent(courseToDeleteName)}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.ok) {
+      showMessage("Course deleted successfully!", "success");
+      loadCourses();
+    } else {
+      showMessage("Failed to delete course", "error");
+    }
+  } catch (error) {
+    showMessage("Error deleting course", "error");
+    console.error("Error:", error);
+  } finally {
+    closeDeleteModal();
+  }
+}
+
+function viewCourse(courseName) {
+  const course = coursesData.find((c) => c.courseName === courseName);
+  if (!course) return;
+
+  enterViewMode(course);
+
+  document.getElementById("add-course").scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}
+
+function enterViewMode(course) {
+  isViewMode = true;
+  currentViewCourseName = course.courseName;
+
+  document.getElementById("course_name").value = course.courseName;
+  document.getElementById("course_fee").value = course.courseFee;
+  document.getElementById("sessions").value = course.sessions;
+  courseIdDisplay.textContent = course.courseName;
+
+  document.getElementById("course_name").readOnly = true;
+  document.getElementById("course_fee").readOnly = true;
+  document.getElementById("sessions").readOnly = true;
+
+  const formHeader = document.querySelector(".form-header h2");
+  formHeader.innerHTML = '<i class="fas fa-eye"></i> View Course Details';
+
+  const submitButton = document.querySelector(".btn-register");
+  submitButton.innerHTML = '<i class="fas fa-times"></i> Close View';
+  submitButton.style.background =
+    "linear-gradient(135deg, #6c757d, #495057)";
+
+  document.querySelector(".course-id-display").style.display = "block";
+}
+
+function exitViewMode() {
+  isViewMode = false;
+  currentViewCourseName = null;
+
+  courseForm.reset();
+
+  document.getElementById("course_name").readOnly = false;
+  document.getElementById("course_fee").readOnly = false;
+  document.getElementById("sessions").readOnly = false;
+
+  const formHeader = document.querySelector(".form-header h2");
+  formHeader.innerHTML =
+    '<i class="fas fa-plus-circle"></i> Add New Course';
+
+  const submitButton = document.querySelector(".btn-register");
+  submitButton.innerHTML = '<i class="fas fa-save"></i> Save Course';
+  submitButton.style.background =
+    "linear-gradient(135deg, #1a2a6c, #b21f1f)";
+
+  courseIdDisplay.textContent = "Will be automatically generated";
+}
+
+function editCourse(courseName) {
+  const course = coursesData.find((c) => c.courseName === courseName);
+  if (!course) return;
+
+  enterEditMode(course);
+
+  document.getElementById("add-course").scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}
+
+function enterEditMode(course) {
+  isEditMode = true;
+  currentEditCourseName = course.courseName;
+
+  // Populate form fields with course data
+  document.getElementById("course_name").value = course.courseName;
+  document.getElementById("course_fee").value = course.courseFee;
+  document.getElementById("sessions").value = course.sessions;
+  courseIdDisplay.textContent = course.courseName;
+
+  // Make fields editable
+  document.getElementById("course_name").readOnly = false;
+  document.getElementById("course_fee").readOnly = false;
+  document.getElementById("sessions").readOnly = false;
+
+  // Update form header and button
+  const formHeader = document.querySelector(".form-header h2");
+  formHeader.innerHTML = '<i class="fas fa-edit"></i> Edit Course';
+
+  const submitButton = document.querySelector(".btn-register");
+  submitButton.innerHTML = '<i class="fas fa-sync-alt"></i> Update Course';
+  submitButton.style.background = "linear-gradient(135deg, #ff8a4c, #b21f1f)";
+
+  document.querySelector(".course-id-display").style.display = "block";
+}
+
+function exitEditMode() {
+  isEditMode = false;
+  currentEditCourseName = null;
+
+  // Reset form
+  courseForm.reset();
+
+  // Make fields editable (in case they were in view mode)
+  document.getElementById("course_name").readOnly = false;
+  document.getElementById("course_fee").readOnly = false;
+  document.getElementById("sessions").readOnly = false;
+
+  // Reset form header and button
+  const formHeader = document.querySelector(".form-header h2");
+  formHeader.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Course';
+
+  const submitButton = document.querySelector(".btn-register");
+  submitButton.innerHTML = '<i class="fas fa-save"></i> Save Course';
+  submitButton.style.background = "linear-gradient(135deg, #1a2a6c, #b21f1f)";
+
+  courseIdDisplay.textContent = "Will be automatically generated";
+}
+
+async function updateCourse() {
+  const courseData = {
+    courseName: document.getElementById("course_name").value.trim(),
+    courseFee: parseFloat(document.getElementById("course_fee").value),
+    sessions: parseInt(document.getElementById("sessions").value),
+  };
+
+  try {
+    const response = await fetch(
+      `http://localhost:8080/admin/courseUpdate/${encodeURIComponent(currentEditCourseName)}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(courseData),
+      }
+    );
+
+    if (response.ok) {
+      const result = await response.json();
+      showMessage("Course updated successfully!", "success");
+      exitEditMode();
+      loadCourses();
+    } else {
+      showMessage("Failed to update course", "error");
+    }
+  } catch (error) {
+    showMessage("Error updating course", "error");
+    console.error("Error:", error);
+  }
+}
+
+function showMessage(message, type) {
+  const messageBox = document.createElement("div");
+  messageBox.className = `message-box message-${type}`;
+  messageBox.textContent = message;
+  document.body.appendChild(messageBox);
+
+  messageBox.style.display = "block";
+
+  setTimeout(() => {
+    messageBox.remove();
+  }, 3000);
+}
+</script>
   </body>
 </html>

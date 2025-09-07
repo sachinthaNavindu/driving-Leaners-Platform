@@ -116,6 +116,7 @@ public class AuthService {
         Instructor instructor1 = Instructor.builder()
                 .licenseId(instructorAuthDTO.getLicenseId())
                 .nic(instructorAuthDTO.getNic())
+                .status(InstructorStatus.ACTIVE)
                 .password(passwordEncoder.encode(instructorAuthDTO.getPassword()))
         .build();
 

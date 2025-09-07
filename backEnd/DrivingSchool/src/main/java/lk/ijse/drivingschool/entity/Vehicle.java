@@ -1,8 +1,6 @@
 package lk.ijse.drivingschool.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Course {
+public class Vehicle {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int courseId;
-    private String courseName;
-    private int sessions;
-    private Double courseFee;
+    private String vehicleNumber;
+    private String vehicleType;
+    private String availability;
 }
