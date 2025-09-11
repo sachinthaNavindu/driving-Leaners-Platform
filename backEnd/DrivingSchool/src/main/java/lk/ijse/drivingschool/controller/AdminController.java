@@ -1,12 +1,10 @@
 package lk.ijse.drivingschool.controller;
 
-import lk.ijse.drivingschool.dto.ApiResponseDTO;
-import lk.ijse.drivingschool.dto.CourseDTO;
-import lk.ijse.drivingschool.dto.EmployeeDTO;
-import lk.ijse.drivingschool.dto.StudentDTO;
+import lk.ijse.drivingschool.dto.*;
 import lk.ijse.drivingschool.service.CourseService;
 import lk.ijse.drivingschool.service.EmployeeService;
 import lk.ijse.drivingschool.service.StudentService;
+import lk.ijse.drivingschool.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +20,7 @@ public class AdminController {
     private final StudentService studentService;
     private final EmployeeService employeeService;
     private final CourseService courseService;
+    private final VehicleService vehicleService;
 
     //register endpoints
     @RequestMapping("/studentRegister")
@@ -49,6 +48,15 @@ public class AdminController {
                 200,
                 "OK",
                 courseService.saveCourse(courseDTO)
+        ));
+    }
+
+    @RequestMapping("/vehicleSave")
+    public ResponseEntity<ApiResponseDTO>saveVehicle(@RequestBody VehicleDTO vehicleDTO){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                vehicleService.saveVehicle(vehicleDTO)
         ));
     }
 
@@ -80,6 +88,15 @@ public class AdminController {
         ));
     }
 
+    @RequestMapping("/getVehicles")
+    public ResponseEntity<ApiResponseDTO>GetVehicles(){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                vehicleService.getVehicleData()
+        ));
+    }
+
     //update endpoints
 
     @RequestMapping("/employeeUpdate/{employeeId}")
@@ -100,6 +117,15 @@ public class AdminController {
         ));
     }
 
+    @RequestMapping("/updateVehicle/{vehicleNumber}")
+    public ResponseEntity<ApiResponseDTO>updateVehicle(@PathVariable String vehicleNumber, @RequestBody VehicleDTO vehicleDTO){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                vehicleService.updateVehicle(vehicleNumber,vehicleDTO)
+        ));
+    }
+
     //delete endpoints
     @RequestMapping("/employeeDelete/{employeeId}")
     public ResponseEntity<ApiResponseDTO>employeeDelete(@PathVariable String employeeId){
@@ -112,11 +138,20 @@ public class AdminController {
 
     @RequestMapping("/courseDelete/{courseToDeleteName}")
     public ResponseEntity<ApiResponseDTO>courseDelete(@PathVariable String courseToDeleteName){
-        System.out.println(courseToDeleteName);
         return ResponseEntity.ok(new ApiResponseDTO(
                 200,
                 "OK",
                 courseService.deleteCourse(courseToDeleteName)
+        ));
+    }
+
+    @RequestMapping("/vehicleDelete/{vehicleNum}")
+    public ResponseEntity<ApiResponseDTO>deleteVehicle(@PathVariable String vehicleNum){
+        System.out.println(vehicleNum);
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                vehicleService.deleteVehicle(vehicleNum)
         ));
     }
 }

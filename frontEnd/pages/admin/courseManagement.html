@@ -941,19 +941,16 @@ document.addEventListener("DOMContentLoaded", function () {
 courseForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  // If in view mode, don't submit the form
   if (isViewMode) {
     exitViewMode();
     return;
   }
 
-  // If in edit mode, update the course
   if (isEditMode) {
     updateCourse();
     return;
   }
 
-  // Otherwise, create new course
   const courseData = {
     courseName: document.getElementById("course_name").value.trim(),
     courseFee: parseFloat(document.getElementById("course_fee").value),
@@ -1039,7 +1036,6 @@ function filterCourses() {
       break;
     case "newest":
     default:
-      // Sort by name as fallback since we don't have course IDs
       filteredCourses.sort((a, b) =>
         a.courseName.localeCompare(b.courseName)
       );
@@ -1209,18 +1205,15 @@ function enterEditMode(course) {
   isEditMode = true;
   currentEditCourseName = course.courseName;
 
-  // Populate form fields with course data
   document.getElementById("course_name").value = course.courseName;
   document.getElementById("course_fee").value = course.courseFee;
   document.getElementById("sessions").value = course.sessions;
   courseIdDisplay.textContent = course.courseName;
 
-  // Make fields editable
   document.getElementById("course_name").readOnly = false;
   document.getElementById("course_fee").readOnly = false;
   document.getElementById("sessions").readOnly = false;
 
-  // Update form header and button
   const formHeader = document.querySelector(".form-header h2");
   formHeader.innerHTML = '<i class="fas fa-edit"></i> Edit Course';
 
@@ -1235,15 +1228,12 @@ function exitEditMode() {
   isEditMode = false;
   currentEditCourseName = null;
 
-  // Reset form
   courseForm.reset();
 
-  // Make fields editable (in case they were in view mode)
   document.getElementById("course_name").readOnly = false;
   document.getElementById("course_fee").readOnly = false;
   document.getElementById("sessions").readOnly = false;
 
-  // Reset form header and button
   const formHeader = document.querySelector(".form-header h2");
   formHeader.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Course';
 

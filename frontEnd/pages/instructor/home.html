@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard-Instructor</title>
+  <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7f9;
+        margin: 0;
+        position: relative;
+      }
+
+      nav {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-bar {
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        font-size: 24px;
+      }
+
+      .menu-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item {
+        position: relative;
+        margin-left: 15px;
+      }
+
+      .menu-item > a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item > a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .menu-item > a i {
+        margin-right: 8px;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        min-width: 200px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+
+      .menu-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s;
+      }
+
+      .dropdown a:hover {
+        background-color: #f8f9fa;
+        color: #1a2a6c;
+      }
+
+      .dropdown a i {
+        margin-right: 10px;
+        color: #6c757d;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-left: 20px;
+      }
+
+      .user-profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .dashboard-container {
+        max-width: 1200px;
+        margin: 30px 0 30px 30px;
+        padding: 0 20px;
+      }
+
+      .instructor-card {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        border-radius: 10px;
+        padding: 20px 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        color: white;
+        width: fit-content;
+        text-align: left;
+        margin-left: 0;
+      }
+
+      .instructor-name {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .instructor-role {
+        font-size: 16px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .pending-schedule-container {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .pending-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .pending-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a2a6c;
+      }
+
+
+
+      .pending-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .pending-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .pending-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .pending-student-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .pending-student-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .pending-student-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+
+
+      .pending-lesson-type {
+         font-weight: 600;
+        color: #1a2a6c;
+      }
+
+      .pending-time-slot {
+        background: #6c757d;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        margin-right: 10px;
+      }
+
+      .pending-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .accept-btn, .reject-btn {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .accept-btn {
+        background: #28a745;
+        color: white;
+      }
+
+      .accept-btn:hover {
+        background: #519400;
+      }
+
+      .reject-btn {
+        background: #dc3545;
+        color: white;
+      }
+
+      .reject-btn:hover {
+        background: #c82333;
+      }
+
+      .no-pending {
+        text-align: center;
+        padding: 20px;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      .schedule-container {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .schedule-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .schedule-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a2a6c;
+      }
+
+      .schedule-date {
+        font-size: 16px;
+        color: #6c757d;
+        font-weight: 500;
+      }
+
+      .schedule-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .schedule-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .schedule-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .student-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .student-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .student-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .student-name {
+        font-weight: 600;
+        color: #1a2a6c;
+      }
+
+      .lesson-type {
+        font-size: 12px;
+        color: #6c757d;
+      }
+
+      .time-slot {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .no-lessons {
+        text-align: center;
+        padding: 20px;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      .profile-section {
+        position: absolute;
+        top: 90px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        z-index: 100;
+      }
+
+      .profile-picture {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid #1a2a6c;
+        margin-bottom: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .profile-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-info {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+
+      .profile-info h3 {
+        color: #1a2a6c;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+        text-align: center;
+      }
+
+      .info-item {
+        display: flex;
+        margin-bottom: 12px;
+        text-align: left;
+      }
+
+      .info-item i {
+        color: #1a2a6c;
+        width: 24px;
+        margin-right: 10px;
+        margin-top: 3px;
+      }
+
+      .info-content {
+        flex: 1;
+      }
+
+      .info-label {
+        font-size: 12px;
+        color: #6c757d;
+        margin-bottom: 2px;
+      }
+
+      .info-value {
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .edit-button {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        margin-top: 10px;
+        transition: all 0.3s;
+        width: 100%;
+      }
+
+      .edit-button:hover {
+        background: linear-gradient(135deg, #2a3a7c, #c22f2f);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .monthly-schedule{
+        font-weight: bold;
+        color: #1a2a6c;
+      }
+
+      @media (max-width: 768px) {
+        .nav-bar {
+          padding: 0 15px;
+        }
+
+        .logo span {
+          display: none;
+        }
+
+        .menu-item > a span {
+          display: none;
+        }
+
+        .menu-item > a i {
+          margin-right: 0;
+          font-size: 20px;
+        }
+
+        .user-profile span {
+          display: none;
+        }
+        
+        .dashboard-container {
+          margin: 20px 0 20px 15px;
+          padding: 0 15px;
+        }
+        
+        .instructor-card {
+          width: auto;
+          margin-right: 15px;
+        }
+        
+        .pending-schedule-container,
+        .schedule-container {
+          width: auto;
+          margin-right: 15px;
+        }
+        
+        .pending-item,
+        .schedule-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        
+        .pending-actions,
+        .time-slot {
+          align-self: flex-end;
+        }
+        
+        .profile-section {
+          position: relative;
+          top: 0;
+          right: 0;
+          align-items: center;
+          width: 100%;
+          margin: 20px 0;
+        }
+        
+        .profile-info {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-bar">
+        <div class="logo">
+          <i class="fas fa-car-side"></i>
+          <span>DriveMaster Instructor</span>
+        </div>
+
+        <div class="menu-container">
+          <div class="menu-item">
+            <a href="#"><i class="fas fa-home"></i> <span>Home</span></a>
+          </div>
+
+          <div class="menu-item">
+            <a href="#"
+              ><i class="fas fa-calendar"></i> <span>Schedule</span></a
+            >
+            <div class="dropdown">
+              <a href="#"><i class="fas fa-calendar-day"></i> Daily View</a>
+              <a href="#"><i class="fas fa-calendar-week"></i> Weekly View</a>
+            </div>
+          </div>
+
+          <div class="user-profile">
+            <img
+              src="https://ui-avatars.com/api/?name=Instructor+User&background=random"
+              alt="Instructor User"
+            />
+            <span id="menubar-user">Instructor</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="profile-section">
+      <div class="profile-picture">
+        <img
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+          alt="John Smith"
+        />
+      </div>
+      <div class="profile-info">
+        <h3>Instructor Information</h3>
+        <div class="info-item">
+          <i class="fas fa-user"></i>
+          <div class="info-content">
+            <div class="info-label">Username</div>
+            <div class="info-value" id="username">Johnny</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="info-content">
+            <div class="info-label">ADDRESS</div>
+            <div class="info-value" id="address">123 Main St, Anytown, USA</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <div class="info-content">
+            <div class="info-label">CONTACT NUMBER</div>
+            <div class="info-value" id="contact">(555) 123-4567</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <div class="info-content">
+            <div class="info-label">EMAIL</div>
+            <div class="info-value" id="email">john.smith@drivemaster.com</div>
+          </div>
+        </div>
+        <button class="edit-button" onclick="editProfile()">
+          <i class="fas fa-edit"></i> Edit Profile
+        </button>
+      </div>
+    </div>
+
+    <div class="dashboard-container">
+      <div class="instructor-card">
+        <div class="instructor-name">John Smith</div>
+        <div class="instructor-role">Instructor</div>
+      </div>
+      
+      <div class="pending-schedule-container">
+        <div class="pending-header">
+          <div class="pending-title">Pending Schedule Requests</div>
+        </div>
+        <div class="pending-list">
+          <div class="pending-item">
+            <div class="pending-student-info">
+              <img src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Michael Brown" class="pending-student-avatar">
+              <div class="pending-student-details">
+        
+                <div class="pending-lesson-type">Intermediate Lesson - Car #3</div>
+              </div>
+            </div>
+            <div class="pending-time-slot">Tomorrow, 2:00 PM</div>
+            <div class="pending-actions">
+              <a href="scheduleRespond.html"><button class="accept-btn">View</button></a>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+
+      <div class="schedule-container">
+        <div class="schedule-header">
+          <div class="schedule-title">Tomorrow's Schedule</div>
+          <div class="schedule-date" id="tomorrow-date"></div>
+          <a href="#"><div class="monthly-schedule">Monthly Schedule</div></a>
+        </div>
+        <div class="schedule-list">
+          <div class="schedule-item">
+            <div class="student-info">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Emily Johnson" class="student-avatar">
+              <div class="student-details">
+                <div class="student-name">Emily Johnson</div>
+                <div class="lesson-type">Beginner Lesson - Car #5</div>
+              </div>
+            </div>
+            <div class="time-slot">9:00 AM - 10:30 AM</div>
+          </div>          
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

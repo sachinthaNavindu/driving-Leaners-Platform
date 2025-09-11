@@ -497,8 +497,12 @@
               <span>Instructors</span></a
             >
             <div class="dropdown">
-              <a href="instuctorManagement.html"><i class="fas fa-list"></i> View Instructors</a>
-              <a href="instuctorManagement.html#add-instructor"><i class="fas fa-user-plus"></i> Add Instructor</a>
+              <a href="instuctorManagement.html"
+                ><i class="fas fa-list"></i> View Instructors</a
+              >
+              <a href="instuctorManagement.html#add-instructor"
+                ><i class="fas fa-user-plus"></i> Add Instructor</a
+              >
               <a href="#"><i class="fas fa-calendar-alt"></i> Schedules</a>
             </div>
           </div>
@@ -579,7 +583,7 @@
           </div>
           <div class="stat-card-value">Amount</div>
           <div class="stat-card-trend trend-up">
-            <i class="fas fa-arrow-up"></i> 
+            <i class="fas fa-arrow-up"></i>
           </div>
         </div>
       </div>
@@ -781,6 +785,12 @@
                 </div>
                 <div class="action-title">Manage Course</div>
               </a>
+              <a href="vehicleMangement.html" class="action-button">
+                <div class="action-icon" style="background-color: #2ecc71">
+                  <i class="fas fa-car"></i>
+                </div>
+                <div class="action-title">Manage Vehicles</div>
+              </a>
             </div>
           </div>
 
@@ -831,7 +841,6 @@
     </div>
 
     <script>
-
       const token = localStorage.getItem("token");
       if (!token || token === "undefined" || token === "null") {
         console.log("No valid token found");

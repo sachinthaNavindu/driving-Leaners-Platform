@@ -277,7 +277,7 @@
 
       .tables-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 25px;
       }
 
@@ -309,6 +309,7 @@
       .table-title i {
         margin-right: 10px;
         color: white;
+        font-size: 16px;
       }
 
       .view-all-link {
@@ -327,33 +328,47 @@
       .table-content {
         padding: 20px;
         flex-grow: 1;
+        max-height: 300px;
+        overflow-y: auto;
       }
 
       .instructors-list,
-      .vehicles-list {
+      .vehicles-list,
+      .courses-list {
         list-style: none;
       }
 
       .instructor-item,
-      .vehicle-item {
+      .vehicle-item,
+      .course-item {
         display: flex;
         align-items: center;
         padding: 12px 0;
         border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .instructor-item:hover,
+      .vehicle-item:hover,
+      .course-item:hover {
+        background-color: #f0f4ff;
+        color: #1a2a6c;
       }
 
       .instructor-item:last-child,
-      .vehicle-item:last-child {
+      .vehicle-item:last-child,
+      .course-item:last-child {
         border-bottom: none;
       }
 
       .instructor-avatar,
-      .vehicle-icon {
+      .vehicle-icon,
+      .course-icon {
         width: 40px;
         height: 40px;
         border-radius: 50%;
         margin-right: 12px;
-        background-color: #1a2a6c;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -362,24 +377,35 @@
         flex-shrink: 0;
       }
 
+      .instructor-avatar {
+        background-color: #1a2a6c;
+      }
+
       .vehicle-icon {
         background-color: #0e9f6e;
       }
 
+      .course-icon {
+        background-color: #3f83f8;
+      }
+
       .instructor-info,
-      .vehicle-info {
+      .vehicle-info,
+      .course-info {
         flex-grow: 1;
       }
 
       .instructor-name,
-      .vehicle-model {
+      .vehicle-model,
+      .course-name {
         font-weight: 600;
         color: #2c3e50;
         margin-bottom: 4px;
       }
 
       .instructor-contact,
-      .vehicle-details {
+      .vehicle-details,
+      .course-details {
         color: #6c757d;
         font-size: 14px;
         display: flex;
@@ -387,7 +413,8 @@
       }
 
       .instructor-contact i,
-      .vehicle-details i {
+      .vehicle-details i,
+      .course-details i {
         margin-right: 6px;
         font-size: 12px;
       }
@@ -472,6 +499,7 @@
         margin-bottom: 8px;
         font-weight: 600;
         color: #2c3e50;
+        font-size: 14px;
       }
 
       .form-input,
@@ -482,6 +510,7 @@
         border-radius: 6px;
         font-size: 16px;
         transition: border-color 0.3s;
+        font-family: inherit;
       }
 
       .form-input:focus,
@@ -526,8 +555,94 @@
         color: #6c757d;
       }
 
-      .btn-secondary:hover {
-        background: #e9ecef;
+      .session-table-section {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .sessions-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .sessions-table th,
+      .sessions-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .sessions-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      .sessions-table tr:hover {
+        background-color: #f5f7f9;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .status-pending {
+        background-color: #fef6e6;
+        color: #ff8a4c;
+      }
+
+      .status-confirmed {
+        background-color: #e7f6ef;
+        color: #0e9f6e;
+      }
+
+      .status-cancelled {
+        background-color: #fde8e8;
+        color: #e02424;
+      }
+      .table-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .filter-select {
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        font-size: 14px;
+      }
+
+      .filter-select:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .filter-select option {
+        background-color: white;
+        color: #333;
+      }
+      .btn-cancel {
+        background-color: rgb(170, 67, 67);
+        color: white;
+      }
+
+      .status-declined {
+        background-color: #fde8e8;
+        color: #e02424;
+      }
+
+      @media (max-width: 1200px) {
+        .tables-container {
+          grid-template-columns: 1fr 1fr;
+        }
       }
 
       @media (max-width: 968px) {
@@ -654,9 +769,6 @@
           </div>
           <div class="card-footer">
             <span>Last updated: Just now</span>
-            <a href="#" class="view-link"
-              >View all <i class="fas fa-arrow-right"></i
-            ></a>
           </div>
         </div>
 
@@ -673,9 +785,6 @@
           </div>
           <div class="card-footer">
             <span>Last updated: Today</span>
-            <a href="#" class="view-link"
-              >View all <i class="fas fa-arrow-right"></i
-            ></a>
           </div>
         </div>
 
@@ -692,9 +801,6 @@
           </div>
           <div class="card-footer">
             <span>Last updated: Today</span>
-            <a href="#" class="view-link"
-              >View all <i class="fas fa-arrow-right"></i
-            ></a>
           </div>
         </div>
       </div>
@@ -727,6 +833,18 @@
             <ul class="vehicles-list" id="vehiclesList"></ul>
           </div>
         </div>
+        
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">
+              <i class="fas fa-book"></i> Available Courses
+            </div>
+            <a href="#" class="view-all-link">View All</a>
+          </div>
+          <div class="table-content">
+            <ul class="courses-list" id="coursesList"></ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -747,7 +865,7 @@
                   id="session_id"
                   name="session_id"
                   class="form-input"
-                  placeholder="Enter session ID"
+                  readonly
                   required
                 />
               </div>
@@ -802,6 +920,20 @@
                 </select>
               </div>
 
+              <div class="form-group">
+                <label for="course_name" class="form-label"
+                  >Select Course</label
+                >
+                <select
+                  id="course_name"
+                  name="course_name"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Select Course</option>
+                </select>
+              </div>
+
               <div class="form-actions">
                 <button type="reset" class="btn btn-secondary">Reset</button>
                 <button type="submit" class="btn btn-primary">
@@ -814,6 +946,41 @@
       </div>
     </div>
 
+    <div class="session-table-section">
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">
+            <i class="fas fa-calendar-alt"></i> Scheduled Sessions
+          </div>
+          <div class="table-controls">
+            <select id="responseFilter" class="filter-select">
+              <option value="ALL">All Responses</option>
+              <option value="PENDING">Pending</option>
+              <option value="ACCEPTED">Accepted</option>
+              <option value="DECLINED">Declined</option>
+              <option value="CANCELED">Canceled</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-content">
+          <table class="sessions-table">
+            <thead>
+              <tr>
+                <th>Session ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Instructor Name</th>
+                <th>Vehicle Number</th>
+                <th>Course</th>
+                <th>Instructor Respond</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="sessionsList"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     <script>
       const token = localStorage.getItem("token");
 
@@ -826,12 +993,57 @@
           return;
         }
       }
-      document.addEventListener("DOMContentLoaded", async () => {
+
+      function loadData() {
         checkToken();
         reloadInstructors();
         reloadVehicles();
-        
+        reloadCourses();
+        loadNextSessionId();
+        loadSessionData();
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        loadData();
       });
+
+      async function loadNextSessionId() {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/schedule/sessionId",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+
+          if (result.data) {
+            const sessionInput = document.getElementById("session_id");
+            if (sessionInput) sessionInput.value = result.data.nextSessionId;
+
+            const pendingCountEl = document.getElementById("pending-count");
+            const approvedCountEl = document.getElementById("approved-count");
+            const completedCountEl = document.getElementById("completed-count");
+
+            if (pendingCountEl)
+              pendingCountEl.textContent = result.data.pendingCount;
+            if (approvedCountEl)
+              approvedCountEl.textContent = result.data.approvedCount;
+            if (completedCountEl)
+              completedCountEl.textContent = result.data.completedCount || 0;
+          }
+        } catch (error) {
+          console.error("Error fetching session info:", error);
+        }
+      }
 
       async function reloadVehicles() {
         try {
@@ -859,27 +1071,28 @@
                   : "unavailable";
 
               li.innerHTML = `
-            <div class="vehicle-icon">
-              <i class="fas fa-car"></i>
-            </div>
-            <div class="vehicle-info">
-              <div class="vehicle-model">${vehicle.vehicleNumber}</div>
-              <div class="vehicle-details">
-                <i class="fas fa-tag"></i> ${vehicle.vehicleType}
-                <span class="availability-badge ${availabilityClass}">
-                  ${vehicle.availability}
-                </span>
+              <div class="vehicle-icon">
+                <i class="fas fa-car"></i>
               </div>
-            </div>
-          `;
-          list.appendChild(li);
+              <div class="vehicle-info">
+                <div class="vehicle-model">${vehicle.vehicleNumber}</div>
+                <div class="vehicle-details">
+                  <i class="fas fa-tag"></i> ${vehicle.vehicleType}
+                  <span class="availability-badge ${availabilityClass}">
+                    ${vehicle.availability}
+                  </span>
+                </div>
+              </div>
+            `;
+              li.addEventListener("click", () => selectVehicle(vehicle));
+
+              list.appendChild(li);
             });
-          }else{
-            list.innerHTML=
-            '<div class="no-data">No vehicles available</div>';
+          } else {
+            list.innerHTML = '<div class="no-data">No vehicles available</div>';
           }
         } catch (error) {
-                console.error("Error loading vehicles:", error);
+          console.error("Error loading vehicles:", error);
         }
       }
 
@@ -904,29 +1117,344 @@
               const li = document.createElement("li");
               li.classList.add("instructor-item");
               li.innerHTML = `
-      <div class="instructor-avatar">${instructor.name.charAt(0)}</div>
-      <div class="instructor-info">
-        <div class="instructor-name">${instructor.name}</div>
-        <div class="instructor-contact">
-          <i class="fas fa-id-card"></i> ${instructor.nic}
+        <div class="instructor-avatar">${instructor.name.charAt(0)}</div>
+        <div class="instructor-info">
+          <div class="instructor-name">${instructor.name}</div>
+          <div class="instructor-contact">
+            <i class="fas fa-id-card"></i> ${instructor.nic}
+          </div>
         </div>
-      </div>
-    `;
+      `;
+              li.addEventListener("click", () => selectInstructor(instructor));
               list.appendChild(li);
             });
           } else {
             list.innerHTML = `
-    <div class="no-data">
-      <i class="fas fa-chalkboard-teacher"></i>
-      <p>No instructors found</p>
-    </div>
-  `;
+      <div class="no-data">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <p>No instructors found</p>
+      </div>
+    `;
           }
         } catch (error) {
           console.error("Error fetching instructors:", error);
           showMessage("Error loading instructors", "error");
         }
       }
+
+      async function reloadCourses() {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/schedule/getCourses",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          
+          const result = await response.json();
+          const list = document.getElementById("coursesList");
+          const courseDropdown = document.getElementById("course_name");
+          list.innerHTML = "";
+          courseDropdown.innerHTML = '<option value="">Select Course</option>';
+
+          if (result.data && result.data.length > 0) {
+            result.data.forEach((course) => {
+              const li = document.createElement("li");
+              li.classList.add("course-item");
+              li.innerHTML = `
+                <div class="course-icon">
+                  <i class="fas fa-book"></i>
+                </div>
+                <div class="course-info">
+                  <div class="course-name">${course.courseName}</div>
+                  <div class="course-details">
+                    <i class="fas fa-clock"></i> ${course.sessions} sessions
+                    <span class="availability-badge available">
+                      LKR.${course.courseFee}
+                    </span>
+                  </div>
+                </div>
+              `;
+              li.addEventListener("click", () => selectCourse(course));
+              list.appendChild(li);
+
+              const option = new Option(course.courseName, course.courseName);
+            });
+          } else {
+            list.innerHTML = '<div class="no-data">No courses available</div>';
+          }
+        } catch (error) {
+          console.error("Error loading courses:", error);
+          addSampleCourses();
+        }
+      }
+
+      function addSampleCourses() {
+        const sampleCourses = [
+          { courseName: "Beginner Driving Course", duration: 10, fee: 200 },
+          { courseName: "Intermediate Driving Course", duration: 15, fee: 300 },
+          { courseName: "Advanced Driving Course", duration: 20, fee: 400 },
+          { courseName: "Defensive Driving Course", duration: 8, fee: 180 },
+          { courseName: "Highway Driving Course", duration: 12, fee: 250 }
+        ];
+
+        const list = document.getElementById("coursesList");
+        const courseDropdown = document.getElementById("course_name");
+        
+        list.innerHTML = "";
+        courseDropdown.innerHTML = '<option value="">Select Course</option>';
+
+        sampleCourses.forEach((course) => {
+          const li = document.createElement("li");
+          li.classList.add("course-item");
+          li.innerHTML = `
+            <div class="course-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="course-info">
+              <div class="course-name">${course.courseName}</div>
+              <div class="course-details">
+                <i class="fas fa-clock"></i> ${course.duration} hours
+                <span class="availability-badge available">
+                  $${course.fee}
+                </span>
+              </div>
+            </div>
+          `;
+          li.addEventListener("click", () => selectCourse(course));
+          list.appendChild(li);
+
+          const option = new Option(course.courseName, course.courseName);
+          courseDropdown.add(option);
+        });
+      }
+
+      let selectNic = null;
+
+      function selectInstructor(instructor) {
+        const instructorDropdown = document.getElementById("instructor_name");
+
+        let option = [...instructorDropdown.options].find(
+          (opt) => opt.value === instructor.name
+        );
+        if (!option) {
+          option = new Option(instructor.name, instructor.name);
+          instructorDropdown.add(option);
+        }
+
+        instructorDropdown.value = instructor.name;
+
+        selectNic = instructor.nic;
+      }
+
+      let selectedVehicleNumber = null;
+
+      function selectVehicle(vehicle) {
+        const vehicleDropdown = document.getElementById("vehicle_number");
+
+        let option = [...vehicleDropdown.options].find(
+          (opt) => opt.value === vehicle.vehicleNumber
+        );
+        if (!option) {
+          option = new Option(vehicle.vehicleNumber, vehicle.vehicleNumber);
+          vehicleDropdown.add(option);
+        }
+
+        vehicleDropdown.value = vehicle.vehicleNumber;
+
+        selectedVehicleNumber = vehicle.vehicleNumber;
+      }
+
+      function selectCourse(course) {
+        const courseDropdown = document.getElementById("course_name");
+
+        let option = [...courseDropdown.options].find(
+          (opt) => opt.value === course.courseName
+        );
+        if (!option) {
+          option = new Option(course.courseName, course.courseName);
+          courseDropdown.add(option);
+        }
+
+        courseDropdown.value = course.courseName;
+      }
+
+      document
+        .getElementById("sessionForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const sessionId = document.getElementById("session_id").value;
+          const date = document.getElementById("date").value;
+          const startTime = document.getElementById("start_time").value;
+          const instructorName = document.getElementById("instructor_name").value;
+          const vehicleNumber = document.getElementById("vehicle_number").value;
+          const courseName = document.getElementById("course_name").value;
+
+          if (
+            !sessionId ||
+            !date ||
+            !startTime ||
+            !instructorName ||
+            !vehicleNumber ||
+            !courseName
+          ) {
+            alert("Please fill all required fields");
+            return;
+          }
+
+          const sessionDate = document.getElementById("date").value;
+          const startTime1 = document.getElementById("start_time").value;
+
+          const dateTimeString = `${sessionDate}T${startTime1}:00`;
+          const sessionTimestamp = new Date(dateTimeString).getTime();
+
+          const payload = {
+            sessionId: sessionId,
+            date: date,
+            time: sessionTimestamp,
+            instructorName: instructorName,
+            nic: selectNic,
+            vehicleNumber: vehicleNumber,
+            courseName: courseName,
+            respond: "PENDING",
+          };
+
+          try {
+            const response = await fetch(
+              "http://localhost:8080/schedule/saveSession",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(payload),
+              }
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+              alert(`Session scheduled successfully! ID: ${result.data}`);
+              document.getElementById("sessionForm").reset();
+              loadData();
+            } else {
+              alert(`Error: ${result.data || result.message}`);
+            }
+          } catch (error) {
+            console.error("Error saving session:", error);
+            alert("Failed to schedule session. See console for details.");
+          }
+        });
+
+      function filterSessionsByResponse(status) {
+        const tableBody = document.getElementById("sessionsList");
+        const allRows = tableBody.querySelectorAll("tr");
+
+        allRows.forEach((row) => {
+          const responseCell = row.querySelector("td:nth-child(7) span");
+          if (!responseCell) return;
+
+          const responseText = responseCell.textContent.trim().toUpperCase();
+
+          if (status === "ALL" || responseText === status) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      }
+
+      document
+        .getElementById("responseFilter")
+        .addEventListener("change", function () {
+          filterSessionsByResponse(this.value);
+        });
+
+      async function loadSessionData() {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/schedule/getSession",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const result = await response.json();
+
+          if (response.ok) {
+            console.log("Sessions:", result.data);
+
+            let tableBody = document.getElementById("sessionsList");
+            tableBody.innerHTML = "";
+
+            result.data.forEach((session) => {
+              let statusClass = "status-pending";
+              if (session.respond === "ACCEPTED")
+                statusClass = "status-confirmed";
+              if (session.respond === "DECLINED")
+                statusClass = "status-declined";
+              if (session.respond === "CANCELED")
+                statusClass = "status-declined";
+
+              let row = `<tr>
+            <td>${session.sessionId}</td>
+            <td>${session.date}</td>
+            <td>${new Date(session.time).toLocaleTimeString()}</td>
+            <td>${session.instructorName}</td>
+            <td>${session.vehicleNumber}</td>
+            <td>${session.courseName || "N/A"}</td>
+            <td><span class="status-badge ${statusClass}">${
+                session.respond
+              }</span></td>
+               <td><button class="btn btn-secondary btn-cancel" onclick="cancelSession('${
+                 session.sessionId
+               }')">Cancel</button></td>
+          </tr>`;
+              tableBody.innerHTML += row;
+            });
+          } else {
+            console.error("Error fetching sessions:", result.status);
+            alert("Failed to load sessions!");
+          }
+        } catch (error) {
+          console.error("Fetch error:", error);
+          alert("Something went wrong while loading sessions.");
+        }
+      }
+
+      async function cancelSession(sessionId) {
+        try {
+          const response = await fetch(
+            `http://localhost:8080/schedule/cancelSession/${sessionId}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          if (response.ok) {
+            alert(`Session ${sessionId} Cancelled successfully`);
+            loadData();
+          } else {
+            alert("Failed to cancel session!");
+          }
+        } catch (error) {
+          alert("Something went wrong while cancelling");
+        }
+      }
+
+      document.querySelectorAll(".btn-cancel").forEach((button) => {
+        button.addEventListener("click", cancelSession);
+      });
     </script>
   </body>
 </html>

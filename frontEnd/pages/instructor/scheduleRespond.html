@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pending Sessions</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: #f5f7f9;
+        color: #333;
+        min-height: 100vh;
+      }
+
+      nav {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-bar {
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        font-size: 24px;
+      }
+
+      .menu-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item {
+        position: relative;
+        margin-left: 15px;
+      }
+
+      .menu-item > a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item > a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .menu-item > a i {
+        margin-right: 8px;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        min-width: 200px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+
+      .menu-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s;
+      }
+
+      .dropdown a:hover {
+        background-color: #f8f9fa;
+        color: #1a2a6c;
+      }
+
+      .dropdown a i {
+        margin-right: 10px;
+        color: #6c757d;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-left: 20px;
+      }
+
+      .user-profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .main-content {
+        padding: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        color: white;
+        padding: 25px 30px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 16px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .search-box {
+        position: relative;
+        width: 300px;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: #1a2a6c;
+        box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
+      }
+
+      .search-box i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+      }
+
+      .filter-options select {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        background: white;
+        cursor: pointer;
+      }
+
+      .filter-options select:focus {
+        outline: none;
+        border-color: #1a2a6c;
+      }
+
+      .table-container {
+        overflow-x: auto;
+        padding: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+
+      th,
+      td {
+        padding: 16px 20px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #2c3e50;
+        position: sticky;
+        top: 0;
+      }
+
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .status-pending {
+        background-color: #fef6e6;
+        color: #ff8a4c;
+      }
+
+      .btn-accept {
+        background: linear-gradient(135deg, #0e9f6e, #0b825b);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-accept:hover {
+        background: linear-gradient(135deg, #0b825b, #08674a);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .session-id {
+        font-weight: 600;
+        color: #1a2a6c;
+      }
+
+      .course-name {
+        font-weight: 500;
+      }
+
+      .vehicle-number {
+        background: #f0f4ff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-weight: 600;
+      }
+
+      .no-data {
+        text-align: center;
+        padding: 40px;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        gap: 10px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .pagination button {
+        padding: 10px 16px;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .pagination button:hover {
+        background: #f0f0f0;
+      }
+
+      .pagination button.active {
+        background: #1a2a6c;
+        color: white;
+        border-color: #1a2a6c;
+      }
+
+      @media (max-width: 900px) {
+        .controls {
+          flex-direction: column;
+        }
+
+        .search-box {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-bar {
+          padding: 0 15px;
+        }
+
+        .main-content {
+          padding: 20px 15px;
+        }
+
+        th,
+        td {
+          padding: 12px 15px;
+        }
+
+        .session-details {
+          min-width: 200px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .header h1 {
+          font-size: 24px;
+        }
+
+        th,
+        td {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+
+        .btn-accept {
+          padding: 8px 15px;
+          font-size: 14px;
+        }
+
+        .status {
+          font-size: 12px;
+          padding: 4px 8px;
+        }
+
+        .logo span {
+          display: none;
+        }
+
+        .menu-item > a span {
+          display: none;
+        }
+
+        .menu-item > a i {
+          margin-right: 0;
+          font-size: 20px;
+        }
+
+        .user-profile span {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-bar">
+        <div class="logo">
+          <i class="fas fa-car-side"></i>
+          <span>DriveMaster Instructor</span>
+        </div>
+
+        <div class="menu-container">
+          <div class="menu-item">
+            <a href="#"><i class="fas fa-home"></i> <span>Home</span></a>
+          </div>
+
+          <div class="menu-item">
+            <a href="#"
+              ><i class="fas fa-calendar"></i> <span>Schedule</span></a
+            >
+            <div class="dropdown">
+              <a href="#"><i class="fas fa-calendar-day"></i> Daily View</a>
+              <a href="#"><i class="fas fa-calendar-week"></i> Weekly View</a>
+            </div>
+          </div>
+
+          <div class="user-profile">
+            <img
+              src="https://ui-avatars.com/api/?name=Instructor+User&background=random"
+              alt="Instructor User"
+            />
+            <span id="menubar-user">Instructor</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main-content">
+      <div class="container">
+        <div class="header">
+          <h1><i class="fas fa-clock"></i> Pending Sessions</h1>
+          <p>Review and accept pending driving sessions</p>
+        </div>
+
+        <div class="controls">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search sessions..."
+            />
+          </div>
+
+          <div class="filter-options">
+            <select id="filter-date">
+              <option value="all">All Dates</option>
+              <option value="today">Today</option>
+              <option value="tomorrow">Tomorrow</option>
+              <option value="week">This Week</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Session ID</th>
+                <th>Date & Time</th>
+                <th>Course Name</th>
+                <th>Vehicle Number</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="sessions-table-body">
+            </tbody>
+          </table>
+
+          <div id="no-data-message" class="no-data" style="display: none">
+            <i
+              class="fas fa-inbox"
+              style="font-size: 50px; margin-bottom: 15px"
+            ></i>
+            <h3>No Pending Sessions</h3>
+            <p>There are currently no sessions waiting for approval</p>
+          </div>
+        </div>
+
+        <div class="pagination">
+          <button id="prev-page"><i class="fas fa-chevron-left"></i></button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sessionsData = [
+          {
+            id: "SESS-001",
+            date: "2023-09-15",
+            time: "10:00 AM - 11:30 AM",
+            course: "Beginner Driving Course",
+            vehicle: "CAR-005",
+            status: "Pending",
+          },
+          {
+            id: "SESS-002",
+            date: "2023-09-16",
+            time: "02:00 PM - 03:30 PM",
+            course: "Intermediate Driving Course",
+            vehicle: "VAN-012",
+            status: "Pending",
+          },
+          {
+            id: "SESS-003",
+            date: "2023-09-17",
+            time: "09:30 AM - 11:00 AM",
+            course: "Defensive Driving Course",
+            vehicle: "CAR-008",
+            status: "Pending",
+          },
+          {
+            id: "SESS-004",
+            date: "2023-09-18",
+            time: "01:00 PM - 02:30 PM",
+            course: "Highway Driving Course",
+            vehicle: "VAN-003",
+            status: "Pending",
+          },
+          {
+            id: "SESS-005",
+            date: "2023-09-19",
+            time: "11:00 AM - 12:30 PM",
+            course: "Beginner Driving Course",
+            vehicle: "CAR-011",
+            status: "Pending",
+          },
+        ];
+
+        const tableBody = document.getElementById("sessions-table-body");
+        const noDataMessage = document.getElementById("no-data-message");
+        const searchInput = document.getElementById("search-input");
+        const filterDate = document.getElementById("filter-date");
+
+        function renderSessionsTable(sessions) {
+          tableBody.innerHTML = "";
+
+          if (sessions.length === 0) {
+            noDataMessage.style.display = "block";
+            return;
+          }
+
+          noDataMessage.style.display = "none";
+
+          sessions.forEach((session) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                        <td class="session-id">${session.id}</td>
+                        <td>
+                            <div>${session.date}</div>
+                            <div style="color: #6c757d; font-size: 14px;">${session.time}</div>
+                        </td>
+                        <td class="course-name">${session.course}</td>
+                        <td><span class="vehicle-number">${session.vehicle}</span></td>
+                        <td><span class="status status-pending">${session.status}</span></td>
+                        <td>
+                            <button class="btn-accept" data-id="${session.id}">
+                                <i class="fas fa-check-circle"></i> Accept
+                            </button>
+                        </td>
+                    `;
+
+            tableBody.appendChild(row);
+          });
+
+          document.querySelectorAll(".btn-accept").forEach((button) => {
+            button.addEventListener("click", function () {
+              const sessionId = this.getAttribute("data-id");
+              acceptSession(sessionId);
+            });
+          });
+        }
+
+        function acceptSession(sessionId) {
+          if (
+            confirm(`Are you sure you want to accept session ${sessionId}?`)
+          ) {
+            alert(`Session ${sessionId} has been accepted!`);
+
+            const index = sessionsData.findIndex(
+              (session) => session.id === sessionId
+            );
+            if (index !== -1) {
+              sessionsData.splice(index, 1);
+              renderSessionsTable(sessionsData);
+            }
+          }
+        }
+
+        function filterSessions() {
+          const searchText = searchInput.value.toLowerCase();
+          const dateFilter = filterDate.value;
+
+          let filteredSessions = sessionsData.filter((session) => {
+            const matchesSearch =
+              session.id.toLowerCase().includes(searchText) ||
+              session.course.toLowerCase().includes(searchText) ||
+              session.vehicle.toLowerCase().includes(searchText);
+
+            let matchesDate = true;
+            if (dateFilter === "today") {
+              matchesDate = session.date === "2023-09-15";
+            } else if (dateFilter === "tomorrow") {
+              matchesDate = session.date === "2023-09-16";
+            }
+
+            return matchesSearch && matchesDate;
+          });
+
+          renderSessionsTable(filteredSessions);
+        }
+
+        searchInput.addEventListener("input", filterSessions);
+        filterDate.addEventListener("change", filterSessions);
+
+        document
+          .getElementById("next-page")
+          .addEventListener("click", function () {
+            alert("Next page would load more sessions");
+          });
+
+        document
+          .getElementById("prev-page")
+          .addEventListener("click", function () {
+            alert("Previous page would load previous sessions");
+          });
+
+        renderSessionsTable(sessionsData);
+      });
+    </script>
+  </body>
+</html>

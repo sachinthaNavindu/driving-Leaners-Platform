@@ -28,4 +28,9 @@ public class InstructorService {
                         (String) row[0]
                 )).toList();
     }
+
+    public String getInstructorEmail(String nic) {
+
+        return employeeRepo.findGmailByLicenseId(nic);
+    }
 }
