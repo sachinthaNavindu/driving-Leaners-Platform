@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f9;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .container {
+            display: flex;
+            width: 100%;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .attendance-table-container {
+            width: 40%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .attendance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .attendance-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a2a6c;
+        }
+        
+        .session-info {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            flex-grow: 1;
+        }
+        
+        .attendance-table thead {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+        }
+        
+        .attendance-table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .attendance-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        .attendance-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        .attendance-table tbody {
+            display: block;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+        
+        .attendance-table tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        
+        .attendance-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .attendance-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .attendance-status {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .status-btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .present-btn {
+            background: #28a745;
+            color: white;
+            width: 35px;
+        }
+        
+        .present-btn:hover {
+            background: #218838;
+        }
+        
+        .absent-btn {
+            background: #dc3545;
+            color: white;
+            width: 35px;
+        }
+        
+        .absent-btn:hover {
+            background: #c82333;
+        }
+        
+        .attendance-details {
+            flex-grow: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .details-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a2a6c;
+        }
+        
+        .time-controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .time-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+        }
+        
+        .start-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #2a3a7c, #c22f2f);
+        }
+        
+        .end-btn {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .end-btn:hover:not(:disabled) {
+            background: #5a6268;
+        }
+        
+        .time-display {
+            font-size: 16px;
+            color: #6c757d;
+            font-weight: 500;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .time-display div {
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+        
+        .time-display div:last-child {
+            margin-bottom: 0;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            min-width: 70px;
+            text-align: center;
+        }
+        
+        .status-present {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-absent {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .summary-section {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .summary-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+        }
+        
+        .summary-stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 10px;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a2a6c;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .present-stat {
+            color: #28a745;
+        }
+        
+        .absent-stat {
+            color: #dc3545;
+        }
+        
+        .pending-stat {
+            color: #ffc107;
+        }
+        
+        .time-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="attendance-table-container">
+            <div class="attendance-header">
+                <div class="attendance-title">Student Attendance</div>
+                <div class="session-info">Session: DL2023-09</div>
+            </div>
+            
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60%;">Name</th>
+                        <th style="width: 40%;">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Emily Johnson</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Michael Brown</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sarah Williams</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>David Miller</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Davis</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Christopher Garcia</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jessica Rodriguez</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Matthew Wilson</td>
+                        <td>
+                            <div class="attendance-status">
+                                <button class="status-btn present-btn" title="Mark Present">✓</button>
+                                <button class="status-btn absent-btn" title="Mark Absent">✕</button>
+                                <span class="status-badge status-pending">Pending</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="attendance-details">
+            <div class="details-header">
+                <div class="details-title">Session Details</div>
+                <div class="time-controls">
+                    <button class="time-btn start-btn">Start Session</button>
+                    <button class="time-btn end-btn" disabled>End Session</button>
+                </div>
+            </div>
+            
+            <div class="time-display">
+                <div>Start Time: <span id="start-time">--:--:--</span></div>
+                <div>End Time: <span id="end-time">--:--:--</span></div>
+                <div>Duration: <span id="duration">--:--:--</span></div>
+            </div>
+            
+            <div class="summary-section">
+                <div class="summary-title">Attendance Summary</div>
+                <div class="summary-stats">
+                    <div class="stat">
+                        <div class="stat-number present-stat" id="present-count">0</div>
+                        <div class="stat-label">Present</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number absent-stat" id="absent-count">0</div>
+                        <div class="stat-label">Absent</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number pending-stat" id="pending-count">8</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let startTime = null;
+            let endTime = null;
+            let intervalId = null;
+            
+            // Initialize counters
+            let presentCount = 0;
+            let absentCount = 0;
+            let pendingCount = 8;
+            
+            // Update counter display
+            function updateCounters() {
+                document.getElementById('present-count').textContent = presentCount;
+                document.getElementById('absent-count').textContent = absentCount;
+                document.getElementById('pending-count').textContent = pendingCount;
+            }
+            
+            // Mark attendance buttons
+            const presentButtons = document.querySelectorAll('.present-btn');
+            const absentButtons = document.querySelectorAll('.absent-btn');
+            
+            presentButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const statusBadge = row.querySelector('.status-badge');
+                    
+                    // Only update if status is pending
+                    if (statusBadge.classList.contains('status-pending')) {
+                        statusBadge.className = 'status-badge status-present';
+                        statusBadge.textContent = 'Present';
+                        
+                        // Update counters
+                        pendingCount--;
+                        presentCount++;
+                        updateCounters();
+                    }
+                });
+            });
+            
+            absentButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const statusBadge = row.querySelector('.status-badge');
+                    
+                    // Only update if status is pending
+                    if (statusBadge.classList.contains('status-pending')) {
+                        statusBadge.className = 'status-badge status-absent';
+                        statusBadge.textContent = 'Absent';
+                        
+                        // Update counters
+                        pendingCount--;
+                        absentCount++;
+                        updateCounters();
+                    }
+                });
+            });
+            
+            // Start session button
+            const startBtn = document.querySelector('.start-btn');
+            const endBtn = document.querySelector('.end-btn');
+            
+            startBtn.addEventListener('click', function() {
+                if (!startTime) {
+                    startTime = new Date();
+                    document.getElementById('start-time').textContent = startTime.toLocaleTimeString();
+                    startBtn.textContent = 'Session Started';
+                    startBtn.disabled = true;
+                    endBtn.disabled = false;
+                    
+                    // Start updating duration
+                    intervalId = setInterval(updateDuration, 1000);
+                }
+            });
+            
+            // End session button
+            endBtn.addEventListener('click', function() {
+                if (startTime && !endTime) {
+                    endTime = new Date();
+                    document.getElementById('end-time').textContent = endTime.toLocaleTimeString();
+                    endBtn.textContent = 'Session Ended';
+                    endBtn.disabled = true;
+                    
+                    // Stop updating duration
+                    clearInterval(intervalId);
+                    updateDuration();
+                }
+            });
+            
+            // Update duration function
+            function updateDuration() {
+                if (startTime) {
+                    const now = endTime || new Date();
+                    const diff = now - startTime;
+                    
+                    // Calculate hours, minutes, seconds
+                    const hours = Math.floor(diff / 3600000);
+                    const minutes = Math.floor((diff % 3600000) / 60000);
+                    const seconds = Math.floor((diff % 60000) / 1000);
+                    
+                    // Format as HH:MM:SS
+                    document.getElementById('duration').textContent = 
+                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

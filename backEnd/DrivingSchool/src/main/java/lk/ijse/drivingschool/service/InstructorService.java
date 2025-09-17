@@ -1,6 +1,7 @@
 package lk.ijse.drivingschool.service;
 
 import lk.ijse.drivingschool.dto.EmployeeDTO;
+import lk.ijse.drivingschool.dto.InstructorDTO;
 import lk.ijse.drivingschool.entity.Employee;
 import lk.ijse.drivingschool.repository.EmployeeRepo;
 import lk.ijse.drivingschool.repository.InstructorRepository;
@@ -20,11 +21,8 @@ public class InstructorService {
         List<Object[]> availableInstructors = employeeRepo.findAllInstructorsByStatus();
 
         return availableInstructors.stream()
-                .map(row -> new EmployeeDTO(
+                .map(row -> new InstructorDTO(
                         (String) row[1],
-                        null,
-                        null,
-                        null,
                         (String) row[0]
                 )).toList();
     }

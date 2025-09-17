@@ -1,32 +1,31 @@
 package lk.ijse.drivingschool.service;
 
-import lk.ijse.drivingschool.dto.SessionInfoDTO;
-import lk.ijse.drivingschool.entity.InstructorRespond;
-import lk.ijse.drivingschool.repository.PendingSessionRepo;
+import lk.ijse.drivingschool.dto.InstructorScheduleDTO;
+import lk.ijse.drivingschool.repository.SessionTimeTableRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class SessionTimeTableService {
 
-    private final PendingSessionRepo pendingSessionRepo;
+    private final SessionTimeTableRepo sessionTimeTableRepo;
 
-    public Object generateSessionId() {
-        String lastId = pendingSessionRepo.getLastSessionId();
-        String nextId;
-        if (lastId == null) {
-            nextId = "S001";
-        }else {
-            int numericId = Integer.parseInt(lastId.substring(1));
-            nextId = String.format("S%03d", numericId+1);
-        }
+    public List<InstructorScheduleDTO> getScheduleByInstructor(String licenseId) {
+        List<Object[]> results = sessionTimeTableRepo.findInstructorSchedule(licenseId);
 
-        long pendingCount = pendingSessionRepo.countAllByRespond(InstructorRespond.PENDING);
-
-        long ApprovedCount = pendingSessionRepo.countAllByRespond(InstructorRespond.ACCEPTED);
-
-        return new SessionInfoDTO(nextId, pendingCount, ApprovedCount);
-
+        return results.stream()
+                .map(r -> new InstructorScheduleDTO(
+                        (String) r[0],
+                        (Timestamp) r[1],
+                        (LocalDate) r[2],
+                        (String) r[3],
+                        (String) r[4]
+                ))
+                .toList();
     }
 }

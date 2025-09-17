@@ -2,7 +2,7 @@ package lk.ijse.drivingschool.service;
 
 import lk.ijse.drivingschool.dto.EmployeeDTO;
 import lk.ijse.drivingschool.entity.Employee;
-import lk.ijse.drivingschool.entity.JobRole;
+import lk.ijse.drivingschool.entity.enums.JobRole;
 import lk.ijse.drivingschool.repository.EmployeeRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -49,9 +49,22 @@ public class EmployeeService {
                 )).toList();
     }
 
+    public EmployeeDTO getLoggedInstructorInfo(String nic) {
+
+        Employee employee = employeeRepository.findInstructorByNic(nic)
+                .orElseThrow(() -> new RuntimeException("Instructor not found"));
+
+        return new EmployeeDTO(
+                employee.getNic(),
+                employee.getAddress(),
+                employee.getContact(),
+                employee.getGmail(),
+                employee.getName()
+        );
+    }
     public String updateEmployee(String employeeId, EmployeeDTO employeeDTO) {
 
-        Employee employee =employeeRepository.findById(employeeId).orElseThrow(()->new RuntimeException("Employee not found"));
+        Employee employee =employeeRepository.findById(employeeId).orElseThrow(()->new RuntimeException("Employee not found!!!!!!"));
 
         employee.setNic(employeeDTO.getNic());
         employee.setName(employeeDTO.getName());
@@ -65,9 +78,23 @@ public class EmployeeService {
         return "Employee updated successfully";
     }
 
+
+
     public String deleteEmployee(String employeeId) {
         employeeRepository.deleteById(employeeId);
 
         return "Employee deleted successfully";
+    }
+
+    public String updateProfile(String loggedNic, EmployeeDTO employeeDTO) {
+        Employee employee = employeeRepository.findByNic(loggedNic).orElseThrow(()->new RuntimeException("Employee not found!!!!!!"));
+
+        employee.setName(employeeDTO.getName());
+        employee.setGmail(employeeDTO.getEmail());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setContact(employeeDTO.getContact());
+
+        employeeRepository.save(employee);
+        return "Employee updated successfully";
     }
 }

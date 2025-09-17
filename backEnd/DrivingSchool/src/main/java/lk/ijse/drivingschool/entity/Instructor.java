@@ -1,6 +1,7 @@
 package lk.ijse.drivingschool.entity;
 
 import jakarta.persistence.*;
+import lk.ijse.drivingschool.entity.enums.InstructorStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class Instructor {
     @Enumerated(EnumType.STRING)
     private InstructorStatus status;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_nic",referencedColumnName = "nic",insertable = false,updatable = false)
     private Employee employee;
 }

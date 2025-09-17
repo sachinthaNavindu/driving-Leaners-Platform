@@ -1,6 +1,6 @@
 package lk.ijse.drivingschool.dto;
 
-import lk.ijse.drivingschool.entity.JobRole;
+import lk.ijse.drivingschool.entity.enums.JobRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,4 +12,5 @@ public class AuthResponseDTO {
     private String nic;
     private String username;
     private JobRole jobRole;
+    private String licenseId;
 }

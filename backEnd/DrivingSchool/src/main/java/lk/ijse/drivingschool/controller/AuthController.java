@@ -52,4 +52,13 @@ public class AuthController {
                 authService.employeeSignup(instructorAuthDTO)
         ));
     }
+
+//    @PostMapping("/employee/register")
+//    public ResponseEntity<ApiResponseDTO>registerEmployee(@RequestBody InstructorAuthDTO instructorAuthDTO){
+//        return ResponseEntity.ok(new ApiResponseDTO(
+//                200,
+//                "OK",
+//                authService.admin(instructorAuthDTO)
+//        ));
+//    }
 }

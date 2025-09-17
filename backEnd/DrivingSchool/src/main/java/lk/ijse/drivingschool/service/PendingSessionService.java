@@ -1,69 +1,161 @@
 package lk.ijse.drivingschool.service;
 
+import lk.ijse.drivingschool.dto.PendingSessionDTO;
+import lk.ijse.drivingschool.dto.SessionInfoDTO;
 import lk.ijse.drivingschool.dto.SessionTimeTableDTO;
-import lk.ijse.drivingschool.entity.InstructorRespond;
+import lk.ijse.drivingschool.dto.TodaySessionDTO;
+import lk.ijse.drivingschool.entity.Instructor;
 import lk.ijse.drivingschool.entity.PendingSessions;
+import lk.ijse.drivingschool.entity.SessionTimeTable;
+import lk.ijse.drivingschool.entity.enums.InstructorRespond;
+import lk.ijse.drivingschool.repository.InstructorRepository;
 import lk.ijse.drivingschool.repository.PendingSessionRepo;
 import lk.ijse.drivingschool.repository.SessionTimeTableRepo;
-import lk.ijse.drivingschool.util.EmailBodyUtil;
-import lk.ijse.drivingschool.util.SendMailUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PendingSessionService {
+
     private final PendingSessionRepo pendingSessionRepo;
+    private final InstructorRepository instructorRepo;
     private final SessionTimeTableRepo sessionTimeTableRepo;
 
-    public String savePendingSession(SessionTimeTableDTO sessionTimeTableDTO ,String instructorEmail) {
-
-        if (sessionTimeTableRepo.existsById(sessionTimeTableDTO.getSessionId()) || pendingSessionRepo.existsById(sessionTimeTableDTO.getSessionId())) {
-            throw new RuntimeException("Session already exists");
+    public Object generateSessionId() {
+        String lastId = pendingSessionRepo.getLastSessionId();
+        String nextId;
+        if (lastId == null) {
+            nextId = "S001";
+        }else {
+            int numericId = Integer.parseInt(lastId.substring(1));
+            nextId = String.format("S%03d", numericId+1);
         }
 
+        long pendingCount = pendingSessionRepo.countAllByRespond(InstructorRespond.PENDING);
 
-        PendingSessions pendingSessions = new PendingSessions(
-                sessionTimeTableDTO.getSessionId(),
-                sessionTimeTableDTO.getTime(),
-                sessionTimeTableDTO.getDate(),
-                sessionTimeTableDTO.getInstructorName(),
-                sessionTimeTableDTO.getNic(),
-                sessionTimeTableDTO.getVehicleNumber(),
-                InstructorRespond.PENDING,
-                sessionTimeTableDTO.getCourseName()
-        );
+        long ApprovedCount = pendingSessionRepo.countAllByRespond(InstructorRespond.ACCEPTED);
+
+        return new SessionInfoDTO(nextId, pendingCount, ApprovedCount);
+
+    }
+
+    public String savePendingSession(SessionTimeTableDTO sessionTimeTableDTO) {
+        if (pendingSessionRepo.existsBySessionId(sessionTimeTableDTO.getSessionId())) {
+            throw new RuntimeException("Session ID already exists");
+        }
+
+        Instructor instructor = instructorRepo.findById(sessionTimeTableDTO.getLicenseId())
+                .orElseThrow(() -> new RuntimeException("Instructor not found with license ID: "
+                        + sessionTimeTableDTO.getLicenseId()));
+
+        PendingSessions pendingSession = PendingSessions.builder()
+                .sessionId(sessionTimeTableDTO.getSessionId())
+                .time(sessionTimeTableDTO.getTime())
+                .date(sessionTimeTableDTO.getDate())
+                .vehicleNumber(sessionTimeTableDTO.getVehicleNumber())
+                .courseName(sessionTimeTableDTO.getCourseName())
+                .respond(InstructorRespond.PENDING)  // default status
+                .instructor(instructor)
+                .build();
+        pendingSessionRepo.save(pendingSession);
+        return "Session Saved Successfully";
+    }
+
+    public List<PendingSessionDTO> getAllSessions() {
+        List<PendingSessions> sessions = pendingSessionRepo.findAll();
+
+        return sessions.stream().map(session -> PendingSessionDTO.builder()
+                .sessionId(session.getSessionId())
+                .licenseId(session.getInstructor().getLicenseId())
+                .date(session.getDate())
+                .time(session.getTime())
+                .vehicleNumber(session.getVehicleNumber())
+                .courseName(session.getCourseName())
+                .respond(session.getRespond().name())
+                .instructorName(
+                        session.getInstructor() != null && session.getInstructor().getEmployee() != null
+                                ? session.getInstructor().getEmployee().getName()
+                                : "N/A"
+                )
+                .build()
+        ).toList();
+    }
+
+    public List<PendingSessionDTO> getAllSessionsForUser(String licenseId) {
+        List<PendingSessions> sessions = pendingSessionRepo.findByInstructor_LicenseIdAndRespond(licenseId,InstructorRespond.PENDING);
+
+        return sessions.stream().map(session -> PendingSessionDTO.builder()
+                .sessionId(session.getSessionId())
+                .licenseId(session.getInstructor().getLicenseId())
+                .date(session.getDate())
+                .time(session.getTime())
+                .vehicleNumber(session.getVehicleNumber())
+                .courseName(session.getCourseName())
+                .respond(String.valueOf(session.getRespond()))
+                .instructorName("")
+                .build()
+        ).toList();
+    }
+
+    public String manageRequest(String action, String nic, String sessionId) {
+        PendingSessions pendingSessions = pendingSessionRepo.findById(sessionId)
+                .orElseThrow(() -> new RuntimeException("Session ID does not exist"));
+
+        pendingSessions.setRespond(InstructorRespond.valueOf(action.toUpperCase()));
         pendingSessionRepo.save(pendingSessions);
 
-        String emailBody =EmailBodyUtil.generateEmailBody("hello");
-        SendMailUtil.sendEmailAsync(instructorEmail,"Booked Session Notification", emailBody);
-        return "Pending session saved successfully";
+        if ("ACCEPTED".equalsIgnoreCase(action)) {
+            SessionTimeTable sessionTime = new SessionTimeTable();
+            sessionTime.setSessionId(generateNewSessionTimeTableId());
 
+            PendingSessions pendingSession = pendingSessionRepo.findById(sessionId)
+                    .orElseThrow(() -> new RuntimeException("Pending session not found"));
+
+            sessionTime.setPendingSession(pendingSession);
+            sessionTimeTableRepo.save(sessionTime);
+        }
+        return "Action completed successfully";
     }
 
-    public Object getAllSessions() {
-        List<PendingSessions>allSessions = pendingSessionRepo.findAll();
-        return  allSessions.stream()
-                .map(pendingSessions -> new SessionTimeTableDTO(
-                        pendingSessions.getSessionId(),
-                        pendingSessions.getTime(),
-                        pendingSessions.getDate(),
-                        pendingSessions.getInstructorName(),
-                        pendingSessions.getNic(),
-                        pendingSessions.getVehicleNumber(),
-                        pendingSessions.getRespond(),
-                        pendingSessions.getCourseName()
-                )).toList();
+    private String generateNewSessionTimeTableId() {
+        String lastId = sessionTimeTableRepo.findTopByOrderBySessionIdDesc()
+                .map(SessionTimeTable::getSessionId)
+                .orElse("SC000");
+
+        int num = Integer.parseInt(lastId.substring(2)) + 1;
+
+        return String.format("SC%03d", num);
     }
 
-    public String cancelSession(String sessionId) {
+    public List<TodaySessionDTO> loadTodaySession(String licenseId, LocalDate todayDate) {
+        List<SessionTimeTable> sessions = pendingSessionRepo.findByLicenseIdAndDate(licenseId, todayDate);
 
-        PendingSessions pendingSessions = pendingSessionRepo.findBySessionId(sessionId).orElseThrow(()->new RuntimeException("Session not found"));
+        if (sessions == null || sessions.isEmpty()) {
+            return Collections.emptyList();
+        }
 
-        pendingSessions.setRespond(InstructorRespond.CANCELED);
-        pendingSessionRepo.save(pendingSessions);
-        return "Session cancelled";
+        return sessions.stream()
+                .map(st -> {
+                    var ps = st.getPendingSession();
+
+                    return new TodaySessionDTO(
+                            st.getSessionId(),
+                            ps.getSessionId(),
+                            ps.getTime(),
+                            ps.getDate(),
+                            ps.getInstructor().getLicenseId(),
+                            ps.getVehicleNumber(),
+                            ps.getRespond() != null ? ps.getRespond().name() : null,
+                            ps.getCourseName()
+                    );
+                })
+                .collect(Collectors.toList());
     }
+
 }

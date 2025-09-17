@@ -430,7 +430,9 @@
 
         <div class="menu-container">
           <div class="menu-item">
-            <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+            <a href="home.html"
+              ><i class="fas fa-home"></i> <span>Home</span></a
+            >
           </div>
 
           <div class="menu-item">
@@ -452,7 +454,9 @@
               <span>Instructors</span></a
             >
             <div class="dropdown">
-              <a href="instuctorManagement.html"><i class="fas fa-list"></i> View Instructors</a>
+              <a href="instuctorManagement.html"
+                ><i class="fas fa-list"></i> View Instructors</a
+              >
               <a href="#"><i class="fas fa-user-plus"></i> Add Instructor</a>
               <a href="#"><i class="fas fa-calendar-alt"></i> Schedules</a>
             </div>
@@ -479,9 +483,9 @@
           <div class="heading">
             <i class="fas fa-users"></i> Registered Students
           </div>
-          <span>247</span>
+          <span id="studentCount">0</span>
           <div class="trend up">
-            <i class="fas fa-arrow-up"></i> 12% from last month
+             has registered
           </div>
           <i class="fas fa-user-graduate icon"></i>
         </div>
@@ -490,9 +494,9 @@
           <div class="heading">
             <i class="fas fa-chalkboard-teacher"></i> Active Students
           </div>
-          <span>183</span>
+          <span id="activeStudentCount">0</span>
           <div class="trend up">
-            <i class="fas fa-arrow-up"></i> 8% from last week
+            activated their accounts
           </div>
           <i class="fas fa-user-check icon"></i>
         </div>
@@ -501,9 +505,9 @@
           <div class="heading">
             <i class="fas fa-file-alt"></i> New Applications
           </div>
-          <span>29</span>
+          <span id="pendingApplications">0</span>
           <div class="trend down">
-            <i class="fas fa-arrow-down"></i> 3% from last week
+             Applications are pending
           </div>
           <i class="fas fa-clipboard-list icon"></i>
         </div>
@@ -560,8 +564,8 @@
             and access relevant student contact information for comprehensive
             financial oversight.
           </p>
-          <a href="#" class="option-action">
-            View Active Students
+          <a href="/pages/admin/paymentDetails.html" class="option-action">
+            View & Manage
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -575,6 +579,39 @@
         window.location.href = "/pages/employeelogin.html";
       } else {
         console.log("Token exists:", token);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadData();
+      });
+
+      async function loadData() {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/admin/getStudentDetails",
+            {
+              headers:{
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${token}`
+              },
+            }
+          );
+
+          const result = await response.json(); 
+
+            console.log(result);
+
+            const studentCount = result.data.registeredStudentCount;
+            const activeStudentCount = result.data.activeStudentCount;
+            const newApplications = result.data.newApplicationCount;
+
+           document.getElementById("studentCount").innerText = studentCount;
+           document.getElementById("activeStudentCount").innerText = activeStudentCount;
+           document.getElementById("pendingApplications").innerText = newApplications;
+
+        } catch (error) {
+          alert("something went wrong", error);
+        }
       }
     </script>
   </body>

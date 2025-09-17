@@ -1,9 +1,7 @@
 package lk.ijse.drivingschool.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lk.ijse.drivingschool.entity.enums.InstructorRespond;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -19,15 +16,21 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class PendingSessions {
+
     @Id
     private String sessionId;
+
     private Timestamp time;
     private LocalDate date;
-    private String instructorName;
-    private String nic;
+
     private String vehicleNumber;
+
     @Enumerated(EnumType.STRING)
     private InstructorRespond respond;
+
     private String courseName;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "licenseId", referencedColumnName = "licenseId")
+    private Instructor instructor;
 }

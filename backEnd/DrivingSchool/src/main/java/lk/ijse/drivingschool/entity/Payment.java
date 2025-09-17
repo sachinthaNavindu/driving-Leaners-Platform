@@ -20,11 +20,11 @@ public class Payment {
     private Timestamp paymentTime;
     private Double paymentAmount;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_nic",referencedColumnName = "nic",nullable = false)
     private Student student;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id",referencedColumnName = "courseId",nullable = false)
     private Course course;
 }

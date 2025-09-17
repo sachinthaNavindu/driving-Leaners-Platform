@@ -833,7 +833,7 @@
             <ul class="vehicles-list" id="vehiclesList"></ul>
           </div>
         </div>
-        
+
         <div class="table-card">
           <div class="table-header">
             <div class="table-title">
@@ -1107,7 +1107,11 @@
               },
             }
           );
-
+          if (!response.ok) {
+            console.error("Failed to load sessions");
+            return;
+          }
+          
           const result = await response.json();
           const list = document.getElementById("instructorsList");
           list.innerHTML = "";
@@ -1121,7 +1125,7 @@
         <div class="instructor-info">
           <div class="instructor-name">${instructor.name}</div>
           <div class="instructor-contact">
-            <i class="fas fa-id-card"></i> ${instructor.nic}
+            <i class="fas fa-id-card"></i> ${instructor.licenseId}
           </div>
         </div>
       `;
@@ -1153,7 +1157,7 @@
               },
             }
           );
-          
+
           const result = await response.json();
           const list = document.getElementById("coursesList");
           const courseDropdown = document.getElementById("course_name");
@@ -1192,47 +1196,8 @@
         }
       }
 
-      function addSampleCourses() {
-        const sampleCourses = [
-          { courseName: "Beginner Driving Course", duration: 10, fee: 200 },
-          { courseName: "Intermediate Driving Course", duration: 15, fee: 300 },
-          { courseName: "Advanced Driving Course", duration: 20, fee: 400 },
-          { courseName: "Defensive Driving Course", duration: 8, fee: 180 },
-          { courseName: "Highway Driving Course", duration: 12, fee: 250 }
-        ];
-
-        const list = document.getElementById("coursesList");
-        const courseDropdown = document.getElementById("course_name");
-        
-        list.innerHTML = "";
-        courseDropdown.innerHTML = '<option value="">Select Course</option>';
-
-        sampleCourses.forEach((course) => {
-          const li = document.createElement("li");
-          li.classList.add("course-item");
-          li.innerHTML = `
-            <div class="course-icon">
-              <i class="fas fa-book"></i>
-            </div>
-            <div class="course-info">
-              <div class="course-name">${course.courseName}</div>
-              <div class="course-details">
-                <i class="fas fa-clock"></i> ${course.duration} hours
-                <span class="availability-badge available">
-                  $${course.fee}
-                </span>
-              </div>
-            </div>
-          `;
-          li.addEventListener("click", () => selectCourse(course));
-          list.appendChild(li);
-
-          const option = new Option(course.courseName, course.courseName);
-          courseDropdown.add(option);
-        });
-      }
-
-      let selectNic = null;
+    
+      let selectLicenseId = null;
 
       function selectInstructor(instructor) {
         const instructorDropdown = document.getElementById("instructor_name");
@@ -1247,7 +1212,9 @@
 
         instructorDropdown.value = instructor.name;
 
-        selectNic = instructor.nic;
+        selectLicenseId = instructor.licenseId;
+
+        console.log(selectLicenseId);
       }
 
       let selectedVehicleNumber = null;
@@ -1290,7 +1257,8 @@
           const sessionId = document.getElementById("session_id").value;
           const date = document.getElementById("date").value;
           const startTime = document.getElementById("start_time").value;
-          const instructorName = document.getElementById("instructor_name").value;
+          const instructorName =
+            document.getElementById("instructor_name").value;
           const vehicleNumber = document.getElementById("vehicle_number").value;
           const courseName = document.getElementById("course_name").value;
 
@@ -1298,7 +1266,7 @@
             !sessionId ||
             !date ||
             !startTime ||
-            !instructorName ||
+            !selectLicenseId ||
             !vehicleNumber ||
             !courseName
           ) {
@@ -1316,8 +1284,7 @@
             sessionId: sessionId,
             date: date,
             time: sessionTimestamp,
-            instructorName: instructorName,
-            nic: selectNic,
+            licenseId: selectLicenseId,
             vehicleNumber: vehicleNumber,
             courseName: courseName,
             respond: "PENDING",
@@ -1381,7 +1348,7 @@
             "http://localhost:8080/schedule/getSession",
             {
               headers: {
-                "Content-Type": "application/json",
+                
                 Authorization: `Bearer ${token}`,
               },
             }
@@ -1455,6 +1422,7 @@
       document.querySelectorAll(".btn-cancel").forEach((button) => {
         button.addEventListener("click", cancelSession);
       });
+      
     </script>
   </body>
 </html>

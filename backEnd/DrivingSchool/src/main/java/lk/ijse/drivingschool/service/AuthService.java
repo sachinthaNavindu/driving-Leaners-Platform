@@ -3,6 +3,8 @@ package lk.ijse.drivingschool.service;
 
 import lk.ijse.drivingschool.dto.*;
 import lk.ijse.drivingschool.entity.*;
+import lk.ijse.drivingschool.entity.enums.InstructorStatus;
+import lk.ijse.drivingschool.entity.enums.JobRole;
 import lk.ijse.drivingschool.repository.*;
 import lk.ijse.drivingschool.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +41,7 @@ public class AuthService {
         }
         String token = jwtUtil.generateToken(studentAuthDTO.getNic());
 
-        return new AuthResponseDTO(token,studentCredentials.getStudentNic(),name,role);
+        return new AuthResponseDTO(token,studentCredentials.getStudentNic(),name,role,"");
     }
 
     public AuthResponseDTO employeeAuthenticate(EmployeeAuthDTO employeeAuthDTO) {
@@ -48,6 +50,7 @@ public class AuthService {
 
         JobRole jobrole = employee.getJobRole();
         String userName = employee.getName();
+        String licenseId = "";
 
         switch (jobrole){
             case ADMIN:
@@ -62,7 +65,7 @@ public class AuthService {
             case INSTRUCTOR:
 
                 Instructor instructor = instructorRepository.findByEmployee_Nic(employeeAuthDTO.getNic()).orElseThrow(()->new RuntimeException("Instructor not found"));
-
+                licenseId = instructor.getLicenseId();
                 if (!passwordEncoder.matches(employeeAuthDTO.getPassword(), instructor.getPassword())) {
                     throw new BadCredentialsException("Invalid Nic or password");
                 }
@@ -71,7 +74,7 @@ public class AuthService {
                     throw new BadCredentialsException("Unsupported job role");
         }
         String token = jwtUtil.generateToken(employeeAuthDTO.getNic());
-        return new AuthResponseDTO(token,employeeAuthDTO.getNic(),userName,jobrole);
+        return new AuthResponseDTO(token,employeeAuthDTO.getNic(),userName,jobrole,licenseId);
     }
 
 
@@ -124,4 +127,12 @@ public class AuthService {
         return "Instructor Signup Successfully";
     }
 
+    public Object admin(InstructorAuthDTO instructorAuthDTO) {
+        Admin admin = Admin.builder()
+                .nic(instructorAuthDTO.getNic())
+                .password(passwordEncoder.encode(instructorAuthDTO.getPassword()))
+                .build();
+
+        return adminRepo.save(admin);
+    }
 }

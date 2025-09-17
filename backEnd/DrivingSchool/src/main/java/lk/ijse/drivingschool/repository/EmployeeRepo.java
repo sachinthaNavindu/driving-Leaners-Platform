@@ -16,9 +16,9 @@
         @Query("SELECT e FROM Employee e WHERE e.jobRole='Instructor'")
         List<Employee> findAllInstructorEmployees();
 
-        @Query("SELECT e.name, i.nic FROM Instructor i JOIN Employee e ON i.nic = e.nic WHERE i.status = 'ACTIVE'")
+        @Query("SELECT e.name,i.licenseId FROM Instructor i JOIN Employee e ON i.nic = e.nic WHERE i.status = 'ACTIVE'")
         List<Object[]> findAllInstructorsByStatus();
 
         @Query("SELECT i.employee.gmail FROM Instructor i WHERE i.nic = :nic")
         String findGmailByLicenseId(@Param("nic") String nic);
-    }
+        Optional<Employee> findInstructorByNic(String nic);    }

@@ -21,7 +21,7 @@ public class  Admin {
     @Column(name = "employee_nic",nullable = false,unique = true)
     private String nic;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_nic",referencedColumnName = "nic",insertable = false,updatable = false)
     private Employee employee;
 

@@ -1,5 +1,6 @@
 package lk.ijse.drivingschool.dto;
 
+import lk.ijse.drivingschool.entity.Instructor;
 import lk.ijse.drivingschool.entity.enums.InstructorRespond;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @Builder
-public class SessionTimeTableDTO {
+public class PendingSessionDTO {
     private String sessionId;
     private Timestamp time;
     private LocalDate date;
@@ -19,5 +20,6 @@ public class SessionTimeTableDTO {
     private String vehicleNumber;
     private String respond;
     private String courseName;
+    private String instructorName;
 }
 

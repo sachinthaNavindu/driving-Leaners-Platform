@@ -24,11 +24,15 @@ public class AdminController {
 
     //register endpoints
     @RequestMapping("/studentRegister")
-    public ResponseEntity<ApiResponseDTO>RegisterStudent(@RequestBody StudentDTO studentDTO){
+    public ResponseEntity<ApiResponseDTO>RegisterStudent(@RequestBody WrapperDTO wrapperDTO) {
+
+        StudentDTO studentDTO = wrapperDTO.getStudentDTO();
+        PaymentDTO paymentDTO = wrapperDTO.getPaymentDTO();
+
         return ResponseEntity.ok(new ApiResponseDTO(
                 200,
                 "OK",
-                studentService.registerStudent(studentDTO)
+                studentService.registerStudent(studentDTO,paymentDTO)
         ));
     }
 
@@ -99,6 +103,15 @@ public class AdminController {
 
     //update endpoints
 
+    @RequestMapping("/studentUpdate")
+    public ResponseEntity<ApiResponseDTO>StudentUpdate(@RequestBody StudentDTO studentDTO){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                studentService.updateStudent(studentDTO)
+        ));
+    }
+
     @RequestMapping("/employeeUpdate/{employeeId}")
     public ResponseEntity<ApiResponseDTO>employeeUpdate(@PathVariable String employeeId, @RequestBody EmployeeDTO employeeDTO){
         return ResponseEntity.ok(new ApiResponseDTO(
@@ -145,6 +158,15 @@ public class AdminController {
         ));
     }
 
+    @RequestMapping("/studentDelete/{nic}")
+    public ResponseEntity<ApiResponseDTO>studentDelete(@PathVariable String nic){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                studentService.deleteStudent(nic)
+        ));
+    }
+
     @RequestMapping("/vehicleDelete/{vehicleNum}")
     public ResponseEntity<ApiResponseDTO>deleteVehicle(@PathVariable String vehicleNum){
         System.out.println(vehicleNum);
@@ -152,6 +174,15 @@ public class AdminController {
                 200,
                 "OK",
                 vehicleService.deleteVehicle(vehicleNum)
+        ));
+    }
+
+    @RequestMapping("/getStudentDetails")
+    public ResponseEntity<ApiResponseDTO>getStudentDetails(){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                studentService.getStudentCount()
         ));
     }
 }

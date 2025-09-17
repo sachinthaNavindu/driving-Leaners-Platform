@@ -4,6 +4,7 @@
     import jakarta.persistence.EnumType;
     import jakarta.persistence.Enumerated;
     import jakarta.persistence.Id;
+    import lk.ijse.drivingschool.entity.enums.JobRole;
     import lombok.AllArgsConstructor;
     import lombok.Builder;
     import lombok.Data;

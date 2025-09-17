@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -59,5 +60,14 @@ public class CourseService {
         courseRepo.save(course);
 
         return "Course updated successfully";
+    }
+
+    public int getCourseId(String courseName) {
+        Optional<Course> courseOpt = courseRepo.findByCourseName(courseName);
+        if (courseOpt.isPresent()) {
+            return courseOpt.get().getCourseId();
+        } else {
+            throw new RuntimeException("Course not found: " + courseName);
+        }
     }
 }

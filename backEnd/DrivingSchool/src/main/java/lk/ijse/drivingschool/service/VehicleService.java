@@ -14,6 +14,7 @@ import java.util.List;
 public class VehicleService {
     private final VehicleRepo vehicleRepo;
     public Object getAvailableVehicles() {
+
         List<Vehicle>availableVehicles = vehicleRepo.findByAvailability("Available");
 
         return availableVehicles.stream()

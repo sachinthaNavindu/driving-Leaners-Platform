@@ -36,6 +36,7 @@
         color: white;
         font-weight: bold;
         font-size: 20px;
+        text-decoration: none;
       }
 
       .logo i {
@@ -118,6 +119,7 @@
         align-items: center;
         color: white;
         margin-left: 20px;
+        cursor: pointer;
       }
 
       .user-profile img {
@@ -144,6 +146,7 @@
       .page-title i {
         margin-right: 15px;
         font-size: 28px;
+        color: #1a2a6c;
       }
 
       .page-title h1 {
@@ -197,7 +200,8 @@
         color: #333;
       }
 
-      .form-group input {
+      .form-group input,
+      .form-group select {
         width: 100%;
         padding: 12px 15px;
         border: 1px solid #ddd;
@@ -206,7 +210,8 @@
         transition: border-color 0.3s;
       }
 
-      .form-group input:focus {
+      .form-group input:focus,
+      .form-group select:focus {
         outline: none;
         border-color: #1a2a6c;
         box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1);
@@ -262,6 +267,7 @@
       .table-header h2 {
         font-size: 24px;
         font-weight: 600;
+        color: #1a2a6c;
       }
 
       .table-container {
@@ -339,6 +345,45 @@
         font-style: italic;
       }
 
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .action-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 8px;
+        border-radius: 4px;
+        transition: all 0.2s;
+      }
+
+      .view-btn {
+        color: #1a2a6c;
+      }
+
+      .view-btn:hover {
+        background-color: rgba(26, 42, 108, 0.1);
+      }
+
+      .edit-btn {
+        color: #28a745;
+      }
+
+      .edit-btn:hover {
+        background-color: rgba(40, 167, 69, 0.1);
+      }
+
+      .delete-btn {
+        color: #dc3545;
+      }
+
+      .delete-btn:hover {
+        background-color: rgba(220, 53, 69, 0.1);
+      }
+
       .message-box {
         position: fixed;
         top: 20px;
@@ -376,6 +421,191 @@
           opacity: 0;
           transform: translateY(-20px);
         }
+      }
+
+      /* Student Detail Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 20px;
+        display: none;
+      }
+
+      .student-detail-modal {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        border-bottom: 1px solid #eee;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 10px 10px 0 0;
+      }
+
+      .modal-header h2 {
+        color: #1a2a6c;
+        font-size: 24px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+
+      .modal-header h2 i {
+        margin-right: 10px;
+        color: #b21f1f;
+      }
+
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #6c757d;
+        transition: color 0.2s;
+      }
+
+      .close-modal:hover {
+        color: #dc3545;
+      }
+
+      .modal-body {
+        padding: 30px;
+      }
+
+      .mode-toggle {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .toggle-slider {
+        background-color: #1a2a6c;
+      }
+
+      input:checked + .toggle-slider:before {
+        transform: translateX(30px);
+      }
+
+      .toggle-label {
+        margin-right: 10px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .toggle-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .view-mode .form-group input,
+      .view-mode .form-group select {
+        background-color: #f8f9fa;
+        border: 1px solid #eee;
+        color: #495057;
+        cursor: not-allowed;
+      }
+
+      .edit-mode .form-group input:not([readonly]),
+      .edit-mode .form-group select:not([readonly]) {
+        background-color: white;
+        border: 1px solid #ddd;
+        color: #333;
+        cursor: auto;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+
+      .btn-cancel {
+        background: #6c757d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-cancel:hover {
+        background: #5a6268;
+      }
+
+      .btn-save {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-save:hover {
+        background: linear-gradient(135deg, #23358b, #c42c2c);
       }
 
       @media (max-width: 768px) {
@@ -420,6 +650,15 @@
         td:after {
           display: none;
         }
+
+        .student-detail-modal {
+          width: 95%;
+          margin: 20px auto;
+        }
+
+        .modal-body {
+          padding: 20px;
+        }
       }
     </style>
     <link
@@ -430,18 +669,20 @@
   <body>
     <nav>
       <div class="nav-bar">
-        <div class="logo">
+        <a href="#" class="logo">
           <i class="fas fa-car-side"></i>
           <span>DriveMaster Admin</span>
-        </div>
+        </a>
 
         <div class="menu-container">
           <div class="menu-item">
-            <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+            <a href="home.html"
+              ><i class="fas fa-home"></i> <span>Home</span></a
+            >
           </div>
 
           <div class="menu-item">
-            <a href=""
+            <a href="#"
               ><i class="fas fa-users"></i> <span>Student Portal</span></a
             >
             <div class="dropdown">
@@ -473,7 +714,7 @@
             <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
           </div>
 
-          <div class="user-profile">
+          <div class="user-profile" id="logoutBtn">
             <img
               src="https://ui-avatars.com/api/?name=Admin+User&background=random"
               alt="Admin User"
@@ -483,43 +724,6 @@
         </div>
       </div>
     </nav>
-
-    <section>
-      <div class="student-details-area">
-        <div class="table-header">
-          <i class="fas fa-list"></i>
-          <h2>Registered Students</h2>
-        </div>
-
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>NIC</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact No</th>
-                <th>Address</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="6" class="empty-table-message">
-                  <i
-                    class="fas fa-info-circle"
-                    style="font-size: 48px; margin-bottom: 15px"
-                  ></i>
-                  <p>
-                    No students registered yet. Register a student to see them
-                    listed here.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
 
     <section>
       <div class="registration-container">
@@ -532,10 +736,51 @@
 
         <div class="form-container">
           <div class="form-header">
-            <h2><i class="fas fa-info-circle"></i> Personal Information</h2>
+            <h2>
+              <i class="fas fa-user-graduate"></i> Student & Payment Information
+            </h2>
           </div>
 
-          <form action="">
+          <form id="studentRegistrationForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="payment_amount"
+                  >Payment Amount <span style="color: #b21f1f">*</span></label
+                >
+                <input
+                  type="number"
+                  id="payment_amount"
+                  step="0.01"
+                  min="0"
+                  required
+                  placeholder="Enter payment amount"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="payment_date"
+                  >Payment Date <span style="color: #b21f1f">*</span></label
+                >
+                <input type="date" id="payment_date" required />
+              </div>
+
+              <div class="form-group">
+                <label for="payment_time"
+                  >Payment Time <span style="color: #b21f1f">*</span></label
+                >
+                <input type="time" id="payment_time" required />
+              </div>
+
+              <div class="form-group">
+                <label for="course_id"
+                  >Course <span style="color: #b21f1f">*</span></label
+                >
+                <select id="course_id" required>
+                  <option value="">Select a course</option>
+                </select>
+              </div>
+            </div>
+
             <div class="form-row">
               <div class="form-group">
                 <label for="nic"
@@ -606,10 +851,111 @@
           </form>
         </div>
       </div>
+
+      <div class="modal-overlay" id="studentDetailModal">
+        <div class="student-detail-modal">
+          <div class="modal-header">
+            <h2><i class="fas fa-user-graduate"></i> Student Details</h2>
+            <button class="close-modal" id="closeModal">&times;</button>
+          </div>
+          <div class="modal-body view-mode" id="modalBody">
+            <div class="mode-toggle">
+              <div class="toggle-container">
+                <span class="toggle-label">View Mode</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="modeToggle" />
+                  <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Edit Mode</span>
+              </div>
+            </div>
+
+            <form id="studentDetailForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="detail_nic">NIC</label>
+                  <input type="text" id="detail_nic" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label for="detail_name">Full Name</label>
+                  <input type="text" id="detail_name" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label for="detail_email">Email</label>
+                  <input type="email" id="detail_email" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label for="detail_contact">Contact No</label>
+                  <input type="tel" id="detail_contact" readonly />
+                </div>
+
+                <div class="form-group" style="flex: 1 0 calc(100% - 30px)">
+                  <label for="detail_address">Address</label>
+                  <input type="text" id="detail_address" readonly />
+                </div>
+              </div>
+
+              <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="cancelEdit">
+                  Cancel
+                </button>
+                <button type="submit" class="btn-save" id="saveChanges">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <section>
+      <div class="student-details-area">
+        <div class="table-header">
+          <i class="fas fa-list"></i>
+          <h2>Registered Students</h2>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>NIC</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact No</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="6" class="empty-table-message">
+                  <i
+                    class="fas fa-info-circle"
+                    style="font-size: 48px; margin-bottom: 15px"
+                  ></i>
+                  <p>
+                    No students registered yet. Register a student to see them
+                    listed here.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="studentRegistration.js"></script>
 
     <script>
       const token = localStorage.getItem("token");
+      let selectedCourseName = "";
       if (!token || token === "undefined" || token === "null") {
         console.log("No valid token found");
         window.location.href = "/pages/employeelogin.html";
@@ -617,7 +963,68 @@
         console.log("Token exists:", token);
       }
 
-      loadRegisteredStudents();
+      document
+        .getElementById("course_id")
+        .addEventListener("change", function () {
+          selectedCourseName = this.options[this.selectedIndex].text;
+          console.log("Selected course name:", selectedCourseName);
+        });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadData();
+      });
+
+      function loadData() {
+        loadRegisteredStudents();
+        getCurrentDateAndTime();
+        loadAvailableCourses();
+      }
+
+      async function loadAvailableCourses() {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/admin/getCourseDetails",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          const result = await response.json();
+          console.log(result);
+
+          const courseSelect = document.getElementById("course_id");
+          courseSelect.innerHTML = `<option value="">Select a course</option>`;
+
+          if (result.data && result.data.length > 0) {
+            result.data.forEach((course) => {
+              const option = document.createElement("option");
+              option.value = course.courseId;
+              option.textContent = course.courseName;
+              courseSelect.appendChild(option);
+            });
+          }
+        } catch (error) {
+          alert("Error", error);
+        }
+      }
+
+      function getCurrentDateAndTime() {
+        const now = new Date();
+
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        const formattedDate = `${year}-${month}-${day}`;
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const formattedTime = `${hours}:${minutes}`;
+
+        document.getElementById("payment_date").value = formattedDate;
+        document.getElementById("payment_time").value = formattedTime;
+      }
 
       async function loadRegisteredStudents() {
         try {
@@ -645,6 +1052,19 @@
                 <td>${student.email}</td>
                 <td>${student.contact}</td>
                 <td>${student.address}</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-btn view-btn" title="View Details" onclick="viewStudent('${student.nic}','${student.name}','${student.email}','${student.contact}','${student.address}')">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn edit-btn" title="Edit Student" onclick="viewStudent('${student.nic}','${student.name}','${student.email}','${student.contact}','${student.address}')">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Delete Student" onclick="deleteStudent('${student.nic}')">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
               `;
               tbody.appendChild(row);
             });
@@ -664,8 +1084,6 @@
         }
       }
 
-      const form = document.querySelector("form");
-
       function showMessage(message, type = "success") {
         const messageBox = document.getElementById("message-box");
         messageBox.textContent = message;
@@ -677,50 +1095,217 @@
         }, 3000);
       }
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+      function editStudent(nic) {
+        alert(`Edit student with NIC: ${nic}`);
+      }
 
+      function viewStudent(nic, name, email, contact, address) {
         const studentData = {
-          nic: document.getElementById("nic").value.trim(),
-          name: document.getElementById("name").value.trim(),
-          email: document.getElementById("email").value.trim(),
-          contact: document.getElementById("contact").value.trim(),
-          address: document.getElementById("address").value.trim(),
+          nic: nic,
+          name: name,
+          email: email,
+          contact: contact,
+          address: address,
         };
 
-        try {
-          const response = await fetch(
-            "http://localhost:8080/admin/studentRegister",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify(studentData),
+        document.getElementById("detail_nic").value = studentData.nic;
+        document.getElementById("detail_name").value = studentData.name;
+        document.getElementById("detail_email").value = studentData.email;
+        document.getElementById("detail_contact").value = studentData.contact;
+        document.getElementById("detail_address").value = studentData.address;
+
+        document.getElementById("studentDetailModal").style.display = "flex";
+      }
+
+      document.getElementById("closeModal").addEventListener("click", () => {
+        document.getElementById("studentDetailModal").style.display = "none";
+      });
+
+      document.getElementById("cancelEdit").addEventListener("click", () => {
+        document.getElementById("studentDetailModal").style.display = "none";
+      });
+
+      document
+        .getElementById("modeToggle")
+        .addEventListener("change", function () {
+          const modalBody = document.getElementById("modalBody");
+          if (this.checked) {
+            modalBody.classList.remove("view-mode");
+            modalBody.classList.add("edit-mode");
+
+            document
+              .querySelectorAll("#studentDetailForm input")
+              .forEach((input) => {
+                if (input.id !== "detail_nic") {
+                  input.removeAttribute("readonly");
+                }
+              });
+          } else {
+            modalBody.classList.remove("edit-mode");
+            modalBody.classList.add("view-mode");
+
+            document
+              .querySelectorAll("#studentDetailForm input")
+              .forEach((input) => {
+                input.setAttribute("readonly", true);
+              });
+          }
+        });
+
+      async function deleteStudent(nic) {
+        if (
+          confirm(`Are you sure you want to delete student with NIC: ${nic}?`)
+        ) {
+          try {
+            const response = await fetch(
+              `http://localhost:8080/admin/studentDelete/${nic}`,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            const result = await response.json();
+            if (!response.ok) {
+              alert(
+                "Deletion failed: " + (result.message || JSON.stringify(result))
+              );
+              return;
             }
-          );
-
-          const result = await response.json();
-
-          if (response.ok) {
             showMessage(
-              result.data || "Student registered successfully!",
+              `Student with NIC: ${nic} deleted successfully.`,
               "success"
             );
-            form.reset();
-            loadRegisteredStudents();
-          } else {
-            showMessage(result.data || "Failed to register student.", "error");
+            loadData();
+          } catch (error) {
+            alert("Delete failed", error);
           }
-        } catch (err) {
-          console.error(err);
-          showMessage(
-            "An error occurred while registering the student.",
-            "error"
-          );
         }
-      });
+      }
+
+      document
+        .getElementById("studentRegistrationForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          console.log("submit");
+
+          const studentData = {
+            nic: document.getElementById("nic").value.trim(),
+            name: document.getElementById("name").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            contact: document.getElementById("contact").value.trim(),
+            address: document.getElementById("address").value.trim(),
+          };
+
+          const paymentData = {
+            paidAmount: document.getElementById("payment_amount").value.trim(),
+            courseName: selectedCourseName,
+            studentNic: document.getElementById("nic").value.trim(),
+            paymentDate: document.getElementById("payment_date").value.trim(),
+            paidTime: document.getElementById("payment_time").value.trim(),
+          };
+
+          const payload = {
+            studentDTO: studentData,
+            paymentDTO: paymentData,
+          };
+
+          console.log(payload);
+          try {
+            const response = await fetch(
+              "http://localhost:8080/admin/studentRegister",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(payload),
+              }
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+              showMessage(
+                result.data || "Student registered successfully!",
+                "success"
+              );
+              document.getElementById("studentRegistrationForm").reset();
+              getCurrentDateAndTime();
+              loadRegisteredStudents();
+            } else {
+              showMessage(
+                result.data || "Failed to register student.",
+                "error"
+              );
+              console.log(result);
+            }
+          } catch (err) {
+            console.error(err);
+            showMessage(
+              "An error occurred while registering the student.",
+              "error"
+            );
+          }
+        });
+
+      document
+        .getElementById("studentDetailForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const nic = document.getElementById("detail_nic").value;
+          const name = document.getElementById("detail_name").value;
+          const email = document.getElementById("detail_email").value;
+          const contact = document.getElementById("detail_contact").value;
+          const address = document.getElementById("detail_address").value;
+
+          const studentData = {
+            nic: nic,
+            name: name,
+            email: email,
+            address: address,
+            contact: contact,
+          };
+
+          try {
+            const response = await fetch(
+              "http://localhost:8080/admin/studentUpdate",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(studentData),
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log("Update successful:", result);
+
+            const modal = document.getElementById("studentDetailModal");
+            if (modal) {
+              modal.style.display = "none";
+            }
+
+            alert("Student details updated successfully!");
+            loadData();
+          } catch (error) {
+            console.error("Error updating student:", error);
+            loadData();
+            alert("Failed to update student. Check console for details.");
+          }
+        });
+
+     
     </script>
   </body>
 </html>
