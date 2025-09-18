@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface StudentCredentialRepository extends JpaRepository<StudentCredentials,String> {
     Optional<StudentCredentials> findByStudentNic(String studentNic);
+
 }

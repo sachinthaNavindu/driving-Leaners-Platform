@@ -435,19 +435,16 @@
             let endTime = null;
             let intervalId = null;
             
-            // Initialize counters
             let presentCount = 0;
             let absentCount = 0;
             let pendingCount = 8;
             
-            // Update counter display
             function updateCounters() {
                 document.getElementById('present-count').textContent = presentCount;
                 document.getElementById('absent-count').textContent = absentCount;
                 document.getElementById('pending-count').textContent = pendingCount;
             }
             
-            // Mark attendance buttons
             const presentButtons = document.querySelectorAll('.present-btn');
             const absentButtons = document.querySelectorAll('.absent-btn');
             
@@ -456,12 +453,10 @@
                     const row = this.closest('tr');
                     const statusBadge = row.querySelector('.status-badge');
                     
-                    // Only update if status is pending
                     if (statusBadge.classList.contains('status-pending')) {
                         statusBadge.className = 'status-badge status-present';
                         statusBadge.textContent = 'Present';
                         
-                        // Update counters
                         pendingCount--;
                         presentCount++;
                         updateCounters();
@@ -474,12 +469,10 @@
                     const row = this.closest('tr');
                     const statusBadge = row.querySelector('.status-badge');
                     
-                    // Only update if status is pending
                     if (statusBadge.classList.contains('status-pending')) {
                         statusBadge.className = 'status-badge status-absent';
                         statusBadge.textContent = 'Absent';
                         
-                        // Update counters
                         pendingCount--;
                         absentCount++;
                         updateCounters();
@@ -487,7 +480,6 @@
                 });
             });
             
-            // Start session button
             const startBtn = document.querySelector('.start-btn');
             const endBtn = document.querySelector('.end-btn');
             
@@ -499,12 +491,10 @@
                     startBtn.disabled = true;
                     endBtn.disabled = false;
                     
-                    // Start updating duration
                     intervalId = setInterval(updateDuration, 1000);
                 }
             });
             
-            // End session button
             endBtn.addEventListener('click', function() {
                 if (startTime && !endTime) {
                     endTime = new Date();
@@ -512,24 +502,20 @@
                     endBtn.textContent = 'Session Ended';
                     endBtn.disabled = true;
                     
-                    // Stop updating duration
                     clearInterval(intervalId);
                     updateDuration();
                 }
             });
             
-            // Update duration function
             function updateDuration() {
                 if (startTime) {
                     const now = endTime || new Date();
                     const diff = now - startTime;
                     
-                    // Calculate hours, minutes, seconds
                     const hours = Math.floor(diff / 3600000);
                     const minutes = Math.floor((diff % 3600000) / 60000);
                     const seconds = Math.floor((diff % 60000) / 1000);
                     
-                    // Format as HH:MM:SS
                     document.getElementById('duration').textContent = 
                         `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }

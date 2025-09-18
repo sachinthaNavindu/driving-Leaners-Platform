@@ -130,7 +130,6 @@
         border: 2px solid rgba(255, 255, 255, 0.3);
       }
 
-      /* Main Content Styles */
       .main-content {
         padding: 30px;
         max-width: 1200px;
@@ -226,8 +225,14 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .payment-table {
@@ -337,11 +342,11 @@
         .search-container {
           flex-direction: column;
         }
-        
+
         .payment-table {
           font-size: 14px;
         }
-        
+
         .payment-table th,
         .payment-table td {
           padding: 10px;
@@ -485,41 +490,58 @@
           const doc = new jsPDF();
 
           doc.setFillColor(26, 42, 108);
-          doc.rect(0, 0, 210, 30, 'F');
+          doc.rect(0, 0, 210, 30, "F");
           doc.setFontSize(20);
           doc.setTextColor(255, 255, 255);
-          doc.text("DriveMaster Driving School", 105, 20, { align: 'center' });
+          doc.text("DriveMaster Driving School", 105, 20, { align: "center" });
 
           doc.setFontSize(14);
           doc.setTextColor(0, 0, 0);
-          doc.text("PAYMENT RECEIPT", 105, 45, { align: 'center' });
-          
+          doc.text("PAYMENT RECEIPT", 105, 45, { align: "center" });
+
           doc.setFontSize(12);
           doc.text(`Receipt ID: ${payment.paymentID || "N/A"}`, 20, 60);
           doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 70);
           doc.text(`Time: ${new Date().toLocaleTimeString()}`, 20, 80);
-          
+
           doc.line(20, 90, 190, 90);
-          
+
           doc.text(`Student NIC: ${payment.studentNic || "N/A"}`, 20, 100);
           doc.text(`Course: ${payment.courseName || "N/A"}`, 20, 110);
           doc.text(`Payment Date: ${payment.paymentDate || "N/A"}`, 20, 120);
           doc.text(`Payment Time: ${payment.paidTime || "N/A"}`, 20, 130);
-          
-          doc.line(20, 140, 190, 140);
-          
-          doc.setFontSize(16);
-          doc.setFont(undefined, 'bold');
-          doc.text(`Amount Paid: LKR ${payment.paidAmount ? payment.paidAmount.toFixed(2) : "0.00"}`, 20, 155);
-          
-          doc.line(20, 165, 190, 165);
-          
-          doc.setFontSize(10);
-          doc.setFont(undefined, 'normal');
-          doc.text("Thank you for your payment!", 105, 180, { align: 'center' });
-          doc.text("DriveMaster Driving School - Quality Education for Safe Driving", 105, 190, { align: 'center' });
 
-          doc.save(`Payment_Receipt_${payment.paymentID || payment.studentNic || "receipt"}.pdf`);
+          doc.line(20, 140, 190, 140);
+
+          doc.setFontSize(16);
+          doc.setFont(undefined, "bold");
+          doc.text(
+            `Amount Paid: LKR ${
+              payment.paidAmount ? payment.paidAmount.toFixed(2) : "0.00"
+            }`,
+            20,
+            155
+          );
+
+          doc.line(20, 165, 190, 165);
+
+          doc.setFontSize(10);
+          doc.setFont(undefined, "normal");
+          doc.text("Thank you for your payment!", 105, 180, {
+            align: "center",
+          });
+          doc.text(
+            "DriveMaster Driving School - Quality Education for Safe Driving",
+            105,
+            190,
+            { align: "center" }
+          );
+
+          doc.save(
+            `Payment_Receipt_${
+              payment.paymentID || payment.studentNic || "receipt"
+            }.pdf`
+          );
         } catch (error) {
           console.error("Error generating PDF:", error);
           alert("Error generating payment slip. Please try again.");
@@ -535,19 +557,21 @@
 
           row.innerHTML = `
             <td class="payment-id">${payment.paymentID}</td>
-            <td class="payment-amount">${payment.paidAmount.toLocaleString("en-US", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}</td>
+            <td class="payment-amount">${payment.paidAmount.toLocaleString(
+              "en-US",
+              {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }
+            )}</td>
             <td>${payment.paymentDate || "N/A"}</td>
             <td>${payment.paidTime || "N/A"}</td>
             <td>${payment.courseName || "N/A"}</td>
             <td>${payment.studentNic || "N/A"}</td>
             <td>
-              <button class="action-button view-btn" title="View Details">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button class="action-button print-btn" title="Print Receipt" data-payment='${JSON.stringify(payment)}'>
+              <button class="action-button print-btn" title="Print Receipt" data-payment='${JSON.stringify(
+                payment
+              )}'>
                 <i class="fas fa-print"></i>
               </button>
               <button class="action-button delete-btn" title="Delete Payment">
@@ -556,12 +580,42 @@
             </td>
           `;
 
+          row
+            .querySelector(".delete-btn")
+            .addEventListener("click", function () {
+              deletePayment(payment.paymentID, payment.studentNic);
+            });
           tableBody.appendChild(row);
         });
 
-        document.querySelectorAll('.print-btn').forEach(button => {
-          button.addEventListener('click', function() {
-            const paymentData = JSON.parse(this.getAttribute('data-payment'));
+        async function deletePayment(paymentId,nic) {
+          console.log(paymentId);
+          try {
+            const response = await fetch(
+              `http://localhost:8080/payments/deletePayment/${paymentId}`,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+
+            const result = await response.json(); 
+            alert(result.data);
+
+            const row = document
+              .querySelector(`.delete-btn[data-id='${paymentId}']`)
+              ?.closest("tr");
+            if (row) row.remove();
+          } catch (error) {
+            alert("Delete failed: " + error);
+          }
+        }
+
+        document.querySelectorAll(".print-btn").forEach((button) => {
+          button.addEventListener("click", function () {
+            const paymentData = JSON.parse(this.getAttribute("data-payment"));
             generatePaymentSlip(paymentData);
           });
         });
@@ -610,7 +664,9 @@
       }
 
       function performSearch() {
-        const searchText = document.getElementById("searchInput").value.toLowerCase();
+        const searchText = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
         const tableRows = document.querySelectorAll("#paymentTableBody tr");
 
         let hasResults = false;
@@ -653,22 +709,24 @@
         toggleButton.addEventListener("click", function () {
           if (paymentTable.style.display === "none") {
             paymentTable.style.display = "block";
-            toggleButton.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Payment History';
-            
+            toggleButton.innerHTML =
+              '<i class="fas fa-eye-slash"></i> Hide Payment History';
+
             if (!dataLoaded) {
               loadPaymentDetails();
               dataLoaded = true;
             }
           } else {
             paymentTable.style.display = "none";
-            toggleButton.innerHTML = '<i class="fas fa-money-bill-wave"></i> Cash Payment History';
+            toggleButton.innerHTML =
+              '<i class="fas fa-money-bill-wave"></i> Cash Payment History';
           }
         });
 
         searchBtn.addEventListener("click", performSearch);
-        
-        if (typeof showMessage !== 'function') {
-          window.showMessage = function(message, type) {
+
+        if (typeof showMessage !== "function") {
+          window.showMessage = function (message, type) {
             alert(`${type.toUpperCase()}: ${message}`);
           };
         }
