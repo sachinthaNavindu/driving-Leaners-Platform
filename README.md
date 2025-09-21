@@ -7,9 +7,6 @@ This project is designed to make daily operations efficient and reduce manual wo
 
 ## Screenshots
 
-### Home Page
-![Home Page](path/to/homepage-screenshot.png)
-
 ### Dashboard
 ![Dashboard](path/to/dashboard-screenshot.png)
 
@@ -19,10 +16,13 @@ This project is designed to make daily operations efficient and reduce manual wo
 ### Session Scheduling
 ![Session Scheduling](path/to/session-scheduling-screenshot.png)
 
-### Vehicle Management
-![Vehicle Management](path/to/vehicle-management-screenshot.png)
-
 *(Replace `path/to/...` with your actual screenshot paths or uploaded image links.)*
+
+---
+
+## Demo Video
+Watch the demonstration video on YouTube:  
+[Demo Video](https://youtu.be/fm0duTfIBF0)
 
 ---
 
