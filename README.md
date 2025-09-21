@@ -29,13 +29,13 @@ Watch the demonstration video on YouTube:
 ## Setup Instructions
 
 ### Prerequisites
-- Java 17
-- Maven
-- MySQL
-- Node.js (if frontend uses any JS framework)
-- IDE like Eclipse, IntelliJ, or VS Code
+- **Java 17** – required for Spring Boot backend  
+- **Maven** – for building and managing backend dependencies  
+- **MySQL** – for the project database  
+- **Web Browser** – to run the frontend (HTML, CSS, JavaScript)  
+- **IDE (optional but recommended)** – Eclipse, IntelliJ, or VS Code  
 
-### Backend Setup
+### Backend Setup (Spring Boot + MySQL)
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/your-repo.git](https://github.com/sachinthaNavindu/driving-Leaners-Platform.git)
+   git clone https://github.com/sachinthaNavindu/driving-Leaners-Platform.git
