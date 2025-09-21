@@ -23,5 +23,5 @@ public class SessionTimeTable {
     private PendingSessions pendingSession;
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<StudentSession> studentSessions; // updated
+    private List<StudentSession> studentSessions;
 }

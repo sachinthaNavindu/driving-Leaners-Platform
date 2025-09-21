@@ -9,15 +9,16 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class TodaySessionDTO {
-    private String sessionTimeTableId;  // from SessionTimeTable
-    private String pendingSessionId;     // from PendingSessions
-    private Timestamp time;
+    private String sessionTimeTableId;
+    private String pendingSessionId;
+    private LocalTime time;
     private LocalDate date;
     private String licenseId;
     private String vehicleNumber;

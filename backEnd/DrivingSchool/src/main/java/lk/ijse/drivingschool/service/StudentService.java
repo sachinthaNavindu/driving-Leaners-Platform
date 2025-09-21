@@ -11,4 +11,5 @@ public interface StudentService {
     boolean deleteStudent(String nic);
     CustomStudentDTO getStudentCount();
     StudentDTO loggedStudentData(String nic);
+    String update(StudentDTO studentDTO, String nic);
 }

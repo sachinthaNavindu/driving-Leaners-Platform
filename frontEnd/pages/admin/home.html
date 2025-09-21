@@ -4,459 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard-Admin</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-
-      body {
-        background-color: #f5f7f9;
-        margin: 0;
-      }
-
-      nav {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .nav-bar {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 30px;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-      }
-
-      .logo i {
-        margin-right: 10px;
-        font-size: 24px;
-      }
-
-      .menu-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .menu-item {
-        position: relative;
-        margin-left: 15px;
-      }
-
-      .menu-item > a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-      }
-
-      .menu-item > a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      .menu-item > a i {
-        margin-right: 8px;
-      }
-
-      .dropdown {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        min-width: 200px;
-        border-radius: 5px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: all 0.3s;
-        z-index: 1000;
-      }
-
-      .menu-item:hover .dropdown {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .dropdown a {
-        display: block;
-        padding: 12px 20px;
-        color: #333;
-        text-decoration: none;
-        border-bottom: 1px solid #f0f0f0;
-        transition: background-color 0.2s;
-      }
-
-      .dropdown a:hover {
-        background-color: #f8f9fa;
-        color: #1a2a6c;
-      }
-
-      .dropdown a i {
-        margin-right: 10px;
-        color: #6c757d;
-      }
-
-      .user-profile {
-        display: flex;
-        align-items: center;
-        color: white;
-        margin-left: 20px;
-      }
-
-      .user-profile img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-      }
-
-      .dashboard-container {
-        max-width: 1200px;
-        margin: 30px auto;
-        padding: 0 20px;
-      }
-
-      .welcome-banner {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        border-radius: 12px;
-        padding: 25px 30px;
-        color: white;
-        margin-bottom: 30px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .welcome-banner h1 {
-        font-size: 28px;
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
-
-      .welcome-banner p {
-        opacity: 0.9;
-        font-size: 16px;
-      }
-
-      .stats-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
-      }
-
-      .stat-card {
-        background: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        display: flex;
-        flex-direction: column;
-      }
-
-      .stat-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-      }
-
-      .stat-card-title {
-        font-size: 16px;
-        color: #6c757d;
-        font-weight: 600;
-      }
-
-      .stat-card-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        color: white;
-      }
-
-      .stat-card-value {
-        font-size: 28px;
-        font-weight: 700;
-        color: #2c3e50;
-        margin-bottom: 5px;
-      }
-
-      .stat-card-trend {
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        font-weight: 500;
-      }
-
-      .trend-up {
-        color: #28a745;
-      }
-
-      .trend-down {
-        color: #dc3545;
-      }
-
-      .dashboard-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 25px;
-      }
-
-      .dashboard-card {
-        background: white;
-        border-radius: 10px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        margin-bottom: 25px;
-      }
-
-      .dashboard-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
-      }
-
-      .dashboard-card-title {
-        font-size: 18px;
-        font-weight: 600;
-        color: #2c3e50;
-        display: flex;
-        align-items: center;
-      }
-
-      .dashboard-card-title i {
-        margin-right: 10px;
-        color: #b21f1f;
-      }
-
-      .view-all-link {
-        color: #1a2a6c;
-        font-weight: 600;
-        font-size: 14px;
-        text-decoration: none;
-      }
-
-      .view-all-link:hover {
-        text-decoration: underline;
-      }
-
-      .activity-list {
-        list-style: none;
-      }
-
-      .activity-item {
-        display: flex;
-        padding: 15px 0;
-        border-bottom: 1px solid #f5f5f5;
-      }
-
-      .activity-item:last-child {
-        border-bottom: none;
-      }
-
-      .activity-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15px;
-        font-size: 16px;
-        color: white;
-      }
-
-      .activity-content {
-        flex: 1;
-      }
-
-      .activity-title {
-        font-weight: 600;
-        margin-bottom: 5px;
-        color: #2c3e50;
-      }
-
-      .activity-desc {
-        color: #6c757d;
-        font-size: 14px;
-        margin-bottom: 5px;
-      }
-
-      .activity-time {
-        font-size: 12px;
-        color: #6c757d;
-        font-weight: 500;
-      }
-
-      .progress-list {
-        list-style: none;
-      }
-
-      .progress-item {
-        margin-bottom: 20px;
-      }
-
-      .progress-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .progress-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        align-items: center;
-      }
-
-      .progress-title {
-        font-weight: 600;
-        color: #2c3e50;
-        font-size: 14px;
-      }
-
-      .progress-percentage {
-        font-weight: 600;
-        color: #1a2a6c;
-        font-size: 14px;
-      }
-
-      .progress-bar {
-        height: 8px;
-        background: #e9ecef;
-        border-radius: 4px;
-        overflow: hidden;
-      }
-
-      .progress-value {
-        height: 100%;
-        border-radius: 4px;
-      }
-
-      .session-status {
-        display: inline-block;
-        padding: 3px 8px;
-        border-radius: 12px;
-        font-size: 11px;
-        font-weight: 600;
-        margin-left: 8px;
-      }
-
-      .status-confirmed {
-        background-color: #e7f6ef;
-        color: #0e9f6e;
-      }
-
-      .status-pending {
-        background-color: #fef6e6;
-        color: #ff8a4c;
-      }
-
-      .status-completed {
-        background-color: #ebf5ff;
-        color: #3f83f8;
-      }
-
-      .quick-actions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-      }
-
-      .action-button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: #f8f9fa;
-        border-radius: 10px;
-        padding: 20px 15px;
-        text-decoration: none;
-        color: #2c3e50;
-        transition: all 0.3s;
-        text-align: center;
-      }
-
-      .action-button:hover {
-        background: #e9ecef;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        color: #1a2a6c;
-      }
-
-      .action-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        margin-bottom: 10px;
-        color: white;
-      }
-
-      .action-title {
-        font-weight: 600;
-        font-size: 14px;
-      }
-
-      @media (max-width: 768px) {
-        .nav-bar {
-          padding: 0 15px;
-        }
-
-        .logo span {
-          display: none;
-        }
-
-        .menu-item > a span {
-          display: none;
-        }
-
-        .menu-item > a i {
-          margin-right: 0;
-          font-size: 20px;
-        }
-
-        .user-profile span {
-          display: none;
-        }
-
-        .dashboard-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .stats-container {
-          grid-template-columns: 1fr;
-        }
-
-        .quick-actions {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-    </style>
+ <link rel="stylesheet" href="/css/admin/home.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -483,7 +31,7 @@
               <a href="/pages/admin/studentManagement.html"
                 ><i class="fas fa-list"></i> View All Students</a
               >
-              <a href="/pages/admin/studentRegistration.html"
+              <a href="/ages/admin/studentRegistration.html"
                 ><i class="fas fa-user-plus"></i> Manage Student</a
               >
               <a href="#"><i class="fas fa-chart-bar"></i> Student Progress</a>
@@ -538,10 +86,7 @@
               <i class="fas fa-users"></i>
             </div>
           </div>
-          <div class="stat-card-value">247</div>
-          <div class="stat-card-trend trend-up">
-            <i class="fas fa-arrow-up"></i> 0%
-          </div>
+          <div class="stat-card-value" id="totalStudents">0</div>
         </div>
 
         <div class="stat-card">
@@ -553,10 +98,7 @@
               <i class="fas fa-book"></i>
             </div>
           </div>
-          <div class="stat-card-value">18</div>
-          <div class="stat-card-trend trend-up">
-            <i class="fas fa-arrow-up"></i> 0%
-          </div>
+          <div class="stat-card-value" id="activeCourse">0</div>
         </div>
 
         <div class="stat-card">
@@ -568,10 +110,7 @@
               <i class="fas fa-calendar-day"></i>
             </div>
           </div>
-          <div class="stat-card-value">9</div>
-          <div class="stat-card-trend trend-up">
-            <i class="fas fa-arrow-up"></i>00000
-          </div>
+          <div class="stat-card-value" id="todaySession">0</div>
         </div>
 
         <div class="stat-card">
@@ -593,13 +132,15 @@
           <div class="dashboard-card">
             <div class="dashboard-card-header">
               <div class="dashboard-card-title">
-                <i class="fas fa-calendar-check"></i> Upcoming Sessions
+                <i class="fas fa-calendar-check"></i> Todays Sessions
               </div>
-              <a href="#" class="view-all-link">View Calendar</a>
+              <a href="scheduleCalender.html" class="view-all-link"
+                >View Calendar</a
+              >
             </div>
-            <ul class="activity-list">
+            <ul class="activity-list" id="todaySessionsList">
               <li class="activity-item">
-                <div class="activity-icon" style="background-color: #1a2a6c">
+                <div class="activity-icon" style="background-color: #1a2c">
                   <i class="fas fa-car"></i>
                 </div>
                 <div class="activity-content">
@@ -684,63 +225,38 @@
             </ul>
           </div>
 
-          <div class="dashboard-card">
+          <div class="dashboard-card additional-actions">
             <div class="dashboard-card-header">
               <div class="dashboard-card-title">
-                <i class="fas fa-chart-line"></i> Course Progress
+                <i class="fas fa-tasks"></i> Administrative Actions
               </div>
-              <a href="#" class="view-all-link">View Reports</a>
             </div>
-            <ul class="progress-list">
-              <li class="progress-item">
-                <div class="progress-header">
-                  <div class="progress-title">Beginner Driving Course</div>
-                  <div class="progress-percentage">78%</div>
+            <div class="quick-actions">
+              <a href="#" class="action-button">
+                <div class="action-icon" style="background-color: #9b59b6">
+                  <i class="fas fa-exclamation-circle"></i>
                 </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-value"
-                    style="width: 78%; background-color: #1a2a6c"
-                  ></div>
+                <div class="action-title">View Complaints</div>
+              </a>
+              <a href="applicationView.html" class="action-button">
+                <div class="action-icon" style="background-color: #e67e22">
+                  <i class="fas fa-file-alt"></i>
                 </div>
-              </li>
-              <li class="progress-item">
-                <div class="progress-header">
-                  <div class="progress-title">Defensive Driving</div>
-                  <div class="progress-percentage">65%</div>
+                <div class="action-title">View Applications</div>
+              </a>
+              <a href="#" class="action-button" id="addModelPapersBtn">
+                <div class="action-icon" style="background-color: #27ae60">
+                  <i class="fas fa-file-pdf"></i>
                 </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-value"
-                    style="width: 65%; background-color: #b21f1f"
-                  ></div>
+                <div class="action-title">Add Model Papers</div>
+              </a>
+                  <a href="#" class="action-button" id="addModelPapersBtn">
+                <div class="action-icon" style="background-color: #27ae60">
+                  <i class="fas fa-money-bill"></i>
                 </div>
-              </li>
-              <li class="progress-item">
-                <div class="progress-header">
-                  <div class="progress-title">Advanced Maneuvers</div>
-                  <div class="progress-percentage">42%</div>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-value"
-                    style="width: 42%; background-color: #3498db"
-                  ></div>
-                </div>
-              </li>
-              <li class="progress-item">
-                <div class="progress-header">
-                  <div class="progress-title">Highway Driving</div>
-                  <div class="progress-percentage">35%</div>
-                </div>
-                <div class="progress-bar">
-                  <div
-                    class="progress-value"
-                    style="width: 35%; background-color: #2ecc71"
-                  ></div>
-                </div>
-              </li>
-            </ul>
+                <div class="action-title">Salary Payments</div>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -797,11 +313,11 @@
           <div class="dashboard-card">
             <div class="dashboard-card-header">
               <div class="dashboard-card-title">
-                <i class="fas fa-calendar-day"></i> Today's Sessions
+                <i class="fas fa-calendar-day"></i> Upcoming Sessions
               </div>
-              <a href="#" class="view-all-link">View All</a>
+              <a href="scheduleCalender.html" class="view-all-link">View All</a>
             </div>
-            <ul class="activity-list">
+            <ul class="activity-list" id="upcomingSessionsList">
               <li class="activity-item">
                 <div class="activity-icon" style="background-color: #1a2a6c">
                   <i class="fas fa-car"></i>
@@ -840,21 +356,55 @@
       </div>
     </div>
 
-    <script>
-      const token = localStorage.getItem("token");
-      if (!token || token === "undefined" || token === "null") {
-        console.log("No valid token found");
-        window.location.href = "/pages/employeelogin.html";
-      } else {
-        console.log("Token exists:", token);
-      }
+    <div id="modelPapersModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <i class="fas fa-file-pdf"></i> Add Model Papers
+          </h2>
+          <span class="close">&times;</span>
+        </div>
+        <form id="modelPapersForm">
+          <div class="form-group">
+            <label for="paperTitle">Paper Title</label>
+            <input
+              type="text"
+              id="paperTitle"
+              class="form-control"
+              placeholder="Enter paper title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="paperDescription">Description</label>
+            <textarea
+              id="paperDescription"
+              class="form-control"
+              rows="3"
+              placeholder="Enter paper description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="paperFile">Upload PDF File</label>
+            <input
+              type="file"
+              id="paperFile"
+              class="form-control file-input"
+              accept=".pdf"
+              required
+            />
+            <small>Only PDF files are accepted</small>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancelBtn">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Upload Paper</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-      const user = localStorage.getItem("username");
-
-      if (user) {
-        document.getElementById("adminName").textContent = user;
-        document.getElementById("menubar-user").textContent = user;
-      }
-    </script>
+   <script src="/js/Home.js"></script>
   </body>
 </html>

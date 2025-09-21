@@ -1,0 +1,409 @@
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7f9;
+        margin: 0;
+      }
+
+      nav {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-bar {
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        font-size: 24px;
+      }
+
+      .menu-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item {
+        position: relative;
+        margin-left: 15px;
+      }
+
+      .menu-item > a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-item > a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .menu-item > a i {
+        margin-right: 8px;
+        font-size: 18px;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        min-width: 200px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+
+      .menu-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s;
+      }
+
+      .dropdown a:hover {
+        background-color: #f8f9fa;
+        color: #1a2a6c;
+      }
+
+      .dropdown a i {
+        margin-right: 10px;
+        color: #6c757d;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-left: 20px;
+      }
+
+      .user-profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .status-card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .status-card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .status-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      .status-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+      }
+
+      .status-card .heading {
+        font-size: 16px;
+        color: #6c757d;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .status-card .heading i {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+
+      .status-card span {
+        font-size: 32px;
+        font-weight: 700;
+        color: #2c3e50;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .status-card .trend {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .status-card .trend.up {
+        color: #28a745;
+      }
+
+      .status-card .trend.down {
+        color: #dc3545;
+      }
+
+      .status-card .icon {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        font-size: 40px;
+        opacity: 0.2;
+        color: inherit;
+      }
+
+      .registered-student-count {
+        border-left: 5px solid #3498db;
+      }
+
+      .registered-student-count .heading i,
+      .registered-student-count .icon {
+        color: #3498db;
+      }
+
+      .active-students {
+        border-left: 5px solid #28a745;
+      }
+
+      .active-students .heading i,
+      .active-students .icon {
+        color: #28a745;
+      }
+
+      .completed-courses {
+        border-left: 5px solid #ffc107;
+      }
+
+      .completed-courses .heading i,
+      .completed-courses .icon {
+        color: #ffc107;
+      }
+
+      .new-applications {
+        border-left: 5px solid #dc3545;
+      }
+
+      .new-applications .heading i,
+      .new-applications .icon {
+        color: #dc3545;
+      }
+
+      .student-system-options-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        padding: 0 30px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 100px;
+      }
+
+      .system-option {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        border-left: 5px solid #1a2a6c;
+      }
+
+      .system-option:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .system-option::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .system-option:hover::before {
+        opacity: 1;
+      }
+
+      .system-option .option-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .system-option .option-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 24px;
+        color: white;
+      }
+
+      .system-option.student-register .option-icon {
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+      }
+
+      .system-option.student-applications .option-icon {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+      }
+
+      .system-option.student-activelist .option-icon {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+      }
+
+      .system-option .option-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+      }
+
+      .system-option .option-description {
+        color: #7f8c8d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      .system-option .option-action {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        color: #3498db;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .system-option .option-action:hover {
+        background: #3498db;
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .system-option .option-action i {
+        margin-left: 8px;
+        font-size: 14px;
+        transition: transform 0.3s;
+      }
+
+      .system-option .option-action:hover i {
+        transform: translateX(3px);
+      }
+
+      .system-option .option-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #ff4757;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .nav-bar {
+          padding: 0 15px;
+        }
+
+        .logo span {
+          display: none;
+        }
+
+        .menu-item > a span {
+          display: none;
+        }
+
+        .menu-item > a i {
+          margin-right: 0;
+          font-size: 20px;
+        }
+
+        .user-profile span {
+          display: none;
+        }
+
+        .status-card-container {
+          grid-template-columns: 1fr;
+          padding: 20px;
+        }
+
+        .student-system-options-container {
+          grid-template-columns: 1fr;
+          padding: 0 20px 30px;
+        }
+
+        .system-option .option-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .system-option .option-icon {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+      }

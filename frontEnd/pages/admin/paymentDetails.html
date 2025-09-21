@@ -4,355 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment Details - DriveMaster Admin</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-
-      body {
-        background-color: #f5f7f9;
-        margin: 0;
-      }
-
-      nav {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .nav-bar {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 30px;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-        text-decoration: none;
-      }
-
-      .logo i {
-        margin-right: 10px;
-        font-size: 24px;
-      }
-
-      .menu-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .menu-item {
-        position: relative;
-        margin-left: 15px;
-      }
-
-      .menu-item > a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-      }
-
-      .menu-item > a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      .menu-item > a i {
-        margin-right: 8px;
-      }
-
-      .dropdown {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        min-width: 200px;
-        border-radius: 5px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: all 0.3s;
-        z-index: 1000;
-      }
-
-      .menu-item:hover .dropdown {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .dropdown a {
-        display: block;
-        padding: 12px 20px;
-        color: #333;
-        text-decoration: none;
-        border-bottom: 1px solid #f0f0f0;
-        transition: background-color 0.2s;
-      }
-
-      .dropdown a:hover {
-        background-color: #f8f9fa;
-        color: #1a2a6c;
-      }
-
-      .dropdown a i {
-        margin-right: 10px;
-        color: #6c757d;
-      }
-
-      .user-profile {
-        display: flex;
-        align-items: center;
-        color: white;
-        margin-left: 20px;
-        cursor: pointer;
-      }
-
-      .user-profile img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-      }
-
-      .main-content {
-        padding: 30px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .page-title {
-        font-size: 28px;
-        color: #1a2a6c;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-      }
-
-      .page-title i {
-        margin-right: 10px;
-      }
-
-      .controls-container {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
-      }
-
-      .search-container {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
-      }
-
-      .search-input {
-        flex: 1;
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: border-color 0.3s;
-      }
-
-      .search-input:focus {
-        outline: none;
-        border-color: #1a2a6c;
-        box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.2);
-      }
-
-      .search-button {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 0 20px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: opacity 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .search-button:hover {
-        opacity: 0.9;
-      }
-
-      .toggle-button {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 12px 25px;
-        cursor: pointer;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s;
-      }
-
-      .toggle-button:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
-      }
-
-      .table-container {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        overflow-x: auto;
-        display: none;
-        animation: fadeIn 0.5s ease;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .payment-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .payment-table th {
-        background-color: #f8f9fa;
-        padding: 15px;
-        text-align: left;
-        font-weight: 600;
-        color: #1a2a6c;
-        border-bottom: 2px solid #e9ecef;
-      }
-
-      .payment-table td {
-        padding: 15px;
-        border-bottom: 1px solid #e9ecef;
-        color: #495057;
-      }
-
-      .payment-table tr {
-        transition: background-color 0.2s;
-      }
-
-      .payment-table tr:hover {
-        background-color: #f8f9fa;
-      }
-
-      .payment-id {
-        color: #1a2a6c;
-        font-weight: 500;
-      }
-
-      .payment-amount {
-        font-weight: 600;
-        color: #28a745;
-      }
-
-      .action-button {
-        background: none;
-        border: none;
-        color: #1a2a6c;
-        cursor: pointer;
-        margin-right: 10px;
-        font-size: 16px;
-        transition: color 0.2s;
-        padding: 5px;
-        border-radius: 4px;
-      }
-
-      .action-button:hover {
-        color: #b21f1f;
-        background-color: #f8f9fa;
-      }
-
-      .no-results {
-        text-align: center;
-        padding: 30px;
-        color: #6c757d;
-        font-style: italic;
-      }
-
-      .loading {
-        text-align: center;
-        padding: 30px;
-        color: #1a2a6c;
-      }
-
-      .loading i {
-        margin-right: 10px;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .nav-bar {
-          padding: 0 15px;
-        }
-
-        .logo span {
-          display: none;
-        }
-
-        .menu-item > a span {
-          display: none;
-        }
-
-        .menu-item > a i {
-          margin-right: 0;
-          font-size: 20px;
-        }
-
-        .user-profile span {
-          display: none;
-        }
-
-        .search-container {
-          flex-direction: column;
-        }
-
-        .payment-table {
-          font-size: 14px;
-        }
-
-        .payment-table th,
-        .payment-table td {
-          padding: 10px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/css/admin/paymentDetails.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -435,12 +87,26 @@
           </button>
         </div>
 
-        <button class="toggle-button" id="toggleTableBtn">
-          <i class="fas fa-money-bill-wave"></i> Cash Payment History
-        </button>
+        <div class="button-group">
+          <button class="toggle-button" id="toggleTableBtn">
+            <i class="fas fa-money-bill-wave"></i> Cash Payment History
+          </button>
+
+          <button class="toggle-button influential" id="toggleInfluenceBtn">
+            <i class="fas fa-chart-line"></i> Influential Payments
+          </button>
+        </div>
       </div>
 
       <div class="table-container" id="paymentTable">
+        <div class="table-header">
+          <div class="table-title">Payment Records</div>
+          <div class="table-actions">
+            <button class="export-btn">
+              <i class="fas fa-file-export"></i> Export
+            </button>
+          </div>
+        </div>
         <div class="loading" id="loadingIndicator">
           <i class="fas fa-spinner"></i> Loading payment data...
         </div>
@@ -455,7 +121,7 @@
               <th>Amount (LKR)</th>
               <th>Date</th>
               <th>Time</th>
-              <th>Course ID</th>
+              <th>Course</th>
               <th>Student NIC</th>
               <th>Actions</th>
             </tr>
@@ -466,271 +132,43 @@
           No payment records found.
         </div>
       </div>
+
+      <div class="table-container" id="influenceTable" style="display: none">
+        <div class="table-header">
+          <div class="table-title">Influential Payment Records</div>
+          <div class="table-actions">
+            <button class="export-btn" id="exportInfluenceBtn">
+              <i class="fas fa-file-export"></i> Export
+            </button>
+          </div>
+        </div>
+        <div class="loading" id="loadingInfluenceIndicator">
+          <i class="fas fa-spinner"></i> Loading influential payment data...
+        </div>
+        <table
+          class="payment-table"
+          id="influenceDataTable"
+          style="display: none"
+        >
+          <thead>
+            <tr>
+              <th>Payment ID</th>
+              <th>Student NIC</th>
+              <th>Date</th>
+              <th>Paid Amount</th>
+              <th>Influential Amount</th>
+            </tr>
+          </thead>
+          <tbody id="influenceTableBody"></tbody>
+        </table>
+        <div class="no-results" id="noInfluenceResults" style="display: none">
+          No influential payments found.
+        </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <script>
-      const token = localStorage.getItem("token");
-      let dataLoaded = false;
-
-      function checkToken() {
-        if (!token || token === "undefined" || token === "null") {
-          showMessage("Please log in to continue", "error");
-          setTimeout(() => {
-            window.location.href = "/pages/employeelogin.html";
-          }, 1500);
-          return;
-        }
-      }
-
-      async function generatePaymentSlip(payment) {
-        try {
-          const { jsPDF } = window.jspdf;
-          const doc = new jsPDF();
-
-          doc.setFillColor(26, 42, 108);
-          doc.rect(0, 0, 210, 30, "F");
-          doc.setFontSize(20);
-          doc.setTextColor(255, 255, 255);
-          doc.text("DriveMaster Driving School", 105, 20, { align: "center" });
-
-          doc.setFontSize(14);
-          doc.setTextColor(0, 0, 0);
-          doc.text("PAYMENT RECEIPT", 105, 45, { align: "center" });
-
-          doc.setFontSize(12);
-          doc.text(`Receipt ID: ${payment.paymentID || "N/A"}`, 20, 60);
-          doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 70);
-          doc.text(`Time: ${new Date().toLocaleTimeString()}`, 20, 80);
-
-          doc.line(20, 90, 190, 90);
-
-          doc.text(`Student NIC: ${payment.studentNic || "N/A"}`, 20, 100);
-          doc.text(`Course: ${payment.courseName || "N/A"}`, 20, 110);
-          doc.text(`Payment Date: ${payment.paymentDate || "N/A"}`, 20, 120);
-          doc.text(`Payment Time: ${payment.paidTime || "N/A"}`, 20, 130);
-
-          doc.line(20, 140, 190, 140);
-
-          doc.setFontSize(16);
-          doc.setFont(undefined, "bold");
-          doc.text(
-            `Amount Paid: LKR ${
-              payment.paidAmount ? payment.paidAmount.toFixed(2) : "0.00"
-            }`,
-            20,
-            155
-          );
-
-          doc.line(20, 165, 190, 165);
-
-          doc.setFontSize(10);
-          doc.setFont(undefined, "normal");
-          doc.text("Thank you for your payment!", 105, 180, {
-            align: "center",
-          });
-          doc.text(
-            "DriveMaster Driving School - Quality Education for Safe Driving",
-            105,
-            190,
-            { align: "center" }
-          );
-
-          doc.save(
-            `Payment_Receipt_${
-              payment.paymentID || payment.studentNic || "receipt"
-            }.pdf`
-          );
-        } catch (error) {
-          console.error("Error generating PDF:", error);
-          alert("Error generating payment slip. Please try again.");
-        }
-      }
-
-      function populatePaymentTable(payments) {
-        const tableBody = document.getElementById("paymentTableBody");
-        tableBody.innerHTML = "";
-
-        payments.forEach((payment) => {
-          const row = document.createElement("tr");
-
-          row.innerHTML = `
-            <td class="payment-id">${payment.paymentID}</td>
-            <td class="payment-amount">${payment.paidAmount.toLocaleString(
-              "en-US",
-              {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              }
-            )}</td>
-            <td>${payment.paymentDate || "N/A"}</td>
-            <td>${payment.paidTime || "N/A"}</td>
-            <td>${payment.courseName || "N/A"}</td>
-            <td>${payment.studentNic || "N/A"}</td>
-            <td>
-              <button class="action-button print-btn" title="Print Receipt" data-payment='${JSON.stringify(
-                payment
-              )}'>
-                <i class="fas fa-print"></i>
-              </button>
-              <button class="action-button delete-btn" title="Delete Payment">
-                <i class="fas fa-trash"></i>
-              </button>
-            </td>
-          `;
-
-          row
-            .querySelector(".delete-btn")
-            .addEventListener("click", function () {
-              deletePayment(payment.paymentID, payment.studentNic);
-            });
-          tableBody.appendChild(row);
-        });
-
-        async function deletePayment(paymentId,nic) {
-          console.log(paymentId);
-          try {
-            const response = await fetch(
-              `http://localhost:8080/payments/deletePayment/${paymentId}`,
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            );
-
-            const result = await response.json(); 
-            alert(result.data);
-
-            const row = document
-              .querySelector(`.delete-btn[data-id='${paymentId}']`)
-              ?.closest("tr");
-            if (row) row.remove();
-          } catch (error) {
-            alert("Delete failed: " + error);
-          }
-        }
-
-        document.querySelectorAll(".print-btn").forEach((button) => {
-          button.addEventListener("click", function () {
-            const paymentData = JSON.parse(this.getAttribute("data-payment"));
-            generatePaymentSlip(paymentData);
-          });
-        });
-
-        attachSearchListener();
-      }
-
-      async function loadPaymentDetails() {
-        try {
-          document.getElementById("loadingIndicator").style.display = "block";
-          document.getElementById("paymentDataTable").style.display = "none";
-          document.getElementById("noResultsMessage").style.display = "none";
-
-          const response = await fetch(
-            "http://localhost:8080/payments/loadPayments",
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
-          const result = await response.json();
-          console.log("Payment data:", result);
-
-          if (result && result.data && result.data.length > 0) {
-            populatePaymentTable(result.data);
-            document.getElementById("paymentDataTable").style.display = "table";
-            document.getElementById("loadingIndicator").style.display = "none";
-          } else {
-            document.getElementById("noResultsMessage").style.display = "block";
-            document.getElementById("loadingIndicator").style.display = "none";
-          }
-        } catch (error) {
-          console.error("Error loading payment data:", error);
-          document.getElementById("noResultsMessage").textContent =
-            "Error loading payment data. Please try again.";
-          document.getElementById("noResultsMessage").style.display = "block";
-          document.getElementById("loadingIndicator").style.display = "none";
-        }
-      }
-
-      function performSearch() {
-        const searchText = document
-          .getElementById("searchInput")
-          .value.toLowerCase();
-        const tableRows = document.querySelectorAll("#paymentTableBody tr");
-
-        let hasResults = false;
-
-        tableRows.forEach((row) => {
-          const cells = row.querySelectorAll("td");
-          let found = false;
-
-          cells.forEach((cell) => {
-            if (cell.textContent.toLowerCase().includes(searchText)) {
-              found = true;
-            }
-          });
-
-          if (found) {
-            row.style.display = "";
-            hasResults = true;
-          } else {
-            row.style.display = "none";
-          }
-        });
-
-        document.getElementById("noResultsMessage").style.display = hasResults
-          ? "none"
-          : "block";
-      }
-
-      function attachSearchListener() {
-        const searchInput = document.getElementById("searchInput");
-        searchInput.addEventListener("input", performSearch);
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        checkToken();
-
-        const toggleButton = document.getElementById("toggleTableBtn");
-        const paymentTable = document.getElementById("paymentTable");
-        const searchBtn = document.getElementById("searchBtn");
-
-        toggleButton.addEventListener("click", function () {
-          if (paymentTable.style.display === "none") {
-            paymentTable.style.display = "block";
-            toggleButton.innerHTML =
-              '<i class="fas fa-eye-slash"></i> Hide Payment History';
-
-            if (!dataLoaded) {
-              loadPaymentDetails();
-              dataLoaded = true;
-            }
-          } else {
-            paymentTable.style.display = "none";
-            toggleButton.innerHTML =
-              '<i class="fas fa-money-bill-wave"></i> Cash Payment History';
-          }
-        });
-
-        searchBtn.addEventListener("click", performSearch);
-
-        if (typeof showMessage !== "function") {
-          window.showMessage = function (message, type) {
-            alert(`${type.toUpperCase()}: ${message}`);
-          };
-        }
-      });
-    </script>
+  <script src="/js/PaymentDetails.js"></script>
   </body>
 </html>

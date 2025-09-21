@@ -34,6 +34,9 @@ public class StudentServiceImpl implements StudentService {
     public String registerStudent(StudentDTO studentDTO, PaymentDTO paymentDTO) {
         Optional<Course> courseOpt = courseRepo.findByCourseName(paymentDTO.getCourseName());
 
+        studentRepository.findByNic(studentDTO.getNic()).ifPresent(s -> {
+            throw new RuntimeException("Student with NIC " + studentDTO.getNic() + " already exists");
+                });
         if (courseOpt.isEmpty()) {
             throw new RuntimeException("Course not found: " + paymentDTO.getCourseName());
         }
@@ -124,10 +127,23 @@ public class StudentServiceImpl implements StudentService {
                 student.getNic(),
                 student.getName(),
                 student.getEmail(),
-                student.getContact(),
-                student.getAddress()
+                student.getAddress(),
+                student.getContact()
         );
 
+    }
+
+    @Override
+    public String update(StudentDTO studentDTO, String nic) {
+        Student student = studentRepository.findByNic(nic).orElseThrow(() -> new RuntimeException("Student not found"));
+
+        student.setNic(studentDTO.getNic());
+        student.setName(studentDTO.getName());
+        student.setEmail(studentDTO.getEmail());
+        student.setAddress(studentDTO.getAddress());
+        student.setContact(studentDTO.getContact());
+        studentRepository.save(student);
+        return "Student Updated Successfully";
     }
 
 }

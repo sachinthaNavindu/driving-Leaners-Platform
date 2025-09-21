@@ -47,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
 
     public AuthResponseDTO employeeAuthenticate(EmployeeAuthDTO employeeAuthDTO) {
 
-        Employee employee = employeeRepo.findByNic(employeeAuthDTO.getNic()).orElseThrow(()->new RuntimeException("Employee not found"));
+        Employee employee = employeeRepo.findByNicAndGmail(employeeAuthDTO.getNic(),employeeAuthDTO.getEmail()).orElseThrow(()->new RuntimeException("Employee not found"));
 
         JobRole jobrole = employee.getJobRole();
         String userName = employee.getName();

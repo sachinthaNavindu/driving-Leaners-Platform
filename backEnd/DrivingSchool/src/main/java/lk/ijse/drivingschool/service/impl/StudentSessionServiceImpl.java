@@ -1,5 +1,7 @@
 package lk.ijse.drivingschool.service.impl;
 
+import lk.ijse.drivingschool.dto.StudentDTO;
+import lk.ijse.drivingschool.dto.UpcomingSessionDTO;
 import lk.ijse.drivingschool.entity.SessionTimeTable;
 import lk.ijse.drivingschool.entity.Student;
 import lk.ijse.drivingschool.entity.StudentSession;
@@ -10,6 +12,8 @@ import lk.ijse.drivingschool.repository.StudentSessionRepo;
 import lk.ijse.drivingschool.service.StudentSessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,5 +43,11 @@ public class StudentSessionServiceImpl implements StudentSessionService {
 
         return "OK";
     }
+
+    @Override
+    public List<UpcomingSessionDTO> getSessionsByStudent(String nic) {
+        return studentSessionRepo.findUpcomingSessionsByNic(nic);
+    }
+
 
 }

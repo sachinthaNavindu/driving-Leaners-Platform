@@ -12,3 +12,4 @@ public interface AuthService {
     String employeeSignup(InstructorAuthDTO instructorAuthDTO);
     Object admin(InstructorAuthDTO instructorAuthDTO);
 }
+

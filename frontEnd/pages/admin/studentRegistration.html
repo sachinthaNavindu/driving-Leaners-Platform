@@ -4,662 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Registration - DriveMaster Admin</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
-
-      body {
-        background-color: #f5f7f9;
-        margin: 0;
-      }
-
-      nav {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .nav-bar {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 30px;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-        text-decoration: none;
-      }
-
-      .logo i {
-        margin-right: 10px;
-        font-size: 24px;
-      }
-
-      .menu-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .menu-item {
-        position: relative;
-        margin-left: 15px;
-      }
-
-      .menu-item > a {
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-      }
-
-      .menu-item > a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      .menu-item > a i {
-        margin-right: 8px;
-      }
-
-      .dropdown {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        min-width: 200px;
-        border-radius: 5px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: all 0.3s;
-        z-index: 1000;
-      }
-
-      .menu-item:hover .dropdown {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .dropdown a {
-        display: block;
-        padding: 12px 20px;
-        color: #333;
-        text-decoration: none;
-        border-bottom: 1px solid #f0f0f0;
-        transition: background-color 0.2s;
-      }
-
-      .dropdown a:hover {
-        background-color: #f8f9fa;
-        color: #1a2a6c;
-      }
-
-      .dropdown a i {
-        margin-right: 10px;
-        color: #6c757d;
-      }
-
-      .user-profile {
-        display: flex;
-        align-items: center;
-        color: white;
-        margin-left: 20px;
-        cursor: pointer;
-      }
-
-      .user-profile img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-      }
-
-      .registration-container {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 0 20px;
-      }
-
-      .page-title {
-        display: flex;
-        align-items: center;
-        margin-bottom: 30px;
-        color: #1a2a6c;
-      }
-
-      .page-title i {
-        margin-right: 15px;
-        font-size: 28px;
-        color: #1a2a6c;
-      }
-
-      .page-title h1 {
-        font-size: 28px;
-        font-weight: 600;
-      }
-
-      .form-container {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        padding: 30px;
-        margin-bottom: 40px;
-      }
-
-      .form-header {
-        margin-bottom: 25px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
-      }
-
-      .form-header h2 {
-        color: #1a2a6c;
-        font-size: 22px;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-      }
-
-      .form-header h2 i {
-        margin-right: 10px;
-        color: #b21f1f;
-      }
-
-      .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -15px 20px;
-      }
-
-      .form-group {
-        flex: 1 0 calc(50% - 30px);
-        margin: 0 15px 20px;
-        min-width: 250px;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
-        color: #333;
-      }
-
-      .form-group input,
-      .form-group select {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: border-color 0.3s;
-      }
-
-      .form-group input:focus,
-      .form-group select:focus {
-        outline: none;
-        border-color: #1a2a6c;
-        box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1);
-      }
-
-      .btn-container {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 10px;
-      }
-
-      .btn-register {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-      }
-
-      .btn-register:hover {
-        background: linear-gradient(135deg, #23358b, #c42c2c);
-        box-shadow: 0 5px 15px rgba(178, 31, 31, 0.2);
-      }
-
-      .btn-register i {
-        margin-right: 8px;
-      }
-
-      .student-details-area {
-        max-width: 1000px;
-        margin: 0 auto 40px;
-        padding: 0 20px;
-      }
-
-      .table-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        color: #1a2a6c;
-      }
-
-      .table-header i {
-        margin-right: 15px;
-        font-size: 24px;
-      }
-
-      .table-header h2 {
-        font-size: 24px;
-        font-weight: 600;
-        color: #1a2a6c;
-      }
-
-      .table-container {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      th,
-      td {
-        padding: 16px 20px;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-      }
-
-      th {
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        color: #1a2a6c;
-        font-weight: 600;
-        position: sticky;
-        top: 0;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      }
-
-      tr:last-child td {
-        border-bottom: none;
-      }
-
-      tbody tr {
-        transition: all 0.2s ease;
-        background-color: white;
-      }
-
-      tbody tr:hover {
-        background-color: #f0f7ff;
-        box-shadow: 0 4px 12px rgba(26, 42, 108, 0.1);
-        transform: translateY(-1px);
-      }
-
-      td {
-        color: #444;
-        font-weight: 500;
-        position: relative;
-      }
-
-      td:not(:last-child):after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        height: 60%;
-        width: 1px;
-        background-color: #f0f0f0;
-      }
-
-      tbody tr:nth-child(even) {
-        background-color: #fafafa;
-      }
-
-      tbody tr:nth-child(even):hover {
-        background-color: #f0f7ff;
-      }
-
-      .empty-table-message {
-        text-align: center;
-        padding: 40px;
-        color: #6c757d;
-        font-style: italic;
-      }
-
-      .action-buttons {
-        display: flex;
-        gap: 10px;
-      }
-
-      .action-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-        padding: 8px;
-        border-radius: 4px;
-        transition: all 0.2s;
-      }
-
-      .view-btn {
-        color: #1a2a6c;
-      }
-
-      .view-btn:hover {
-        background-color: rgba(26, 42, 108, 0.1);
-      }
-
-      .edit-btn {
-        color: #28a745;
-      }
-
-      .edit-btn:hover {
-        background-color: rgba(40, 167, 69, 0.1);
-      }
-
-      .delete-btn {
-        color: #dc3545;
-      }
-
-      .delete-btn:hover {
-        background-color: rgba(220, 53, 69, 0.1);
-      }
-
-      .message-box {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 25px;
-        border-radius: 5px;
-        color: white;
-        font-weight: 600;
-        font-size: 16px;
-        display: none;
-        z-index: 10000;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        animation: fadeInOut 3s forwards;
-      }
-
-      .message-success {
-        background-color: #28a745;
-      }
-
-      .message-error {
-        background-color: #dc3545;
-      }
-
-      @keyframes fadeInOut {
-        0% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        10%,
-        90% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-      }
-
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        padding: 20px;
-        display: none;
-      }
-
-      .student-detail-modal {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        max-width: 800px;
-        max-height: 90vh;
-        overflow-y: auto;
-      }
-
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 30px;
-        border-bottom: 1px solid #eee;
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-        border-radius: 10px 10px 0 0;
-      }
-
-      .modal-header h2 {
-        color: #1a2a6c;
-        font-size: 24px;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-      }
-
-      .modal-header h2 i {
-        margin-right: 10px;
-        color: #b21f1f;
-      }
-
-      .close-modal {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #6c757d;
-        transition: color 0.2s;
-      }
-
-      .close-modal:hover {
-        color: #dc3545;
-      }
-
-      .modal-body {
-        padding: 30px;
-      }
-
-      .mode-toggle {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 20px;
-      }
-
-      .toggle-switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 30px;
-      }
-
-      .toggle-switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .toggle-slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-        border-radius: 34px;
-      }
-
-      .toggle-slider:before {
-        position: absolute;
-        content: "";
-        height: 22px;
-        width: 22px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-        border-radius: 50%;
-      }
-
-      input:checked + .toggle-slider {
-        background-color: #1a2a6c;
-      }
-
-      input:checked + .toggle-slider:before {
-        transform: translateX(30px);
-      }
-
-      .toggle-label {
-        margin-right: 10px;
-        font-weight: 500;
-        color: #333;
-      }
-
-      .toggle-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .view-mode .form-group input,
-      .view-mode .form-group select {
-        background-color: #f8f9fa;
-        border: 1px solid #eee;
-        color: #495057;
-        cursor: not-allowed;
-      }
-
-      .edit-mode .form-group input:not([readonly]),
-      .edit-mode .form-group select:not([readonly]) {
-        background-color: white;
-        border: 1px solid #ddd;
-        color: #333;
-        cursor: auto;
-      }
-
-      .modal-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 15px;
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-      }
-
-      .btn-cancel {
-        background: #6c757d;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-
-      .btn-cancel:hover {
-        background: #5a6268;
-      }
-
-      .btn-save {
-        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-
-      .btn-save:hover {
-        background: linear-gradient(135deg, #23358b, #c42c2c);
-      }
-
-      @media (max-width: 768px) {
-        .nav-bar {
-          padding: 0 15px;
-        }
-
-        .logo span {
-          display: none;
-        }
-
-        .menu-item > a span {
-          display: none;
-        }
-
-        .menu-item > a i {
-          margin-right: 0;
-          font-size: 20px;
-        }
-
-        .user-profile span {
-          display: none;
-        }
-
-        .form-group {
-          flex: 1 0 100%;
-        }
-
-        .table-container {
-          overflow-x: auto;
-        }
-
-        table {
-          min-width: 600px;
-        }
-
-        th,
-        td {
-          padding: 12px 15px;
-        }
-
-        td:after {
-          display: none;
-        }
-
-        .student-detail-modal {
-          width: 95%;
-          margin: 20px auto;
-        }
-
-        .modal-body {
-          padding: 20px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/css/admin/studentRegistration.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -730,6 +75,10 @@
           <i class="fas fa-user-plus"></i>
           <h1>Student Registration</h1>
         </div>
+
+        <button class="view-applications-btn" id="viewApplicationsBtn">
+          <i class="fas fa-list"></i> View Applications
+        </button>
 
         <div id="message-box" class="message-box"></div>
 
@@ -851,6 +200,38 @@
         </div>
       </div>
 
+      <div class="modal-overlay" id="applicationsModal">
+        <div class="applications-modal">
+          <div class="modal-header">
+            <h2><i class="fas fa-list"></i> Student Applications</h2>
+            <button class="close-modal" id="closeApplicationsModal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Full Name</th>
+                    <th>NIC</th>
+                    <th>Payment Amount</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="applicationsTableBody">
+                  <!-- Data will be populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="modal-overlay" id="studentDetailModal">
         <div class="student-detail-modal">
           <div class="modal-header">
@@ -899,10 +280,10 @@
 
               <div class="modal-actions">
                 <button type="button" class="btn-cancel" id="cancelEdit">
-                  Cancel
+                  <i class="fas fa-times"></i> Cancel
                 </button>
                 <button type="submit" class="btn-save" id="saveChanges">
-                  Save Changes
+                  <i class="fas fa-save"></i> Save Changes
                 </button>
               </div>
             </form>
@@ -947,364 +328,105 @@
           </table>
         </div>
       </div>
+
+      <div id="applicationDetailModal">
+        <div class="application-modal-content">
+          <div class="application-modal-header">
+            <h3><i class="fas fa-file-alt"></i> Application Details</h3>
+            <button
+              class="application-modal-close"
+              onclick="closeApplicationModal()"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div class="application-modal-body">
+            <form id="applicationDetailForm">
+              <div class="form-row">
+                <div class="detail-form-group">
+                  <label for="detailName">Full Name</label>
+                  <input type="text" id="detailName" readonly />
+                </div>
+
+                <div class="detail-form-group">
+                  <label for="detailNic">NIC Number</label>
+                  <input type="text" id="detailNic" readonly />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="detail-form-group">
+                  <label for="detailEmail">Email Address</label>
+                  <input type="text" id="detailEmail" readonly />
+                </div>
+
+                <div class="detail-form-group">
+                  <label for="detailContact">Contact Number</label>
+                  <input type="text" id="detailContact" readonly />
+                </div>
+              </div>
+
+              <div class="detail-form-group">
+                <label for="detailAddress">Address</label>
+                <textarea id="detailAddress" readonly></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="detail-form-group">
+                  <label for="detailCourse">Selected Course</label>
+                  <input type="text" id="detailCourse" readonly />
+                </div>
+
+                <div class="detail-form-group">
+                  <label for="detailPaidAmount">Paid Amount (LKR)</label>
+                  <input type="text" id="detailPaidAmount" readonly />
+                </div>
+              </div>
+
+              <div class="image-box">
+                <label>NIC Front Side</label>
+                <img id="nicFrontPreview" src="" alt="NIC Front" />
+              
+              </div>
+
+              <div class="image-box">
+                <label>NIC Back Side</label>
+                <img id="nicBackPreview" src="" alt="NIC Back" />
+                
+              </div>
+
+              <div class="image-box full-width">
+                <label>Payment Slip Image</label>
+                <img id="paymentSlipPreview" src="" alt="Payment Slip" />
+              
+              </div>
+            </form>
+          </div>
+
+          <div class="application-modal-footer">
+            <button
+              type="button"
+              class="application-modal-btn btn-deny"
+              onclick="processApplication('DENIED')"
+            >
+              <i class="fas fa-times-circle"></i> Deny Application
+            </button>
+            <button
+              type="button"
+              class="application-modal-btn btn-apply"
+              onclick="processApplication('APPROVED')"
+            >
+              <i class="fas fa-check-circle"></i> Approve Application
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="studentRegistration.js"></script>
 
-    <script>
-      const token = localStorage.getItem("token");
-      let selectedCourseName = "";
-      if (!token || token === "undefined" || token === "null") {
-        console.log("No valid token found");
-        window.location.href = "/pages/employeelogin.html";
-      } else {
-        console.log("Token exists:", token);
-      }
-
-      document
-        .getElementById("course_id")
-        .addEventListener("change", function () {
-          selectedCourseName = this.options[this.selectedIndex].text;
-          console.log("Selected course name:", selectedCourseName);
-        });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        loadData();
-      });
-
-      function loadData() {
-        loadRegisteredStudents();
-        getCurrentDateAndTime();
-        loadAvailableCourses();
-      }
-
-      async function loadAvailableCourses() {
-        try {
-          const response = await fetch(
-            "http://localhost:8080/admin/getCourseDetails",
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          const result = await response.json();
-          console.log(result);
-
-          const courseSelect = document.getElementById("course_id");
-          courseSelect.innerHTML = `<option value="">Select a course</option>`;
-
-          if (result.data && result.data.length > 0) {
-            result.data.forEach((course) => {
-              const option = document.createElement("option");
-              option.value = course.courseId;
-              option.textContent = course.courseName;
-              courseSelect.appendChild(option);
-            });
-          }
-        } catch (error) {
-          alert("Error", error);
-        }
-      }
-
-      function getCurrentDateAndTime() {
-        const now = new Date();
-
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, "0");
-        const day = String(now.getDate()).padStart(2, "0");
-        const formattedDate = `${year}-${month}-${day}`;
-
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const formattedTime = `${hours}:${minutes}`;
-
-        document.getElementById("payment_date").value = formattedDate;
-        document.getElementById("payment_time").value = formattedTime;
-      }
-
-      async function loadRegisteredStudents() {
-        try {
-          const response = await fetch(
-            "http://localhost:8080/admin/getRegisteredStudents",
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          const result = await response.json();
-
-          const tbody = document.querySelector(".table-container tbody");
-          tbody.innerHTML = "";
-
-          if (result.data && result.data.length > 0) {
-            result.data.forEach((student) => {
-              const row = document.createElement("tr");
-              row.innerHTML = `
-                <td>${student.nic}</td>
-                <td>${student.name}</td>
-                <td>${student.email}</td>
-                <td>${student.contact}</td>
-                <td>${student.address}</td>
-                <td>
-                  <div class="action-buttons">
-                    <button class="action-btn view-btn" title="View Details" onclick="viewStudent('${student.nic}','${student.name}','${student.email}','${student.contact}','${student.address}')">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="action-btn edit-btn" title="Edit Student" onclick="viewStudent('${student.nic}','${student.name}','${student.email}','${student.contact}','${student.address}')">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="action-btn delete-btn" title="Delete Student" onclick="deleteStudent('${student.nic}')">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </td>
-              `;
-              tbody.appendChild(row);
-            });
-          } else {
-            tbody.innerHTML = `
-              <tr>
-                <td colspan="6" class="empty-table-message">
-                  <i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 15px"></i>
-                  <p>No students registered yet. Register a student to see them listed here.</p>
-                </td>
-              </tr>
-            `;
-          }
-        } catch (err) {
-          console.error(err);
-          showMessage("Failed to load students.", "error");
-        }
-      }
-
-      function showMessage(message, type = "success") {
-        const messageBox = document.getElementById("message-box");
-        messageBox.textContent = message;
-        messageBox.className = `message-box message-${type}`;
-        messageBox.style.display = "block";
-
-        setTimeout(() => {
-          messageBox.style.display = "none";
-        }, 3000);
-      }
-
-      function editStudent(nic) {
-        alert(`Edit student with NIC: ${nic}`);
-      }
-
-      function viewStudent(nic, name, email, contact, address) {
-        const studentData = {
-          nic: nic,
-          name: name,
-          email: email,
-          contact: contact,
-          address: address,
-        };
-
-        document.getElementById("detail_nic").value = studentData.nic;
-        document.getElementById("detail_name").value = studentData.name;
-        document.getElementById("detail_email").value = studentData.email;
-        document.getElementById("detail_contact").value = studentData.contact;
-        document.getElementById("detail_address").value = studentData.address;
-
-        document.getElementById("studentDetailModal").style.display = "flex";
-      }
-
-      document.getElementById("closeModal").addEventListener("click", () => {
-        document.getElementById("studentDetailModal").style.display = "none";
-      });
-
-      document.getElementById("cancelEdit").addEventListener("click", () => {
-        document.getElementById("studentDetailModal").style.display = "none";
-      });
-
-      document
-        .getElementById("modeToggle")
-        .addEventListener("change", function () {
-          const modalBody = document.getElementById("modalBody");
-          if (this.checked) {
-            modalBody.classList.remove("view-mode");
-            modalBody.classList.add("edit-mode");
-
-            document
-              .querySelectorAll("#studentDetailForm input")
-              .forEach((input) => {
-                if (input.id !== "detail_nic") {
-                  input.removeAttribute("readonly");
-                }
-              });
-          } else {
-            modalBody.classList.remove("edit-mode");
-            modalBody.classList.add("view-mode");
-
-            document
-              .querySelectorAll("#studentDetailForm input")
-              .forEach((input) => {
-                input.setAttribute("readonly", true);
-              });
-          }
-        });
-
-      async function deleteStudent(nic) {
-        if (
-          confirm(`Are you sure you want to delete student with NIC: ${nic}?`)
-        ) {
-          try {
-            const response = await fetch(
-              `http://localhost:8080/admin/studentDelete/${nic}`,
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            );
-            const result = await response.json();
-            if (!response.ok) {
-              alert(
-                "Deletion failed: " + (result.message || JSON.stringify(result))
-              );
-              return;
-            }
-            showMessage(
-              `Student with NIC: ${nic} deleted successfully.`,
-              "success"
-            );
-            loadData();
-          } catch (error) {
-            alert("Delete failed", error);
-          }
-        }
-      }
-
-      document
-        .getElementById("studentRegistrationForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-
-          console.log("submit");
-
-          const studentData = {
-            nic: document.getElementById("nic").value.trim(),
-            name: document.getElementById("name").value.trim(),
-            email: document.getElementById("email").value.trim(),
-            contact: document.getElementById("contact").value.trim(),
-            address: document.getElementById("address").value.trim(),
-          };
-
-          const paymentData = {
-            paidAmount: document.getElementById("payment_amount").value.trim(),
-            courseName: selectedCourseName,
-            studentNic: document.getElementById("nic").value.trim(),
-            paymentDate: document.getElementById("payment_date").value.trim(),
-            paidTime: document.getElementById("payment_time").value.trim(),
-          };
-
-          const payload = {
-            studentDTO: studentData,
-            paymentDTO: paymentData,
-          };
-
-          console.log(payload);
-          try {
-            const response = await fetch(
-              "http://localhost:8080/admin/studentRegister",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(payload),
-              }
-            );
-
-            const result = await response.json();
-
-            if (response.ok) {
-              showMessage(
-                result.data || "Student registered successfully!",
-                "success"
-              );
-              document.getElementById("studentRegistrationForm").reset();
-              getCurrentDateAndTime();
-              loadRegisteredStudents();
-            } else {
-              showMessage(
-                result.data || "Failed to register student.",
-                "error"
-              );
-              console.log(result);
-            }
-          } catch (err) {
-            console.error(err);
-            showMessage(
-              "An error occurred while registering the student.",
-              "error"
-            );
-          }
-        });
-
-      document
-        .getElementById("studentDetailForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
-
-          const nic = document.getElementById("detail_nic").value;
-          const name = document.getElementById("detail_name").value;
-          const email = document.getElementById("detail_email").value;
-          const contact = document.getElementById("detail_contact").value;
-          const address = document.getElementById("detail_address").value;
-
-          const studentData = {
-            nic: nic,
-            name: name,
-            email: email,
-            address: address,
-            contact: contact,
-          };
-
-          try {
-            const response = await fetch(
-              "http://localhost:8080/admin/studentUpdate",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(studentData),
-              }
-            );
-
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log("Update successful:", result);
-
-            const modal = document.getElementById("studentDetailModal");
-            if (modal) {
-              modal.style.display = "none";
-            }
-
-            alert("Student details updated successfully!");
-            loadData();
-          } catch (error) {
-            console.error("Error updating student:", error);
-            loadData();
-            alert("Failed to update student. Check console for details.");
-          }
-        });
-
-     
-    </script>
+    <script src="/js/StudentRegistration.js"></script>
+    <script></script>
   </body>
 </html>

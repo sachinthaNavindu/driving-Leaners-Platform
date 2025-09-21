@@ -1,0 +1,221 @@
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        display: flex;
+        max-width: 1000px;
+        width: 100%;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .left-panel {
+        flex: 1;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1545438102-5cb1d0e8a4de?ixlib=rb-4.0.3")
+            center/cover;
+        color: white;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .left-panel h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .left-panel p {
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .features {
+        list-style: none;
+      }
+
+      .features li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .features i {
+        margin-right: 10px;
+        color: #4e85fd;
+        font-size: 20px;
+      }
+
+      .right-panel {
+        flex: 1;
+        padding: 40px;
+        background: white;
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo h1 {
+        color: #2c3e50;
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo h1 i {
+        margin-right: 10px;
+        color: #f39c12;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #2c3e50;
+      }
+
+      .form-group i {
+        position: absolute;
+        left: 15px;
+        top: 40px;
+        color: #7f8c8d;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
+
+      .form-group input:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+        outline: none;
+      }
+
+      .password-strength {
+        height: 5px;
+        margin-top: 5px;
+        border-radius: 5px;
+        background: #eee;
+        overflow: hidden;
+      }
+
+      .password-strength-bar {
+        height: 100%;
+        width: 0%;
+        transition: width 0.3s, background 0.3s;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+
+      .links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .links a {
+        color: #3498db;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .links a:hover {
+        color: #2980b9;
+        text-decoration: underline;
+      }
+
+      .alert {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: none;
+      }
+
+      .alert-error {
+        background: #ffecec;
+        color: #e43131;
+        border: 1px solid #f5aca6;
+      }
+
+      .alert-success {
+        background: #e9f7ef;
+        color: #28a745;
+        border: 1px solid #a3d4b9;
+      }
+
+      .terms {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+      }
+
+      .terms input {
+        margin-right: 10px;
+      }
+
+      .terms label {
+        font-size: 14px;
+        color: #7f8c8d;
+      }
+
+      .terms a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          max-width: 500px;
+        }
+
+        .left-panel {
+          display: none;
+        }
+      }

@@ -1,23 +1,26 @@
 package lk.ijse.drivingschool.service.impl;
 
-import lk.ijse.drivingschool.dto.PendingSessionDTO;
-import lk.ijse.drivingschool.dto.SessionInfoDTO;
-import lk.ijse.drivingschool.dto.SessionTimeTableDTO;
-import lk.ijse.drivingschool.dto.TodaySessionDTO;
+import lk.ijse.drivingschool.dto.*;
 import lk.ijse.drivingschool.entity.Instructor;
 import lk.ijse.drivingschool.entity.PendingSessions;
 import lk.ijse.drivingschool.entity.SessionTimeTable;
+import lk.ijse.drivingschool.entity.Vehicle;
 import lk.ijse.drivingschool.entity.enums.InstructorRespond;
 import lk.ijse.drivingschool.repository.InstructorRepository;
 import lk.ijse.drivingschool.repository.PendingSessionRepo;
 import lk.ijse.drivingschool.repository.SessionTimeTableRepo;
+import lk.ijse.drivingschool.repository.VehicleRepo;
 import lk.ijse.drivingschool.service.PendingSessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +30,7 @@ public class PendingSessionServiceImpl implements PendingSessionService {
     private final PendingSessionRepo pendingSessionRepo;
     private final InstructorRepository instructorRepo;
     private final SessionTimeTableRepo sessionTimeTableRepo;
+    private final VehicleRepo vehicleRepo;
 
     public Object generateSessionId() {
         String lastId = pendingSessionRepo.getLastSessionId();
@@ -55,13 +59,18 @@ public class PendingSessionServiceImpl implements PendingSessionService {
                 .orElseThrow(() -> new RuntimeException("Instructor not found with license ID: "
                         + sessionTimeTableDTO.getLicenseId()));
 
+        Vehicle vehicle = vehicleRepo.findById(sessionTimeTableDTO.getVehicleNumber())
+                .orElseThrow(() -> new RuntimeException(
+                        "Vehicle not found with number: " + sessionTimeTableDTO.getVehicleNumber()
+                ));
+
         PendingSessions pendingSession = PendingSessions.builder()
                 .sessionId(sessionTimeTableDTO.getSessionId())
                 .time(sessionTimeTableDTO.getTime())
                 .date(sessionTimeTableDTO.getDate())
-                .vehicleNumber(sessionTimeTableDTO.getVehicleNumber())
+                .vehicle(vehicle)
                 .courseName(sessionTimeTableDTO.getCourseName())
-                .respond(InstructorRespond.PENDING)  // default status
+                .respond(InstructorRespond.PENDING)
                 .instructor(instructor)
                 .build();
         pendingSessionRepo.save(pendingSession);
@@ -69,14 +78,14 @@ public class PendingSessionServiceImpl implements PendingSessionService {
     }
 
     public List<PendingSessionDTO> getAllSessions() {
-        List<PendingSessions> sessions = pendingSessionRepo.findAll();
+        List<PendingSessions> sessions = pendingSessionRepo.findByDateGreaterThanEqual(LocalDate.now());
 
         return sessions.stream().map(session -> PendingSessionDTO.builder()
                 .sessionId(session.getSessionId())
                 .licenseId(session.getInstructor().getLicenseId())
                 .date(session.getDate())
                 .time(session.getTime())
-                .vehicleNumber(session.getVehicleNumber())
+                .vehicleNumber(session.getVehicle().getVehicleNumber())
                 .courseName(session.getCourseName())
                 .respond(session.getRespond().name())
                 .instructorName(
@@ -96,7 +105,7 @@ public class PendingSessionServiceImpl implements PendingSessionService {
                 .licenseId(session.getInstructor().getLicenseId())
                 .date(session.getDate())
                 .time(session.getTime())
-                .vehicleNumber(session.getVehicleNumber())
+                .vehicleNumber(session.getVehicle().getVehicleNumber())
                 .courseName(session.getCourseName())
                 .respond(String.valueOf(session.getRespond()))
                 .instructorName("")
@@ -135,7 +144,7 @@ public class PendingSessionServiceImpl implements PendingSessionService {
     }
 
     public List<TodaySessionDTO> loadTodaySession(String licenseId, LocalDate todayDate) {
-        List<SessionTimeTable> sessions = pendingSessionRepo.findByLicenseIdAndDate(licenseId, todayDate);
+        List<SessionTimeTable> sessions = pendingSessionRepo.findNextSessionForInstructor(licenseId);
 
         if (sessions == null || sessions.isEmpty()) {
             return Collections.emptyList();
@@ -151,12 +160,31 @@ public class PendingSessionServiceImpl implements PendingSessionService {
                             ps.getTime(),
                             ps.getDate(),
                             ps.getInstructor().getLicenseId(),
-                            ps.getVehicleNumber(),
+                            ps.getVehicle().getVehicleNumber(),
                             ps.getRespond() != null ? ps.getRespond().name() : null,
                             ps.getCourseName()
                     );
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String cancelSession(String sessionId) {
+        Optional<PendingSessions> optionalSession = pendingSessionRepo.findById(sessionId);
+
+        if (optionalSession.isPresent()) {
+            PendingSessions session = optionalSession.get();
+            session.setRespond(InstructorRespond.CANCELED);
+            pendingSessionRepo.save(session);
+            return "Session cancelled successfully";
+        } else {
+            return "Session not found";
+        }
+    }
+
+    @Override
+    public List<FetchCustomerSessionsDTO> getAllUpcomingSessions() {
+        return pendingSessionRepo.fetchAcceptedSessions();
     }
 
 }

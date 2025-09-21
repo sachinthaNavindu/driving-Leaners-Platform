@@ -35,4 +35,13 @@ public class PaymentsController {
                 paymentService.deletePayment(paymentId)
         ));
     }
+
+    @RequestMapping("/loadInfluencePayments")
+    public ResponseEntity<ApiResponseDTO>getInfluencePayments(){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                paymentService.getPaymentsWithYetToPay()
+        ));
+    }
 }

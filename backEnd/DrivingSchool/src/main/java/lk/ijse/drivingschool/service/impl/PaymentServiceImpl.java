@@ -1,5 +1,6 @@
 package lk.ijse.drivingschool.service.impl;
 
+import lk.ijse.drivingschool.dto.InfluentPaymentDTO;
 import lk.ijse.drivingschool.dto.PaymentDTO;
 import lk.ijse.drivingschool.entity.Payment;
 import lk.ijse.drivingschool.entity.Student;
@@ -51,5 +52,10 @@ public class PaymentServiceImpl implements PaymentService {
     public String getUserCourse(String nic) {
 
         return paymentRepo.getCourseNameByStudentNic(nic);
+    }
+
+    @Override
+    public List<InfluentPaymentDTO> getPaymentsWithYetToPay() {
+        return paymentRepo.findPaymentsWithCourseFee();
     }
 }

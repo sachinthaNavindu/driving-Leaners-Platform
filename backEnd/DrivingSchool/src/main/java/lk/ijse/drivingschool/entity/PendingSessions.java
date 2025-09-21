@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @AllArgsConstructor
@@ -20,10 +21,8 @@ public class PendingSessions {
     @Id
     private String sessionId;
 
-    private Timestamp time;
+    private LocalTime time;
     private LocalDate date;
-
-    private String vehicleNumber;
 
     @Enumerated(EnumType.STRING)
     private InstructorRespond respond;
@@ -33,4 +32,9 @@ public class PendingSessions {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "licenseId", referencedColumnName = "licenseId")
     private Instructor instructor;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "vehicleNumber",referencedColumnName = "vehicleNumber",foreignKey = @ForeignKey(name = "fk_pending_vehicle"))
+    private Vehicle vehicle;
+
 }

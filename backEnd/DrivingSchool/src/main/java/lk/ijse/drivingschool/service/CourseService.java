@@ -8,4 +8,5 @@ public interface CourseService {
     String deleteCourse(String courseName);
     String updateCourse(CourseDTO courseDTO,String updateCourseName);
     int getCourseId(String courseName);
+    long getCourseCount();
 }

@@ -1,5 +1,6 @@
     package lk.ijse.drivingschool.controller;
 
+    import jakarta.validation.Valid;
     import lk.ijse.drivingschool.dto.ApiResponseDTO;
     import lk.ijse.drivingschool.dto.EmployeeDTO;
     import lk.ijse.drivingschool.service.EmployeeService;
@@ -47,8 +48,8 @@
             ));
         }
 
-            @RequestMapping("/loadSchedule/{licenseId}")
-            public ResponseEntity<ApiResponseDTO>loadSchedule(@PathVariable String licenseId){
+        @RequestMapping("/loadSchedule/{licenseId}")
+        public ResponseEntity<ApiResponseDTO>loadSchedule(@PathVariable String licenseId){
             return ResponseEntity.ok(new ApiResponseDTO(
                     200,
                     "OK",
@@ -57,7 +58,7 @@
         }
 
         @RequestMapping("/updateProfile/{nic}")
-        public ResponseEntity<ApiResponseDTO> updateProfile(@PathVariable String nic,@RequestBody EmployeeDTO employeeDTO){
+        public ResponseEntity<ApiResponseDTO> updateProfile(@PathVariable String nic,@RequestBody @Valid EmployeeDTO employeeDTO){
             return ResponseEntity.ok(new ApiResponseDTO(
                     200,
                     "OK",

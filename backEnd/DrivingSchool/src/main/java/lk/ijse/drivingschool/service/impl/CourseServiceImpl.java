@@ -70,4 +70,9 @@ public class CourseServiceImpl implements CourseService {
             throw new RuntimeException("Course not found: " + courseName);
         }
     }
+
+    @Override
+    public long getCourseCount() {
+        return courseRepo.count();
+    }
 }

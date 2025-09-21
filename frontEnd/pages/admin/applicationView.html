@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DriveMaster - Application Viewer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+   <link rel="stylesheet" href="/css/admin/applicationView.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-car-side"></i>
+            <h1>DriveMaster Admin</h1>
+          </div>
+          <div class="user-info">
+            <img
+              src="https://ui-avatars.com/api/?name=Admin+User&background=random"
+              alt="Admin User"
+            />
+            <span id="menubar-user">Admin User</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <div class="page-title">
+          <i class="fas fa-file-alt"></i>
+          <h2>Student Applications</h2>
+        </div>
+
+        <div class="controls">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search applications..." />
+          </div>
+          <select class="filter-select">
+            <option value="all">All Applications</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+          <select class="filter-select">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
+
+        <div class="application-grid">
+          <div class="application-card">
+            <div class="card-header">
+              <div class="application-id">APP-2023-001</div>
+            </div>
+            <div class="card-body">
+              <div class="student-info">
+                <div class="info-item">
+                  <i class="fas fa-user"></i>
+                  <span>John David Smith</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-id-card"></i>
+                  <span>200112345678</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-phone"></i>
+                  <span>071-234-5678</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>john.smith@example.com</span>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>123 Main St, Colombo</span>
+                </div>
+              </div>
+              <div class="nic-photos">
+                <div class="nic-photo">
+                  <img
+                    src="https://placehold.co/300x200/1a2a6c/white?text=NIC+Front"
+                    alt="NIC Front"
+                  />
+                  <div class="photo-label">Front Side</div>
+                </div>
+                <div class="nic-photo">
+                  <img
+                    src="https://placehold.co/300x200/1a2a6c/white?text=NIC+Back"
+                    alt="NIC Back"
+                  />
+                  <div class="photo-label">Back Side</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="application-date">
+                <i class="far fa-calendar-alt"></i>
+                Applied: 2023-10-15
+              </div>
+              <div class="actions">
+                <button class="action-btn btn-view" onclick="showApplication()">
+                  <i class="fas fa-eye"></i> View
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="applicationModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Application Details</h2>
+          <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-section">
+            <h3 class="section-title">
+              <i class="fas fa-info-circle"></i> Application Information
+            </h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="appId">Application ID</label>
+                <input type="text" id="appId" class="form-control" readonly />
+              </div>
+              <div class="form-group">
+                <label for="appStatus">Status</label>
+                <input
+                  type="text"
+                  id="appStatus"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="appDate">Application Date</label>
+                <input type="text" id="appDate" class="form-control" readonly />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">
+              <i class="fas fa-user-graduate"></i> Student Information
+            </h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="studentName">Full Name</label>
+                <input
+                  type="text"
+                  id="studentName"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentNIC">NIC Number</label>
+                <input
+                  type="text"
+                  id="studentNIC"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="studentEmail">Email Address</label>
+                <input
+                  type="email"
+                  id="studentEmail"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="studentContact">Contact Number</label>
+                <input
+                  type="tel"
+                  id="studentContact"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="studentAddress">Residential Address</label>
+                <textarea
+                  id="studentAddress"
+                  class="form-control"
+                  rows="3"
+                  readonly
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3 class="section-title">
+              <i class="fas fa-id-card"></i> NIC Photos
+            </h3>
+            <div class="nic-preview">
+              <div class="nic-preview-item">
+                <img id="nicFrontPreview" src="" alt="NIC Front" />
+                <div class="nic-preview-label">Front Side</div>
+              </div>
+              <div class="nic-preview-item">
+                <img id="nicBackPreview" src="" alt="NIC Back" />
+                <div class="nic-preview-label">Back Side</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal()">
+            <i class="fas fa-times"></i> Close
+          </button>
+          <button
+            class="btn btn-primary"
+            id="actionButton"
+            onclick="approvalApplication()"
+          >
+            <i class="fas fa-check"></i> Approve Application
+          </button>
+        </div>
+      </div>
+    </div>
+
+  <script src="/js/ApplicationView.js"></script>
+  </body>
+</html>

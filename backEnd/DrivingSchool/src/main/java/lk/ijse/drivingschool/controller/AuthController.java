@@ -1,5 +1,6 @@
 package lk.ijse.drivingschool.controller;
 
+import jakarta.validation.Valid;
 import lk.ijse.drivingschool.dto.*;
 import lk.ijse.drivingschool.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class AuthController {
     }
 
     @PostMapping("/employee/login")
-    public ResponseEntity<ApiResponseDTO>employeeLogin(@RequestBody EmployeeAuthDTO employeeAuthDTO){
+    public ResponseEntity<ApiResponseDTO>employeeLogin(@RequestBody @Valid EmployeeAuthDTO employeeAuthDTO){
         return ResponseEntity.ok(new ApiResponseDTO(
                 200,
                 "OK",
@@ -35,7 +36,7 @@ public class AuthController {
 
 
     @PostMapping("/student/signup")
-    public ResponseEntity<ApiResponseDTO>registerStudent(@RequestBody StudentAuthDTO studentAuthDTO){
+    public ResponseEntity<ApiResponseDTO>registerStudent(@RequestBody @Valid StudentAuthDTO studentAuthDTO){
         return ResponseEntity.ok(new ApiResponseDTO(
                 200,
                 "OK",
@@ -45,7 +46,7 @@ public class AuthController {
 
 
     @PostMapping("/employee/signup")
-    public ResponseEntity<ApiResponseDTO>employeeSignup(@RequestBody InstructorAuthDTO instructorAuthDTO){
+    public ResponseEntity<ApiResponseDTO>employeeSignup(@RequestBody @Valid InstructorAuthDTO instructorAuthDTO){
         return ResponseEntity.ok(new ApiResponseDTO(
                 200,
                 "OK",
@@ -53,12 +54,12 @@ public class AuthController {
         ));
     }
 
-//    @PostMapping("/employee/register")
-//    public ResponseEntity<ApiResponseDTO>registerEmployee(@RequestBody InstructorAuthDTO instructorAuthDTO){
-//        return ResponseEntity.ok(new ApiResponseDTO(
-//                200,
-//                "OK",
-//                authService.admin(instructorAuthDTO)
-//        ));
-//    }
+    @PostMapping("/employee/register")
+    public ResponseEntity<ApiResponseDTO>registerEmployee(@RequestBody @Valid InstructorAuthDTO instructorAuthDTO){
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                authService.admin(instructorAuthDTO)
+        ));
+    }
 }
