@@ -8,7 +8,8 @@ This project is designed to make daily operations efficient and reduce manual wo
 ## Screenshots
 
 ### Dashboard
-![Dashboard]([path/to/dashboard-screenshot.png](https://raw.githubusercontent.com/sachinthaNavindu/driving-Leaners-Platform/refs/heads/main/images/Screenshot%202025-09-21%20230211.png))
+![Dashboard](https://raw.githubusercontent.com/sachinthaNavindu/driving-Leaners-Platform/main/images/Screenshot%202025-09-21%20230211.png)
+
 
 ### Student Registration Form
 ![Student Registration](path/to/student-registration-screenshot.png)
