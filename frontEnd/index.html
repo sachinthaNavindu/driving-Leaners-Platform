@@ -1,28 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <div class="box">
-        <div>
-            <a href="/pages/signup.html"><button>Signup</button></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DriveMaster - Driving School Portal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f5f7f9 0%, #e4e8eb 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .logo-icon {
+        font-size: 42px;
+        color: #1a2a6c;
+        margin-right: 15px;
+      }
+
+      .logo-text {
+        font-size: 36px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .tagline {
+        font-size: 18px;
+        color: #6c757d;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .portals-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .portal {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+      }
+
+      .portal:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .portal-header {
+        margin-bottom: 25px;
+      }
+
+      .portal-icon {
+        font-size: 50px;
+        margin-bottom: 15px;
+      }
+
+      .student-portal .portal-icon {
+        color: #1a2a6c;
+      }
+
+      .instructor-portal .portal-icon {
+        color: #b21f1f;
+      }
+
+      .portal-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .student-portal .portal-title {
+        color: #1a2a6c;
+      }
+
+      .instructor-portal .portal-title {
+        color: #b21f1f;
+      }
+
+      .portal-description {
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .portal-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #1a2a6c, #2c3eaa);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #2c3eaa, #1a2a6c);
+        box-shadow: 0 5px 15px rgba(26, 42, 108, 0.3);
+      }
+
+      .btn-secondary {
+        background: rgba(26, 42, 108, 0.1);
+        color: #1a2a6c;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(26, 42, 108, 0.2);
+      }
+
+      .btn-tertiary {
+        background: linear-gradient(135deg, #b21f1f, #c0392b);
+        color: white;
+      }
+
+      .btn-tertiary:hover {
+        background: linear-gradient(135deg, #c0392b, #b21f1f);
+        box-shadow: 0 5px 15px rgba(178, 31, 31, 0.3);
+      }
+
+      .btn-quaternary {
+        background: rgba(178, 31, 31, 0.1);
+        color: #b21f1f;
+      }
+
+      .btn-quaternary:hover {
+        background: rgba(178, 31, 31, 0.2);
+      }
+
+      .application-section {
+        margin-top: 50px;
+        text-align: center;
+        width: 100%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .application-box {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .application-title {
+        font-size: 24px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .application-btn {
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+        color: white;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .application-btn:hover {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+      }
+
+      footer {
+        margin-top: 60px;
+        text-align: center;
+        color: #6c757d;
+        font-size: 14px;
+      }
+
+      @media (max-width: 768px) {
+        .portals-container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .portal {
+          width: 100%;
+        }
+
+        .portal-buttons {
+          grid-template-columns: 1fr;
+        }
+
+        .logo-text {
+          font-size: 28px;
+        }
+
+        .tagline {
+          font-size: 16px;
+        }
+      }
+ 
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <i class="fas fa-car-side logo-icon"></i>
+          <h1 class="logo-text">DriveMaster</h1>
         </div>
-        <div>
-            <a href="/pages/signin.html"><button>SignIn</button></a>
+        <p class="tagline">
+          Your journey to becoming a confident driver starts here. Choose your
+          portal to get started.
+        </p>
+      </header>
+
+      <div class="portals-container">
+        <div class="portal student-portal">
+          <div class="portal-header">
+            <i class="fas fa-user-graduate portal-icon"></i>
+            <h2 class="portal-title">Student Portal</h2>
+            <p class="portal-description">
+              Access your student account to manage lessons, track progress, and
+              schedule driving sessions.
+            </p>
+          </div>
+          <div class="portal-buttons">
+            <a href="/pages/signup.html" class="btn btn-primary">Sign Up</a>
+            <a href="/pages/signin.html" class="btn btn-secondary">Sign In</a>
+          </div>
         </div>
 
-        <div>
-            <a href="/pages/employeelogin.html"><button>instructor login</button></a>
+        <div class="portal instructor-portal">
+          <div class="portal-header">
+            <i class="fas fa-chalkboard-teacher portal-icon"></i>
+            <h2 class="portal-title">Instructor Portal</h2>
+            <p class="portal-description">
+              Access the instructor dashboard to manage students, schedules, and
+              track lesson progress.
+            </p>
+          </div>
+          <div class="portal-buttons">
+            <a href="/pages/employeesignup.html" class="btn btn-tertiary"
+              >Instructor Sign Up</a
+            >
+            <a href="/pages/employeelogin.html" class="btn btn-quaternary"
+              >Instructor Sign In</a
+            >
+          </div>
         </div>
-        <div>
-            <a href="/pages/employeesignup.html"><button>instructor signup</button></a>
+      </div>
+
+      <div class="application-section">
+        <div class="application-box">
+          <div class="h">
+            <h3 class="application-title">New to DriveMaster?</h3>
+            <p>Start your driving journey by submitting an application</p>
+          </div>
+          <div class="apply-btn">
+            <a href="/pages/application.html" class="btn application-btn"
+              >Start Application</a
+            >
+          </div>
         </div>
-        <div>
-            <a href="/pages/application.html"><button>Application</button></a>
-        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2023 DriveMaster Driving School. All rights reserved.</p>
+      </footer>
     </div>
-</body>
+  </body>
 </html>
