@@ -11,13 +11,12 @@ This project is designed to make daily operations efficient and reduce manual wo
 ![Dashboard](https://raw.githubusercontent.com/sachinthaNavindu/driving-Leaners-Platform/main/images/Screenshot%202025-09-21%20230211.png)
 
 
-### Student Registration Form
-![Student Registration](path/to/student-registration-screenshot.png)
+
 
 ### Session Scheduling
-![Session Scheduling](path/to/session-scheduling-screenshot.png)
+![Session Scheduling](https://raw.githubusercontent.com/sachinthaNavindu/driving-Leaners-Platform/refs/heads/main/images/Screenshot%202025-09-21%20231024.png)
 
-*(Replace `path/to/...` with your actual screenshot paths or uploaded image links.)*
+
 
 ---
 
