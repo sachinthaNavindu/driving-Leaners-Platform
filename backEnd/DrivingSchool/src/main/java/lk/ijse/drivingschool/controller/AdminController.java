@@ -28,7 +28,6 @@ public class AdminController {
     private final PendingSessionService pendingSessionServiceImpl;
     private final ApplicationService applicationServiceImpl;
 
-    //register endpoints
     @RequestMapping("/studentRegister")
     public ResponseEntity<ApiResponseDTO>RegisterStudent(@RequestBody @Valid WrapperDTO wrapperDTO) {
         StudentDTO studentDTO = wrapperDTO.getStudentDTO();

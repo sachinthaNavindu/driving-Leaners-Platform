@@ -1,16 +1,11 @@
 package lk.ijse.drivingschool.service.impl;
 
 import lk.ijse.drivingschool.dto.*;
-import lk.ijse.drivingschool.entity.Instructor;
-import lk.ijse.drivingschool.entity.PendingSessions;
-import lk.ijse.drivingschool.entity.SessionTimeTable;
-import lk.ijse.drivingschool.entity.Vehicle;
+import lk.ijse.drivingschool.entity.*;
 import lk.ijse.drivingschool.entity.enums.InstructorRespond;
-import lk.ijse.drivingschool.repository.InstructorRepository;
-import lk.ijse.drivingschool.repository.PendingSessionRepo;
-import lk.ijse.drivingschool.repository.SessionTimeTableRepo;
-import lk.ijse.drivingschool.repository.VehicleRepo;
+import lk.ijse.drivingschool.repository.*;
 import lk.ijse.drivingschool.service.PendingSessionService;
+import lk.ijse.drivingschool.util.SendMailUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +26,7 @@ public class PendingSessionServiceImpl implements PendingSessionService {
     private final InstructorRepository instructorRepo;
     private final SessionTimeTableRepo sessionTimeTableRepo;
     private final VehicleRepo vehicleRepo;
+    private final EmployeeRepo employeeRepo;
 
     public Object generateSessionId() {
         String lastId = pendingSessionRepo.getLastSessionId();
@@ -73,7 +69,51 @@ public class PendingSessionServiceImpl implements PendingSessionService {
                 .respond(InstructorRespond.PENDING)
                 .instructor(instructor)
                 .build();
+
+
         pendingSessionRepo.save(pendingSession);
+
+        String gmail = employeeRepo.findGmailByLicenseId(instructor.getNic());
+        System.out.println(gmail);
+        if (gmail != null && !gmail.isEmpty()) {
+            String subject = "New Pending Session Assigned";
+            String body = "<!DOCTYPE html>"
+                    + "<html>"
+                    + "<head>"
+                    + "<meta charset='UTF-8'>"
+                    + "<style>"
+                    + "body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }"
+                    + ".container { max-width: 600px; margin: 0 auto; padding: 20px; }"
+                    + ".header { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; }"
+                    + ".details { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }"
+                    + ".footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }"
+                    + "</style>"
+                    + "</head>"
+                    + "<body>"
+                    + "<div class='container'>"
+                    + "<div class='header'>"
+                    + "<h3>Dear " + "Sir" + ",</h3>"
+                    + "</div>"
+                    + "<p>You have been assigned a new training session. Please review the details below:</p>"
+                    + "<div class='details'>"
+                    + "<ul style='list-style: none; padding: 0; margin: 0;'>"
+                    + "<li><strong>Session ID:</strong> " + sessionTimeTableDTO.getSessionId() + "</li>"
+                    + "<li><strong>Date:</strong> " + sessionTimeTableDTO.getDate() + "</li>"
+                    + "<li><strong>Time:</strong> " + sessionTimeTableDTO.getTime() + "</li>"
+                    + "<li><strong>Course:</strong> " + sessionTimeTableDTO.getCourseName() + "</li>"
+                    + "<li><strong>Vehicle:</strong> " + sessionTimeTableDTO.getVehicleNumber() + "</li>"
+                    + "</ul>"
+                    + "</div>"
+                    + "<p>Please log in to the system at your earliest convenience to confirm your availability for this session.</p>"
+                    + "<div class='footer'>"
+                    + "<p>Best regards,<br>Training Management System</p>"
+                    + "</div>"
+                    + "</div>"
+                    + "</body>"
+                    + "</html>";
+
+            SendMailUtil.sendEmailAsync(gmail, subject, body);
+        }
         return "Session Saved Successfully";
     }
 
