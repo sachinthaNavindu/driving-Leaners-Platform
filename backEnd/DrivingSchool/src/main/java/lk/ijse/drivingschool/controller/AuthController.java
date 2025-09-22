@@ -62,4 +62,13 @@ public class AuthController {
                 authService.admin(instructorAuthDTO)
         ));
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<ApiResponseDTO> refresh(@RequestBody RefreshTokenDTO request) {
+        return ResponseEntity.ok(new ApiResponseDTO(
+                200,
+                "OK",
+                authService.refreshAccessToken(request.getRefreshToken())
+        ));
+    }
 }

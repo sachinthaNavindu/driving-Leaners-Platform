@@ -49,6 +49,7 @@
               localStorage.setItem("nic", data.data.nic);
               localStorage.setItem("username",data.data.username);
               localStorage.setItem("licenseId",data.data.licenseId);
+              localStorage.setItem("refreshToken",data.data.refreshToken);
             } 
             showAlert(
               "Login successful! Redirecting to dashboard...",

@@ -13,6 +13,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -40,9 +42,10 @@ public class AuthServiceImpl implements AuthService {
         if (!passwordEncoder.matches(studentAuthDTO.getPassword(), studentCredentials.getPassword())) {
             throw new BadCredentialsException("Invalid Nic or password");
         }
-        String token = jwtUtil.generateToken(studentAuthDTO.getNic());
+        String accessToken = jwtUtil.generateToken(studentAuthDTO.getNic());
+        String refreshToken = jwtUtil.generateRefreshToken(studentAuthDTO.getNic());
 
-        return new AuthResponseDTO(token,studentCredentials.getStudentNic(),name,role,"");
+        return new AuthResponseDTO(accessToken,refreshToken,studentCredentials.getStudentNic(),name,role,"");
     }
 
     public AuthResponseDTO employeeAuthenticate(EmployeeAuthDTO employeeAuthDTO) {
@@ -74,8 +77,10 @@ public class AuthServiceImpl implements AuthService {
                 default:
                     throw new BadCredentialsException("Unsupported job role");
         }
-        String token = jwtUtil.generateToken(employeeAuthDTO.getNic());
-        return new AuthResponseDTO(token,employeeAuthDTO.getNic(),userName,jobrole,licenseId);
+        String accessToken = jwtUtil.generateToken(employeeAuthDTO.getNic());
+        String refreshToken = jwtUtil.generateRefreshToken(employeeAuthDTO.getNic());
+
+        return new AuthResponseDTO(accessToken,refreshToken,employeeAuthDTO.getNic(),userName,jobrole,licenseId);
     }
 
 
@@ -135,5 +140,19 @@ public class AuthServiceImpl implements AuthService {
                 .build();
 
         return adminRepo.save(admin);
+    }
+
+    public Map<String, String> refreshAccessToken(String refreshToken) {
+        if (!jwtUtil.validateToken(refreshToken)) {
+            throw new RuntimeException("Invalid refresh token");
+        }
+
+        String username = jwtUtil.extractToken(refreshToken);
+        String newAccessToken = jwtUtil.generateToken(username);
+
+        return Map.of(
+                "accessToken", newAccessToken,
+                "refreshToken", refreshToken
+        );
     }
 }

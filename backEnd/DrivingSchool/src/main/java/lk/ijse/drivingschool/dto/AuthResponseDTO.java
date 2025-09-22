@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class AuthResponseDTO {
     private String accessToken;
+    private String refreshToken;
     private String nic;
     private String username;
     private JobRole jobRole;

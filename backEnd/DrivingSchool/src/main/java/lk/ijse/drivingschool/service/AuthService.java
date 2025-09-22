@@ -11,5 +11,7 @@ public interface AuthService {
     String registerStudent(StudentAuthDTO studentAuthDTO);
     String employeeSignup(InstructorAuthDTO instructorAuthDTO);
     Object admin(InstructorAuthDTO instructorAuthDTO);
+
+    Object refreshAccessToken(String refreshToken);
 }
 
