@@ -113,3 +113,444 @@ Caused by: java.lang.NumberFormatException: For input string: "604800000#7days"
 	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:80) ~[spring-beans-6.2.9.jar:6.2.9]
 	... 72 common frames omitted
 
+2025-09-22T17:33:49.022+05:30  INFO 15276 --- [DrivingSchool] [main] l.i.d.DrivingSchoolApplication           : Starting DrivingSchoolApplication using Java 17.0.12 with PID 15276 (D:\Ijse\Aad\finalProject\backEnd\DrivingSchool\target\classes started by User in D:\Ijse\Aad\finalProject\backEnd\DrivingSchool)
+2025-09-22T17:33:49.025+05:30  INFO 15276 --- [DrivingSchool] [main] l.i.d.DrivingSchoolApplication           : No active profile set, falling back to 1 default profile: "default"
+2025-09-22T17:33:50.156+05:30  INFO 15276 --- [DrivingSchool] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-22T17:33:50.284+05:30  INFO 15276 --- [DrivingSchool] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 12 JPA repository interfaces.
+2025-09-22T17:33:50.746+05:30  INFO 15276 --- [DrivingSchool] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-22T17:33:50.757+05:30  INFO 15276 --- [DrivingSchool] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-22T17:33:50.757+05:30  INFO 15276 --- [DrivingSchool] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-09-22T17:33:50.806+05:30  INFO 15276 --- [DrivingSchool] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-22T17:33:50.806+05:30  INFO 15276 --- [DrivingSchool] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1741 ms
+2025-09-22T17:33:50.926+05:30  INFO 15276 --- [DrivingSchool] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-22T17:33:50.995+05:30  INFO 15276 --- [DrivingSchool] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-09-22T17:33:51.034+05:30  INFO 15276 --- [DrivingSchool] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-22T17:33:51.293+05:30  INFO 15276 --- [DrivingSchool] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-22T17:33:51.321+05:30  INFO 15276 --- [DrivingSchool] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-22T17:33:51.740+05:30  INFO 15276 --- [DrivingSchool] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@389008d1
+2025-09-22T17:33:51.741+05:30  INFO 15276 --- [DrivingSchool] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-22T17:33:51.833+05:30  WARN 15276 --- [DrivingSchool] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-22T17:33:51.851+05:30  INFO 15276 --- [DrivingSchool] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.39
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-22T17:33:52.896+05:30  INFO 15276 --- [DrivingSchool] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-22T17:33:53.070+05:30  INFO 15276 --- [DrivingSchool] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-22T17:33:53.351+05:30  INFO 15276 --- [DrivingSchool] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-22T17:33:54.754+05:30  WARN 15276 --- [DrivingSchool] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-22T17:33:54.856+05:30 DEBUG 15276 --- [DrivingSchool] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 50 mappings in 'requestMappingHandlerMapping'
+2025-09-22T17:33:54.922+05:30 DEBUG 15276 --- [DrivingSchool] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-09-22T17:33:54.941+05:30  INFO 15276 --- [DrivingSchool] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-09-22T17:33:54.942+05:30  WARN 15276 --- [DrivingSchool] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-09-22T17:33:55.100+05:30 DEBUG 15276 --- [DrivingSchool] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-09-22T17:33:55.144+05:30 DEBUG 15276 --- [DrivingSchool] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-09-22T17:33:55.242+05:30  INFO 15276 --- [DrivingSchool] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-22T17:33:55.250+05:30  INFO 15276 --- [DrivingSchool] [main] l.i.d.DrivingSchoolApplication           : Started DrivingSchoolApplication in 6.793 seconds (process running for 7.612)
+2025-09-22T17:38:11.335+05:30  INFO 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-22T17:38:11.349+05:30  INFO 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-22T17:38:11.354+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-09-22T17:38:11.355+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-09-22T17:38:11.355+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-09-22T17:38:11.400+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6927c79a
+2025-09-22T17:38:11.401+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@607df2a0
+2025-09-22T17:38:11.403+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-09-22T17:38:13.082+05:30  INFO 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1733 ms
+2025-09-22T17:38:13.204+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/auth/employee/login", parameters={}
+2025-09-22T17:38:13.205+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AuthController#employeeLogin(EmployeeAuthDTO)
+2025-09-22T17:38:13.321+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [EmployeeAuthDTO(nic=200012345678, email=instructor@example.com, password=12345678)]
+2025-09-22T17:38:13.780+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:38:13.782+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOi (truncated)...]
+2025-09-22T17:38:13.794+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:40:28.068+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/auth/employee/login", parameters={}
+2025-09-22T17:40:28.068+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AuthController#employeeLogin(EmployeeAuthDTO)
+2025-09-22T17:40:28.069+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [EmployeeAuthDTO(nic=200012345678, email=instructor@example.com, password=12345678)]
+2025-09-22T17:40:28.174+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:40:28.174+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOi (truncated)...]
+2025-09-22T17:40:28.175+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:40:51.017+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/auth/employee/login", parameters={}
+2025-09-22T17:40:51.017+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AuthController#employeeLogin(EmployeeAuthDTO)
+2025-09-22T17:40:51.019+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [EmployeeAuthDTO(nic=200012345678, email=instructor@example.com, password=12345678)]
+2025-09-22T17:40:51.124+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:40:51.124+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=AuthResponseDTO(accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOi (truncated)...]
+2025-09-22T17:40:51.125+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:40:53.072+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T17:40:53.073+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T17:40:53.238+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:40:53.242+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T17:40:53.250+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:53:46.888+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T17:53:46.889+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T17:53:46.928+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:53:46.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T17:53:46.930+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:53:47.826+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T17:53:47.827+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T17:53:47.850+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:53:47.851+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T17:53:47.855+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:54:49.649+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T17:54:49.649+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T17:54:49.657+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T17:54:49.658+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T17:54:49.678+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:54:49.682+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T17:54:49.686+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:54:49.686+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T17:54:49.694+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:54:49.708+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:56:11.009+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T17:56:11.007+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T17:56:11.009+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T17:56:11.009+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T17:56:11.015+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:56:11.015+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T17:56:11.016+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:56:11.016+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T17:56:11.016+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:56:11.016+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:57:21.309+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T17:57:21.310+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T17:57:21.310+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T17:57:21.310+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T17:57:21.317+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:57:21.317+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:57:21.317+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T17:57:21.317+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T17:57:21.321+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:57:21.321+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:58:49.313+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T17:58:49.313+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T17:58:49.313+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T17:58:49.313+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T17:58:49.320+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:58:49.320+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:58:49.321+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T17:58:49.321+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T17:58:49.322+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:58:49.324+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:59:13.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T17:59:13.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T17:59:13.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T17:59:13.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T17:59:13.935+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:59:13.935+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T17:59:13.936+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T17:59:13.936+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T17:59:13.938+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T17:59:13.938+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:01:10.781+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T18:01:10.781+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T18:01:10.782+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:01:10.782+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:01:10.788+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:01:10.788+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:01:10.790+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:01:10.790+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T18:01:10.791+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:01:10.792+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:01:12.269+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/admin/getApplications", parameters={}
+2025-09-22T18:01:12.273+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-09-22T18:01:12.280+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-09-22T18:01:12.289+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource admin/getApplications.]
+2025-09-22T18:01:12.289+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-09-22T18:02:04.503+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:02:04.504+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:02:04.510+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T18:02:04.510+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T18:02:04.514+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:02:04.515+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:02:04.519+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:02:04.523+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:02:04.523+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T18:02:04.525+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:02:06.783+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/admin/getApplications", parameters={}
+2025-09-22T18:02:06.786+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-09-22T18:02:06.790+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-09-22T18:02:06.794+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource admin/getApplications.]
+2025-09-22T18:02:06.795+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-09-22T18:06:45.709+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/admin/getRegisteredStudents", parameters={}
+2025-09-22T18:06:45.709+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:06:45.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetRegisteredStudents()
+2025-09-22T18:06:45.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:06:45.733+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:06:45.733+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:06:45.735+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[StudentDTO(nic=000000001V, name=Kamal Gunaratne, email=Kam (truncated)...]
+2025-09-22T18:06:45.735+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:06:45.739+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:06:45.739+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:06:47.197+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/application/getApply", parameters={}
+2025-09-22T18:06:47.198+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ApplicationController#getApply()
+2025-09-22T18:06:47.244+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:06:47.245+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[])]
+2025-09-22T18:06:47.249+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:07:37.114+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:07:37.114+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:07:37.158+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:07:37.159+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:07:37.162+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:07:43.648+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getInstructor", parameters={}
+2025-09-22T18:07:43.648+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getCourses", parameters={}
+2025-09-22T18:07:43.650+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getCourses()
+2025-09-22T18:07:43.650+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getInstructor()
+2025-09-22T18:07:43.662+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:07:43.663+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:07:43.664+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getVehicle", parameters={}
+2025-09-22T18:07:43.664+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getSession", parameters={}
+2025-09-22T18:07:43.664+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:07:43.665+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSession()
+2025-09-22T18:07:43.666+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getVehicle()
+2025-09-22T18:07:43.666+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/schedule/sessionId", parameters={}
+2025-09-22T18:07:43.667+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSessionId()
+2025-09-22T18:07:43.682+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:07:43.683+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=java.util.stream.ReferencePipeline$3@5be05d2b)]
+2025-09-22T18:07:43.696+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:07:43.699+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InstructorDTO(licenseId=1234567V, name=Ranjith Silva), Ins (truncated)...]
+2025-09-22T18:07:43.707+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:07:43.707+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:07:43.729+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:07:43.741+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=SessionInfoDTO(nextSessionId=S014, pendingCount=4, Approved (truncated)...]
+2025-09-22T18:07:43.747+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:07:43.754+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:07:43.777+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PendingSessionDTO(sessionId=S003, time=09:00, date=2025-09 (truncated)...]
+2025-09-22T18:07:43.795+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:31.103+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getVehicle", parameters={}
+2025-09-22T18:15:31.103+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/schedule/sessionId", parameters={}
+2025-09-22T18:15:31.103+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getInstructor", parameters={}
+2025-09-22T18:15:31.105+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSessionId()
+2025-09-22T18:15:31.105+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getInstructor()
+2025-09-22T18:15:31.105+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getCourses", parameters={}
+2025-09-22T18:15:31.105+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getVehicle()
+2025-09-22T18:15:31.106+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getCourses()
+2025-09-22T18:15:31.106+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getSession", parameters={}
+2025-09-22T18:15:31.108+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSession()
+2025-09-22T18:15:31.117+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:31.119+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:31.119+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:31.120+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=java.util.stream.ReferencePipeline$3@4df89592)]
+2025-09-22T18:15:31.120+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:15:31.120+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InstructorDTO(licenseId=1234567V, name=Ranjith Silva), Ins (truncated)...]
+2025-09-22T18:15:31.125+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:31.125+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:31.125+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:31.126+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:31.127+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=SessionInfoDTO(nextSessionId=S014, pendingCount=4, Approved (truncated)...]
+2025-09-22T18:15:31.129+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:31.146+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:31.146+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PendingSessionDTO(sessionId=S003, time=09:00, date=2025-09 (truncated)...]
+2025-09-22T18:15:31.155+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:42.892+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:15:42.893+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:15:42.928+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:42.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:15:42.930+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:44.769+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:15:44.770+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:15:44.807+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:44.808+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:15:44.810+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:55.229+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:15:55.230+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:15:55.255+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:55.256+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:15:55.259+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:55.636+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:15:55.640+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:15:55.675+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:55.675+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:15:55.676+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:59.066+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getCourses", parameters={}
+2025-09-22T18:15:59.066+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/schedule/sessionId", parameters={}
+2025-09-22T18:15:59.066+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getInstructor", parameters={}
+2025-09-22T18:15:59.067+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getSession", parameters={}
+2025-09-22T18:15:59.067+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSession()
+2025-09-22T18:15:59.067+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSessionId()
+2025-09-22T18:15:59.067+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getInstructor()
+2025-09-22T18:15:59.067+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getCourses()
+2025-09-22T18:15:59.070+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:59.071+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InstructorDTO(licenseId=1234567V, name=Ranjith Silva), Ins (truncated)...]
+2025-09-22T18:15:59.072+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:59.073+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getVehicle", parameters={}
+2025-09-22T18:15:59.074+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getVehicle()
+2025-09-22T18:15:59.075+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:59.076+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:15:59.076+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:59.076+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=SessionInfoDTO(nextSessionId=S014, pendingCount=4, Approved (truncated)...]
+2025-09-22T18:15:59.077+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:59.077+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:59.080+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:59.081+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=java.util.stream.ReferencePipeline$3@1546dcde)]
+2025-09-22T18:15:59.082+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:15:59.086+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:15:59.087+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PendingSessionDTO(sessionId=S003, time=09:00, date=2025-09 (truncated)...]
+2025-09-22T18:15:59.089+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:16:36.945+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/schedule/saveSession", parameters={}
+2025-09-22T18:16:36.945+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#saveSession(SessionTimeTableDTO)
+2025-09-22T18:16:38.673+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [SessionTimeTableDTO(sessionId=S014, time=08:30, date=2025-09-25, licenseId=1234567V, vehicleNumber=B (truncated)...]
+2025-09-22T18:16:38.940+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:16:38.940+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=Session Saved Successfully)]
+2025-09-22T18:16:38.942+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:16:40.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getCourses", parameters={}
+2025-09-22T18:16:40.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/schedule/sessionId", parameters={}
+2025-09-22T18:16:40.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getInstructor", parameters={}
+2025-09-22T18:16:40.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getSession", parameters={}
+2025-09-22T18:16:40.713+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getCourses()
+2025-09-22T18:16:40.714+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/schedule/getVehicle", parameters={}
+2025-09-22T18:16:40.714+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getInstructor()
+2025-09-22T18:16:40.714+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSessionId()
+2025-09-22T18:16:40.714+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getSession()
+2025-09-22T18:16:40.714+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.ScheduleManagement#getVehicle()
+2025-09-22T18:16:40.721+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:16:40.723+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InstructorDTO(licenseId=1234567V, name=Ranjith Silva), Ins (truncated)...]
+2025-09-22T18:16:40.725+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:16:40.725+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=java.util.stream.ReferencePipeline$3@5863e016)]
+2025-09-22T18:16:40.727+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:16:40.727+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:16:40.728+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:16:40.729+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:16:40.733+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:16:40.740+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:16:40.741+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=SessionInfoDTO(nextSessionId=S015, pendingCount=5, Approved (truncated)...]
+2025-09-22T18:16:40.743+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:16:40.756+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:16:40.757+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PendingSessionDTO(sessionId=S003, time=09:00, date=2025-09 (truncated)...]
+2025-09-22T18:16:40.759+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:17:05.846+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:17:05.846+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:17:05.876+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:17:05.876+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:17:05.877+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:27:03.404+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadPayments", parameters={}
+2025-09-22T18:27:03.407+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getAllPayments()
+2025-09-22T18:27:03.475+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:27:03.479+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a9268683f14, (truncated)...]
+2025-09-22T18:27:03.517+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:35:47.637+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadPayments", parameters={}
+2025-09-22T18:35:47.637+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getAllPayments()
+2025-09-22T18:35:47.665+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:35:47.666+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a9268683f14, (truncated)...]
+2025-09-22T18:35:47.670+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:35:49.984+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:35:50.046+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:35:50.124+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:35:50.126+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:35:50.130+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:38:18.175+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadPayments", parameters={}
+2025-09-22T18:38:18.175+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getAllPayments()
+2025-09-22T18:38:18.188+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:38:18.189+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a9268683f14, (truncated)...]
+2025-09-22T18:38:18.191+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:38:24.312+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:38:24.312+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:38:24.316+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:38:24.316+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:38:24.318+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:40:06.924+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:40:06.924+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:40:06.930+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:40:06.930+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:40:06.933+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:40:18.746+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:40:18.746+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:40:18.754+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:40:18.754+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:40:18.765+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:41:31.329+05:30  WARN 15276 --- [DrivingSchool] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m8s487ms913µs900ns).
+2025-09-22T18:45:54.451+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:45:54.452+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:45:54.460+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:45:54.462+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:45:54.464+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:48:24.844+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:48:24.844+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:48:24.851+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:48:24.852+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:48:24.853+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:48:43.892+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadPayments", parameters={}
+2025-09-22T18:48:43.892+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getAllPayments()
+2025-09-22T18:48:43.927+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:48:43.929+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[PaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a9268683f14, (truncated)...]
+2025-09-22T18:48:43.937+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:49:14.323+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:49:14.325+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:49:14.333+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:49:14.334+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:49:14.337+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:54:41.771+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/payments/loadInfluencePayments", parameters={}
+2025-09-22T18:54:41.771+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.PaymentsController#getInfluencePayments()
+2025-09-22T18:54:41.779+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:54:41.780+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[InfluentPaymentDTO(paymentID=325174d2-2bf1-4bad-b20b-0a926 (truncated)...]
+2025-09-22T18:54:41.782+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:54:55.483+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T18:54:55.483+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T18:54:55.563+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:54:55.565+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T18:54:55.567+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:55:00.949+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:55:00.950+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:55:00.955+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:55:00.957+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:55:00.960+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:59:46.808+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:59:46.808+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:59:46.812+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:59:46.812+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:59:46.813+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:59:47.989+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:59:47.990+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:59:47.994+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:59:47.995+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:59:47.995+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T18:59:52.013+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T18:59:52.014+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T18:59:52.024+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T18:59:52.024+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T18:59:52.026+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:01:37.419+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T19:01:37.419+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T19:01:37.426+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:01:37.426+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T19:01:37.428+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:02:31.520+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T19:02:31.520+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T19:02:31.545+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:02:31.545+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T19:02:31.546+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:02:34.494+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T19:02:36.041+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T19:02:36.052+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:02:36.052+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T19:02:36.053+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:02:38.448+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T19:02:38.449+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T19:02:38.467+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:02:38.469+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T19:02:38.470+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:02:42.900+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/admin/getCourseDetails", parameters={}
+2025-09-22T19:02:42.901+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#getCourseDetails()
+2025-09-22T19:02:42.908+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:02:42.909+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=[CourseDTO(courseName=full course, courseFee=25000.0, sessi (truncated)...]
+2025-09-22T19:02:42.912+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:02:46.169+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/admin/loadData", parameters={}
+2025-09-22T19:02:46.169+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#loadData()
+2025-09-22T19:02:46.187+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:02:46.187+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data={studentCount=CustomStudentDTO(registeredStudentCount=5, ac (truncated)...]
+2025-09-22T19:02:46.189+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:02:48.685+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/admin/getVehicles", parameters={}
+2025-09-22T19:02:48.685+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetVehicles()
+2025-09-22T19:02:48.755+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:02:48.762+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=VehicleDetailsDTO(vehicles=[VehicleDTO(vehicleNumber=BK-555 (truncated)...]
+2025-09-22T19:02:48.789+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:08:12.186+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/admin/getVehicles", parameters={}
+2025-09-22T19:08:12.186+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to lk.ijse.drivingschool.controller.AdminController#GetVehicles()
+2025-09-22T19:08:12.196+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-09-22T19:08:12.197+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ApiResponseDTO(code=200, status=OK, data=VehicleDetailsDTO(vehicles=[VehicleDTO(vehicleNumber=BK-555 (truncated)...]
+2025-09-22T19:08:12.218+05:30 DEBUG 15276 --- [DrivingSchool] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-09-22T19:13:32.289+05:30  INFO 15276 --- [DrivingSchool] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-22T19:13:32.367+05:30  INFO 15276 --- [DrivingSchool] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-09-22T19:13:32.403+05:30  INFO 15276 --- [DrivingSchool] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-22T19:13:32.433+05:30  INFO 15276 --- [DrivingSchool] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-22T19:13:32.448+05:30  INFO 15276 --- [DrivingSchool] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
