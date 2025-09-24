@@ -22,10 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const applicationsModal = document.getElementById("applicationsModal");
   const closeApplicationsModal = document.getElementById("closeApplicationsModal");
 
-  // Show applications modal and load applications
   viewApplicationsBtn.addEventListener("click", function () {
     applicationsModal.style.display = "flex";
-    viewApplication(); // now function exists
+    viewApplication();
   });
 
   closeApplicationsModal.addEventListener("click", function () {
@@ -45,7 +44,6 @@ async function loadData() {
   loadAvailableCourses();
 }
 
-// Load courses into select dropdown
 async function loadAvailableCourses() {
   try {
     const response = await fetchWithAuth("http://localhost:8080/admin/getCourseDetails", {
@@ -71,7 +69,6 @@ async function loadAvailableCourses() {
   }
 }
 
-// Get current date & time for form
 function getCurrentDateAndTime() {
   const now = new Date();
 
@@ -88,7 +85,6 @@ function getCurrentDateAndTime() {
   document.getElementById("payment_time").value = formattedTime;
 }
 
-// Load all registered students
 async function loadRegisteredStudents() {
   try {
     const response = await fetchWithAuth("http://localhost:8080/admin/getRegisteredStudents", {

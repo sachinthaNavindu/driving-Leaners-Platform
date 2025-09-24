@@ -48,7 +48,7 @@
               localStorage.setItem("nic", res.data.nic);
               localStorage.setItem("role", res.data.jobRole);
               localStorage.setItem("licenseId", res.data.licenseId || "");
-
+              localStorage.setItem("refreshToken",res.data.refreshToken);
             }
 
             showAlert("Login successful! Redirecting...", "success");

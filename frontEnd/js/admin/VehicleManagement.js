@@ -211,7 +211,6 @@ async function deleteVehicle(vehicleNumber) {
   }
 }
 
-// -------------------- Add Vehicle --------------------
 document.getElementById("addVehicleForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
